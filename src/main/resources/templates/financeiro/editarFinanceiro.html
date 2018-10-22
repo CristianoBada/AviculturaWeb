@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>EventosApp</title>
+	<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <link rel="stylesheet" href="style/styleCss.css"/>
+</head>
+<body>
+	
+	<th:block th:include="mensagemValidacao"></th:block>
+	
+	<div class="container formEvento">
+		<form  method="post">
+			Nome do produto: <input type="text" value="" name="nome"/>
+			Valor: <input type="number" value="0" min="0" name="valor"/>
+			Detalhe: <input type="text" value="" name="detalhe"/>
+			Tipo de transicao: <input type="text" value=""  name="entrasaida"/>
+		
+			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
+			<a href="/cadastrarFinanceiro" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Voltar</a>
+		</form>
+	</div>
+	
+	<!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
