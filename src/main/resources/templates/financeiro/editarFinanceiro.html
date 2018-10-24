@@ -19,11 +19,23 @@
 	
 	<div class="container formEvento">
 		<form  method="post">
-			Nome do produto: <input type="text" value="" name="nome"/>
-			Valor: <input type="number" value="0" min="0" name="valor"/>
-			Detalhe: <input type="text" value="" name="detalhe"/>
-			Tipo de transicao: <input type="text" value=""  name="entrasaida"/>
-		
+			<div class="row">
+				<div class="input-field col s3">
+					Nome do produto: <input type="text" value="" name="nome"/>
+				</div>
+				<div class="input-field col s1">
+					Valor: <input type="number" value="0" min="0" name="valor"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s2">
+					Tipo de transicao: <input type="text" value=""  name="entrasaida"/>
+				</div>
+				<div class="input-field col s4">
+					Detalhe: <input type="text" value="" name="detalhe"/>
+				</div>
+			</div>
+
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
 			<a href="/cadastrarFinanceiro" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Voltar</a>
 		</form>
