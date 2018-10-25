@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +25,7 @@ private static final long serialVersionUID = 1L;
 	
 	private String nomeCompleto;
 	
-	@NotNull
+	@NotEmpty
 	private String senha;
 	
 	@ManyToMany

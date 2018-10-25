@@ -1,11 +1,14 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,23 +20,34 @@ public class Corte implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoCorte;
 	
-	@NotNull
+	@NotEmpty
     private String quantidadeAves;
     
     private String mortalidade;
     
     private String comentario;
     
-    @NotNull
+    @NotEmpty
     private String maximo;
     
-    @NotNull
+    @NotEmpty
     private String dataEntrada;
     
     private String dataSaida;
     
-    @NotNull
+    @NotEmpty
     private String tipoAve;
+    
+    @OneToMany
+	 private List<Racao> loteRacao;
+
+	public List<Racao> getLoteRacao() {
+		return loteRacao;
+	}
+
+	public void setLoteRacao(List<Racao> loteRacao) {
+		this.loteRacao = loteRacao;
+	}
 
 	public long getCodigoCorte() {
 		return codigoCorte;

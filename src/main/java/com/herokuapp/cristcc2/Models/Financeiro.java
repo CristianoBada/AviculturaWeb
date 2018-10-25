@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,15 +18,15 @@ public class Financeiro implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoFinanceiro;
 
-	@NotNull
+	@NotEmpty
     private String nome;
     
-	@NotNull
+	@NotEmpty
     private String valor;
     
     private String detalhe;
     
-    @NotNull
+    @NotEmpty
     private String entrasaida;
 
 	public long getCodigoFinanceiro() {

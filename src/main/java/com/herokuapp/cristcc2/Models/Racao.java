@@ -1,11 +1,14 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,14 +20,37 @@ public class Racao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoRacao;
 	
-	@NotNull
+	@NotEmpty
 	private String tipoRacao;
 	
-	@NotNull
+	@NotEmpty
     private String quantidade;
     
-	@NotNull
+	@NotEmpty
     private String dataEntrada;
+	
+	 @ManyToOne
+	 private Postura granjaPostura;
+	 
+	 @ManyToOne
+	 private Corte granjaCorte;
+
+
+	public Postura getGranjaPostura() {
+		return granjaPostura;
+	}
+
+	public void setGranjaPostura(Postura granjaPostura) {
+		this.granjaPostura = granjaPostura;
+	}
+
+	public Corte getGranjaCorte() {
+		return granjaCorte;
+	}
+
+	public void setGranjaCorte(Corte granjaCorte) {
+		this.granjaCorte = granjaCorte;
+	}
 
 	public long getCodigoRacao() {
 		return codigoRacao;

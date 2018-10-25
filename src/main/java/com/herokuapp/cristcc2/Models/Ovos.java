@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,19 +21,19 @@ public class Ovos implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
 	
-	@NotNull
+	@NotEmpty
 	private String quantidade;
 	
     private String qualidade;
     
-    @NotNull
+    @NotEmpty
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String data;
     
-    @NotNull
+    @NotEmpty
     private String incubacao = "false";
     
-    @NotNull
+    @NotEmpty
     private String lote;
     
     @ManyToOne

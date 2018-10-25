@@ -6,10 +6,11 @@
 	<!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
     
     <link rel="stylesheet" href="style/styleCss.css"/>
 </head>
@@ -17,11 +18,17 @@
 	
 	<th:block th:include="mensagemValidacao"></th:block>
 	
-	<div class="container formEvento">
+	<div class=" formEvento">
 		<form  method="post">
 			<div class="row">
-				<div class="input-field col s2">
-					Tipo de Ave: <input type="text" value="" min="" name="tipoAve"/>
+			 <div class="input-field col s3">
+					Tipo de Ave:
+    			<select name="tipoAve">
+      				<option value="" disabled selected>Selecione uma opção</option>
+      				<option value="Galinha">Galinha</option>
+      				<option value="Codorna">Codorna</option>
+      				<option value="Pato">Pato</option>
+    			</select>
 				</div>
 				<div class="input-field col s1">
 					Quantidade: <input type="number" value="0" min="0" name="quantidade"/>
@@ -43,13 +50,23 @@
 					Comentario: <input type="text" value=""  name="comentario"/>
 				</div>
 			</div>
+			
+			
 		
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
 			<a href="/cadastrarPostura" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Voltar</a>
 		</form>
 	</div>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
 	<!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+        $('select').formSelect();
+      });
+    </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,20 +20,20 @@ public class Postura implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoPostura;
 	
-	@NotNull
+	@NotEmpty
 	private String quantidade;
 	
     private String comentario;
     
-    @NotNull
+    @NotEmpty
     private String maximoAves;
     
-    @NotNull
+    @NotEmpty
     private String dataentrada;
     
     private String datasaida;
     
-    @NotNull
+    @NotEmpty
     private String tipoAve;
     
     @OneToMany
@@ -40,6 +41,17 @@ public class Postura implements Serializable{
     
 	public List<Ovos> getLotesOvos() {
 		return lotesOvos;
+	}
+	
+	 @OneToMany
+	 private List<Racao> loteRacao;
+
+	public List<Racao> getLoteRacao() {
+		return loteRacao;
+	}
+
+	public void setLoteRacao(List<Racao> loteRacao) {
+		this.loteRacao = loteRacao;
 	}
 
 	public void setLotesOvos(List<Ovos> lotesOvos) {

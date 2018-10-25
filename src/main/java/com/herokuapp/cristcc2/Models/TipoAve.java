@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class TipoAve implements Serializable{
@@ -12,6 +14,9 @@ public class TipoAve implements Serializable{
 	
 	@Id
 	private String nomeAve;
+	
+	@NotEmpty
+	private String tempoChocagem;
 
 	public String getNomeAve() {
 		return nomeAve;
@@ -19,5 +24,13 @@ public class TipoAve implements Serializable{
 
 	public void setNomeAve(String nomeAve) {
 		this.nomeAve = nomeAve;
+	}
+
+	public String getTempoChocagem() {
+		return tempoChocagem;
+	}
+
+	public void setTempoChocagem(String tempoChocagem) {
+		this.tempoChocagem = tempoChocagem;
 	}
 }

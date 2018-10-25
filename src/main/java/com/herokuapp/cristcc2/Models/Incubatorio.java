@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,23 +20,23 @@ public class Incubatorio implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoIncubatorio;
 	
-	@NotNull
+	@NotEmpty
 	private String loteOvos;
 	
-	@NotNull
+	@NotEmpty
     private String temperatura;
 	
     private String umidade;
     
-    @NotNull
+    @NotEmpty
     private String tempoChocar;
     
-    @NotNull
+    @NotEmpty
     private String dataInicio;
     
     private String mortalidade;
     
-    @NotNull
+    @NotEmpty
     private String tipoAve;
     
     @OneToMany
