@@ -25,7 +25,7 @@
    			 </div>
     		<div class="nav-content container">
       			<ul class="tabs tabs-transparent">
-        			<li class="tab"><a href="/home">Inicio</a></li>
+        			<li class="tab"><a href="/">Inicio</a></li>
         			<li class="tab"><a href="/cadastrarPostura">Postura</a></li>
         			<li class="tab"><a href="/cadastrarOvos">Ovos</a></li>
         			<li class="tab"><a href="/cadastrarIncubatorio">Incubatorio</a></li>
@@ -52,7 +52,6 @@
 				<th>Data de Entrada</th>
 				<th>Data de Saida</th>
 				<th>Tipo de Ave</th>
-				<th>Deletar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -63,7 +62,6 @@
 				<td><span th:text="${p.dataentrada}" ></span></td>
 				<td><span th:text="${p.datasaida}"></span></td>
 				<td><span th:text="${p.tipoAve}" ></span></td>
-				<td><a th:href="|/cadastrarPostura/delete/${p.codigoPostura}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>
