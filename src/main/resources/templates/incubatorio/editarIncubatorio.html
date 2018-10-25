@@ -19,13 +19,33 @@
 	
 	<div class="container formEvento">
 		<form  method="post">
-			Lote de Ovos: <input type="text" value="" name="loteOvos"/>
-			Temperatura: <input type="number" value="0" name="temperatura"/>
-			Umidade: <input type="number" value="0" min="0" name="umidade"/>
-			Tempo para Eclodir: <input type="number" value="0" min="0" name="tempoChocar"/>
-			Data de Inicio: <input type="date" value="" name="dataInicio"/>
-			Mortalidade: <input type="number" value="0" min="0" name="mortalidade"/>
-			Tipo de Ave: <input type="text" value="" name="tipoAve"/>
+			<div class="row">
+				<div class="input-field col s2">
+					Tipo de Ave: <input type="text" value="" name="tipoAve"/>
+				</div>
+				<div class="input-field col s2">
+					Lote de Ovos: <input type="text" value="" name="loteOvos"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s2">
+					Data de Inicio: <input type="date" value="" name="dataInicio"/>
+				</div>
+				<div class="input-field col s1">
+					Temperatura: <input type="number" value="0" name="temperatura"/>
+				</div>
+				<div class="input-field col s1">
+					Umidade: <input type="number" value="0" min="0" name="umidade"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s1">
+					Mortalidade: <input type="number" value="0" min="0" name="mortalidade"/>
+				</div>
+				<div class="input-field col s1">
+					Eclosão: <input type="number" value="0" min="0" name="tempoChocar"/>
+				</div>
+			</div>				
 		
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
 			<a href="/cadastrarIncubatorio" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Voltar</a>

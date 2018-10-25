@@ -19,12 +19,30 @@
 	
 	<div class="container formEvento">
 		<form  method="post">
-			Quantidade: <input type="number" value="0" min="0" name="quantidade"/>
-			Comentario: <input type="text" value=""  name="comentario"/>
-			Maximo de Aves: <input type="number" value="0" min="0" name="maximoAves"/>
-			Data de Entrada: <input type="date" value="" name="dataentrada"/>
-			Data de Saida: <input type="date" value="" name="datasaida"/>
-			Tipo de Ave: <input type="text" value="" min="" name="tipoAve"/>
+			<div class="row">
+				<div class="input-field col s2">
+					Tipo de Ave: <input type="text" value="" min="" name="tipoAve"/>
+				</div>
+				<div class="input-field col s1">
+					Quantidade: <input type="number" value="0" min="0" name="quantidade"/>
+				</div>
+				<div class="input-field col s1">
+					Max. Aves: <input type="number" value="0" min="0" name="maximoAves"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s2">
+					Data de Entrada: <input type="date" value="" name="dataentrada"/>
+				</div>
+				<div class="input-field col s2">
+					Data de Saida: <input type="date" value="" name="datasaida"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					Comentario: <input type="text" value=""  name="comentario"/>
+				</div>
+			</div>
 		
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
 			<a href="/cadastrarPostura" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Voltar</a>
