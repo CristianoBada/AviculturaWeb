@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,9 +55,9 @@ public class PosturaController {
 		}
 	}
 	
-	@RequestMapping(value = "/deletarPostura", method = RequestMethod.GET)
-	public String deletarPostura(@RequestParam("codigoPostura") String codigo){
-		Postura postura = pr.findByCodigoPostura(Long.parseLong(codigo));
+	@RequestMapping("/cadastrarPostura/delete/{codigoPostura}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarPostura(@PathVariable("codigoPostura") Long codigoPostura, RedirectAttributes redirectAttrs) {
+		Postura postura = pr.findByCodigoPostura(codigoPostura);
 		pr.delete(postura);
 		return "redirect:/cadastrarPostura";
 	}
