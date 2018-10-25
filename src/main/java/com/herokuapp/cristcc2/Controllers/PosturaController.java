@@ -12,13 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.herokuapp.cristcc2.Models.Postura;
+import com.herokuapp.cristcc2.Models.TipoAve;
 import com.herokuapp.cristcc2.repository.PosturaRepository;
+import com.herokuapp.cristcc2.repository.TipoAveRepository;
 
 @Controller
 public class PosturaController {
 
 	@Autowired
 	private PosturaRepository pr;
+	
+	@Autowired
+	private TipoAveRepository tr;
 	
 	//Busca lista
 	@RequestMapping(value = "/cadastrarPostura", method = RequestMethod.GET)
@@ -29,9 +34,12 @@ public class PosturaController {
 		return mv;
 	}
 	
-	@RequestMapping("/edicaoPostura")
-	public String formEdicaoOvos() {
-		return "postura/editarPostura";
+	@RequestMapping(value = "/edicaoPostura", method = RequestMethod.GET)
+	public ModelAndView formEdicaoOvos() {
+		ModelAndView mv = new ModelAndView("postura/editarPostura");
+		Iterable<TipoAve> lista = tr.findAll();
+		mv.addObject("listaAves", lista);
+		return mv;
 	}
 	
 	@RequestMapping(value = "/edicaoPostura", method = RequestMethod.POST)
@@ -51,5 +59,14 @@ public class PosturaController {
 		Postura postura = pr.findByCodigoPostura(Long.parseLong(codigo));
 		pr.delete(postura);
 		return "redirect:/cadastrarPostura";
+	}
+	
+	//Busca lista
+	@RequestMapping(value = "/editarPostura", method = RequestMethod.GET)
+	public ModelAndView listaAves() {
+		ModelAndView mv = new ModelAndView("ovos/cadastrarOvos");
+		Iterable<TipoAve> lista = tr.findAll();
+		mv.addObject("listaAves", lista);
+		return mv;
 	}
 }

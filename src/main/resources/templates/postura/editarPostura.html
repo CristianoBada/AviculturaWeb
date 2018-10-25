@@ -23,11 +23,10 @@
 			<div class="row">
 			 <div class="input-field col s3">
 					Tipo de Ave:
-    			<select name="tipoAve">
-      				<option value="" disabled selected>Selecione uma opção</option>
-      				<option value="Galinha">Galinha</option>
-      				<option value="Codorna">Codorna</option>
-      				<option value="Pato">Pato</option>
+    			<select name="tipoAve" >
+      				<option th:each="item : ${listaAves}"
+                		th:value="${item.nomeAve}"
+                		th:text="${item.nomeAve}" />
     			</select>
 				</div>
 				<div class="input-field col s1">
