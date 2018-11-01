@@ -21,6 +21,14 @@
 		<form  method="post">
 			<div class="row">
 				<div class="input-field col s2">
+    			<select name="tipoAve" >
+      				<option th:each="item : ${listaAves}"
+                		th:value="${item.nomeAve}"
+                		th:text="${item.nomeAve}" />
+    			</select>
+    			<label for="tipo_aves">Tipo de Ave</label>
+    			</div>
+				<div class="input-field col s2">
 					<input id="input_text" type="text" value="" name="lote" data-length="10"/>
 					<label for="lote">Lote</label>
 				</div>

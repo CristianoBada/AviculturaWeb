@@ -37,12 +37,24 @@ public class Ovos implements Serializable{
     @Size(min=1, max=15)
     private String lote;
     
+    @NotEmpty
+    private String tipoAve;
+    
     @ManyToOne
 	private Postura postura;
     
     @ManyToOne
 	private Postura incubatorio;
     
+    
+	public String getTipoAve() {
+		return tipoAve;
+	}
+
+	public void setTipoAve(String tipoAve) {
+		this.tipoAve = tipoAve;
+	}
+
 	public Postura getPostura() {
 		return postura;
 	}

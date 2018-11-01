@@ -12,13 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.herokuapp.cristcc2.Models.Ovos;
+import com.herokuapp.cristcc2.Models.TipoAve;
 import com.herokuapp.cristcc2.repository.OvosRepository;
+import com.herokuapp.cristcc2.repository.TipoAveRepository;
 
 @Controller
 public class OvosController {
 	
 	@Autowired
 	private OvosRepository ovosr;
+	
+	@Autowired
+	private TipoAveRepository tr;
 	
 	//Salvar
 	@RequestMapping(value = "/edicaoOvos", method = RequestMethod.POST)
@@ -42,9 +47,12 @@ public class OvosController {
 		return mv;
 	}
 	
-	@RequestMapping("/edicaoOvos")
-	public String formEdicaoOvos() {
-		return "ovos/editarOvos";
+	@RequestMapping(value = "/edicaoOvos", method = RequestMethod.GET)
+	public ModelAndView formEdicaoOvos() {
+		ModelAndView mv = new ModelAndView("ovos/editarOvos");
+		Iterable<TipoAve> lista = tr.findAll();
+		mv.addObject("listaAves", lista);
+		return mv;
 	}
 	
 	@RequestMapping("/cadastrarOvos/delete/{codigo}") //@PathVariable Long id, RedirectAttributes redirectAttrs
