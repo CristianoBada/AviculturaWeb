@@ -12,10 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     <link rel="stylesheet" href="style/styleCss.css"/>
-    
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-</head>
 <body>
 	
 	<th:block th:include="mensagemValidacao"></th:block>
@@ -25,19 +21,16 @@
 			<div class="row">
 				<div class="input-field col s2">
 					<input type="text" value=""  name="tipoRacao"/>
-					<label for="tipo_racao">tipo de racao</label>
+					<label for="tipo_racao">Tipo de racao</label>
 				</div>
 				<div class="input-field col s1">
 					<input type="number" value="0" min="0" name="quantidade"/>
 					<label for="quantidade">Quantidade</label>
 				</div>
-				<div class="input-group input-field col s3 date data_formato" data-date-format="dd/mm/yyyy HH:ii:ss">
-					<input type="text" class="form-control" name="dataEntrada" placeholder="">
+				<div class="input-field col s2">
+					<input type="date" value="" name="dataEntrada" placeholder=""/>
 					<label for="data_entrada">Data de entrada</label>
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-th"></span>
-					</span>
-				</div> 
+				</div>
 			</div>
 		
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
@@ -49,25 +42,6 @@
 	
 	<!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-    
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-datetimepicker.min.js"></script>
-	<script src="js/locales/bootstrap-datetimepicker.pt-BR.js"></script>
-    
-    
-    <script type="text/javascript">
-			$('.data_formato').datetimepicker({
-				weekStart: 1,
-				todayBtn: 1,
-                autoclose: 1,
-                todayHighlight: 1,
-                startView: 2,
-                forceParse: 0,
-                showMeridian: 1,
-                language: "pt-BR",
-                //startDate: '+0d'
-			});
-		</script>
-    
+
 </body>
 </html>

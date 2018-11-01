@@ -20,30 +20,41 @@
 	<div class="container formEvento">
 		<form  method="post">
 			<div class="row">
-				<div class="input-field col s2">
-					Tipo de Ave: <input type="text" value="" name="tipoAve"/>
+				<div class="input-field col s3">
+    				<select name="tipoAve" >
+      					<option th:each="item : ${listaAves}"
+                			th:value="${item.nomeAve}"
+                			th:text="${item.nomeAve}" />
+    				</select>
+    				<label for="tipo_ave">Tipo da Ave</label>
 				</div>
 				<div class="input-field col s2">
-					Lote de Ovos: <input type="text" value="" name="loteOvos"/>
+					<input type="text" value="" name="loteOvos"/>
+					<label for="lote_ovos">Lote de Ovos</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
-					Data de Inicio: <input type="date" value="" name="dataInicio"/>
+					<input type="date" value="" name="dataInicio" placeholder=""/>
+					<label for="data_inicio">Data de Inicio</label>
 				</div>
 				<div class="input-field col s1">
-					Temperatura: <input type="number" value="0" name="temperatura"/>
+					<input type="number" value="0" name="temperatura"/>
+					<label for="temperatura">Temperatura </label>
 				</div>
 				<div class="input-field col s1">
-					Umidade: <input type="number" value="0" min="0" name="umidade"/>
+					<input type="number" value="0" min="0" name="umidade"/>
+					<label for="umidade">Umidade</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s1">
-					Mortalidade: <input type="number" value="0" min="0" name="mortalidade"/>
+					<input type="number" value="0" min="0" name="mortalidade"/>
+					<label for="mortalidade">Mortalidade</label>
 				</div>
 				<div class="input-field col s1">
-					Eclosão: <input type="number" value="0" min="0" name="tempoChocar"/>
+					<input type="number" value="0" min="0" name="tempoChocar"/>
+					<label for="eclosao">Eclosão</label>
 				</div>
 			</div>				
 		
@@ -52,7 +63,15 @@
 		</form>
 	</div>
 	
+	<script type="text/javascript" src="jquery.js"></script>
+	
 	<!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+        $('select').formSelect();
+      });
+    </script>
 </body>
 </html>
