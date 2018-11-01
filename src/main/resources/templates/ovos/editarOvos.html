@@ -24,23 +24,24 @@
 	<div class="container formEvento">
 		<form  method="post">
 			<div class="row">
-				<div class="input-field col s3">
-					Lote: <input type="text" value="" name="lote"/>
+				<div class="input-field col s2">
+					<input id="input_text" type="text" value="" name="lote" data-length="10"/>
+					<label for="lote">Lote</label>
 				</div>
 				<div class="input-field col s1">
-					Quantidade: <input type="number" value="0" min="0" name="quantidade"/>
+					<input type="number" value="0" min="0" name="quantidade"/>
+					<label for="quantidade">Quantidade</label>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-group input-field col s3 date data_formato" data-date-format="dd/mm/yyyy HH:ii:ss">
-					<input type="text" class="form-control" name="data" placeholder="">
-					<label for="data">Data</label>
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-th"></span>
-					</span>
-				</div> 
+				
 				<div class="input-field col s2">
-					Qualidade: <input type="text" value="" name="qualidade"/>
+					<input type="date" value="" name="data" placeholder=""/>
+					<label for="data">Data</label>
+				</div>
+				<div class="input-field col s2">
+					<input id="input_text" type="text" value="" name="qualidade" data-length="15"/>
+					<label for="qualidade">Qualidade</label>
 				</div>
 			</div>
 		
@@ -71,6 +72,10 @@
                 language: "pt-BR",
                 //startDate: '+0d'
 			});
+
+			$(document).ready(function() {
+			    $('input#input_text, textarea#textarea2').characterCounter();
+			  });
 			</script>
 </body>
 </html>

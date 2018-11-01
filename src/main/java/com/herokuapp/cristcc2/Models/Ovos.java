@@ -1,22 +1,15 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.herokuapp.cristcc2.Json.JsonDateSerializer;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Ovos implements Serializable{
@@ -30,12 +23,12 @@ public class Ovos implements Serializable{
 	@NotNull
 	private Integer quantidade;
 	
+	 @Size(min=1, max=15)
     private String qualidade;
     
-    @NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-    private Date data;
+    @NotEmpty
+    @Size(min=10, max=10)
+    private String data;
     
     @NotNull
     private Boolean incubacao = false;
@@ -72,13 +65,12 @@ public class Ovos implements Serializable{
 	public void setQualidade(String qualidade) {
 		this.qualidade = qualidade;
 	}
-	
-	@JsonSerialize(using=JsonDateSerializer.class) 
-	public Date getData() {
+		
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
