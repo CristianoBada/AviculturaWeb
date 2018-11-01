@@ -1,6 +1,7 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,26 +21,50 @@ public class Corte implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoCorte;
 	
-	@NotEmpty
-    private String quantidadeAves;
+	@NotNull
+    private Integer quantidadeAves;
     
-    private String mortalidade;
+    private Integer mortalidade;
     
     private String comentario;
     
-    @NotEmpty
-    private String maximo;
+    @NotNull
+    private Integer maximo;
     
-    @NotEmpty
-    private String dataEntrada;
+    @NotNull
+    private Date dataEntrada;
     
-    private String dataSaida;
+    private Date dataSaida;
     
     @NotEmpty
     private String tipoAve;
     
     @OneToMany
 	 private List<Racao> loteRacao;
+    
+	public Integer getMaximo() {
+		return maximo;
+	}
+
+	public void setMaximo(Integer maximo) {
+		this.maximo = maximo;
+	}
+
+	public Date getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+
+	public Date getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
+	}
 
 	public List<Racao> getLoteRacao() {
 		return loteRacao;
@@ -57,19 +82,19 @@ public class Corte implements Serializable{
 		this.codigoCorte = codigoCorte;
 	}
 
-	public String getQuantidadeAves() {
+	public Integer getQuantidadeAves() {
 		return quantidadeAves;
 	}
 
-	public void setQuantidadeAves(String quantidadeAves) {
+	public void setQuantidadeAves(Integer quantidadeAves) {
 		this.quantidadeAves = quantidadeAves;
 	}
 
-	public String getMortalidade() {
+	public Integer getMortalidade() {
 		return mortalidade;
 	}
 
-	public void setMortalidade(String mortalidade) {
+	public void setMortalidade(Integer mortalidade) {
 		this.mortalidade = mortalidade;
 	}
 
@@ -81,29 +106,6 @@ public class Corte implements Serializable{
 		this.comentario = comentario;
 	}
 
-	public String getMaximo() {
-		return maximo;
-	}
-
-	public void setMaximo(String maximo) {
-		this.maximo = maximo;
-	}
-
-	public String getDataEntrada() {
-		return dataEntrada;
-	}
-
-	public void setDataEntrada(String dataEntrada) {
-		this.dataEntrada = dataEntrada;
-	}
-
-	public String getDataSaida() {
-		return dataSaida;
-	}
-
-	public void setDataSaida(String dataSaida) {
-		this.dataSaida = dataSaida;
-	}
 
 	public String getTipoAve() {
 		return tipoAve;

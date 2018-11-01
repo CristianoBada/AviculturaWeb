@@ -1,6 +1,7 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,18 +24,18 @@ public class Incubatorio implements Serializable{
 	@NotEmpty
 	private String loteOvos;
 	
-	@NotEmpty
-    private String temperatura;
+	@NotNull
+    private Integer temperatura;
 	
-    private String umidade;
+    private Integer umidade;
     
-    @NotEmpty
-    private String tempoChocar;
+    @NotNull
+    private Integer tempoChocar;
     
-    @NotEmpty
-    private String dataInicio;
+    @NotNull
+    private Date dataInicio;
     
-    private String mortalidade;
+    private Integer mortalidade;
     
     @NotEmpty
     private String tipoAve;
@@ -66,43 +67,43 @@ public class Incubatorio implements Serializable{
 		this.loteOvos = loteOvos;
 	}
 
-	public String getTemperatura() {
+	public Integer getTemperatura() {
 		return temperatura;
 	}
 
-	public void setTemperatura(String temperatura) {
+	public void setTemperatura(Integer temperatura) {
 		this.temperatura = temperatura;
 	}
 
-	public String getUmidade() {
+	public Integer getUmidade() {
 		return umidade;
 	}
 
-	public void setUmidade(String umidade) {
+	public void setUmidade(Integer umidade) {
 		this.umidade = umidade;
 	}
 
-	public String getTempoChocar() {
+	public Integer getTempoChocar() {
 		return tempoChocar;
 	}
 
-	public void setTempoChocar(String tempoChocar) {
+	public void setTempoChocar(Integer tempoChocar) {
 		this.tempoChocar = tempoChocar;
 	}
 
-	public String getDataInicio() {
+	public Date getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(String dataInicio) {
+	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public String getMortalidade() {
+	public Integer getMortalidade() {
 		return mortalidade;
 	}
 
-	public void setMortalidade(String mortalidade) {
+	public void setMortalidade(Integer mortalidade) {
 		this.mortalidade = mortalidade;
 	}
 

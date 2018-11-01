@@ -1,16 +1,22 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.herokuapp.cristcc2.Json.JsonDateSerializer;
 
 @Entity
 public class Ovos implements Serializable{
@@ -21,17 +27,18 @@ public class Ovos implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
 	
-	@NotEmpty
-	private String quantidade;
+	@NotNull
+	private Integer quantidade;
 	
     private String qualidade;
     
-    @NotEmpty
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String data;
+    @NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+    private Date data;
     
-    @NotEmpty
-    private String incubacao = "false";
+    @NotNull
+    private Boolean incubacao = false;
     
     @NotEmpty
     private String lote;
@@ -58,14 +65,6 @@ public class Ovos implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public String getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(String quantidade) {
-		this.quantidade = quantidade;
-	}
-
 	public String getQualidade() {
 		return qualidade;
 	}
@@ -73,21 +72,14 @@ public class Ovos implements Serializable{
 	public void setQualidade(String qualidade) {
 		this.qualidade = qualidade;
 	}
-
-	public String getData() {
+	
+	@JsonSerialize(using=JsonDateSerializer.class) 
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
-	}
-
-	public String getIncubacao() {
-		return incubacao;
-	}
-
-	public void setIncubacao(String incubacao) {
-		this.incubacao = incubacao;
 	}
 
 	public String getLote() {
@@ -97,5 +89,31 @@ public class Ovos implements Serializable{
 	public void setLote(String lote) {
 		this.lote = lote;
 	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public Boolean getIncubacao() {
+		return incubacao;
+	}
+
+	public void setIncubacao(Boolean incubacao) {
+		this.incubacao = incubacao;
+	}
+
+	public Postura getIncubatorio() {
+		return incubatorio;
+	}
+
+	public void setIncubatorio(Postura incubatorio) {
+		this.incubatorio = incubatorio;
+	}
+	
+	
     
 }

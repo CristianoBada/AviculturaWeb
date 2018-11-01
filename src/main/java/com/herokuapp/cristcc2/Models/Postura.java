@@ -1,6 +1,7 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,8 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.herokuapp.cristcc2.Json.JsonDateSerializer;
 
 @Entity
 public class Postura implements Serializable{
@@ -20,18 +28,22 @@ public class Postura implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoPostura;
 	
-	@NotEmpty
-	private String quantidade;
+	@NotNull
+	private Integer quantidade;
 	
     private String comentario;
     
-    @NotEmpty
-    private String maximoAves;
+    @NotNull
+    private Integer maximoAves;
     
-    @NotEmpty
-    private String dataentrada;
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:ii:ss")
+    private Date dataentrada;
     
-    private String datasaida;
+    @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:ii:ss")
+    private Date datasaida;
     
     @NotEmpty
     private String tipoAve;
@@ -66,14 +78,6 @@ public class Postura implements Serializable{
 		this.codigoPostura = codigoPostura;
 	}
 
-	public String getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(String quantidade) {
-		this.quantidade = quantidade;
-	}
-
 	public String getComentario() {
 		return comentario;
 	}
@@ -82,27 +86,39 @@ public class Postura implements Serializable{
 		this.comentario = comentario;
 	}
 
-	public String getMaximoAves() {
+	
+	
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public Integer getMaximoAves() {
 		return maximoAves;
 	}
 
-	public void setMaximoAves(String maximoAves) {
+	public void setMaximoAves(Integer maximoAves) {
 		this.maximoAves = maximoAves;
 	}
 
-	public String getDataentrada() {
+	@JsonSerialize(using=JsonDateSerializer.class) 
+	public Date getDataentrada() {
 		return dataentrada;
 	}
 
-	public void setDataentrada(String dataentrada) {
+	public void setDataentrada(Date dataentrada) {
 		this.dataentrada = dataentrada;
 	}
 
-	public String getDatasaida() {
+	@JsonSerialize(using=JsonDateSerializer.class) 
+	public Date getDatasaida() {
 		return datasaida;
 	}
 
-	public void setDatasaida(String datasaida) {
+	public void setDatasaida(Date datasaida) {
 		this.datasaida = datasaida;
 	}
 

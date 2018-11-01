@@ -1,6 +1,7 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +19,8 @@ public class Vacina implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoVacina;
 	
-	@NotEmpty
-	private String dataTratamento;
+	@NotNull
+	private Date dataTratamento;
 	
 	@NotEmpty
     private String tipoTratamento;
@@ -35,11 +36,11 @@ public class Vacina implements Serializable{
 		this.codigoVacina = codigoVacina;
 	}
 
-	public String getDataTratamento() {
+	public Date getDataTratamento() {
 		return dataTratamento;
 	}
 
-	public void setDataTratamento(String dataTratamento) {
+	public void setDataTratamento(Date dataTratamento) {
 		this.dataTratamento = dataTratamento;
 	}
 

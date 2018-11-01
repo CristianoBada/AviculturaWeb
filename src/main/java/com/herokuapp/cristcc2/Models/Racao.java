@@ -99,10 +99,4 @@ public class Racao implements Serializable{
 	public void setDataEntrada(Date dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
-	
-	public void print() {
-		System.out.print(this.getTipoRacao());
-		System.out.print(this.getQuantidade());
-		System.out.print(this.getDataEntrada());
-	}
 }
