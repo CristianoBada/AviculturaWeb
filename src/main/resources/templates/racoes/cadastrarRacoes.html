@@ -49,6 +49,7 @@
 				<th>Tipoe de Racao</th>
 				<th>Quantidade</th>
 				<th>Data de Entrada</th>
+				<th>Deletar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -56,6 +57,7 @@
 				<td><span th:text="${ra.tipoRacao}"></span></td>
 				<td><span th:text="${ra.quantidade}"></span></td>
 				<td><span th:text="${ra.dataEntrada}"></span></td>
+				<td><a th:href="|/cadastrarRacoes/delete/${ra.codigoRacao}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>

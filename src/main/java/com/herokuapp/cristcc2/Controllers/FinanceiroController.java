@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,4 +46,10 @@ public class FinanceiroController {
 		}
 	}
 	
+	@RequestMapping("/cadastrarFinanceiro/delete/{codigoFinanceiro}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarPostura(@PathVariable("codigoFinanceiro") Long codigoFinanceiro, RedirectAttributes redirectAttrs) {
+		Financeiro fin = fr.findByCodigoFinanceiro(codigoFinanceiro);
+		fr.delete(fin);
+		return "redirect:/cadastrarFinanceiro";
+	}
 }

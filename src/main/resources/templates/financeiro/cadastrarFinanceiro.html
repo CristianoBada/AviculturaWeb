@@ -58,6 +58,7 @@
 				<td>R$ <span th:text="${co.valor}"></span></td>
 				<td><span th:text="${co.detalhe}"></span></td>
 				<td><span th:text="${co.entrasaida}" ></span></td>
+				<td><a th:href="|/cadastrarFinanceiro/delete/${co.codigoFinanceiro}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>

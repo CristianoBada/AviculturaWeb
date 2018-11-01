@@ -53,6 +53,7 @@
 				<th>Data de Entrada</th>
 				<th>Data de Saida</th>
 				<th>Tipo de Ave</th>
+				<th>Deletar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -64,6 +65,7 @@
 				<td><span th:text="${co.dataEntrada}"></span></td>
 				<td><span th:text="${co.dataSaida}" ></span></td>				
 				<td><span th:text="${co.tipoAve}" ></span></td>
+				<td><a th:href="|/cadastrarCorte/delete/${co.codigoCorte}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>

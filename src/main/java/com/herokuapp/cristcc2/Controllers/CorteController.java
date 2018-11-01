@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,5 +55,12 @@ public class CorteController {
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
 			return "redirect:/cadastrarCorte";
 		}
+	}
+	
+	@RequestMapping("/cadastrarCorte/delete/{codigoCorte}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarCorte(@PathVariable("codigoCorte") Long codigoCorte, RedirectAttributes redirectAttrs) {
+		Corte corte = cr.findByCodigoCorte(codigoCorte);
+		cr.delete(corte);
+		return "redirect:/cadastrarCorte";
 	}
 }

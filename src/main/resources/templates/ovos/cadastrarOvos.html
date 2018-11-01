@@ -50,6 +50,7 @@
 				<th>Quantidade</th>
 				<th>Qualidade</th>
 				<th>Data de ponhagem</th>
+				<th>Deletar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,6 +59,7 @@
 				<td><span th:text="${ovos.quantidade}"></span></td>
 				<td><span th:text="${ovos.qualidade}"></span></td>
 				<td><span th:text="${ovos.data}" ></span></td>
+				<td><a th:href="|/cadastrarOvos/delete/${ovos.codigo}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>

@@ -49,6 +49,7 @@
 				<th>Data do Tratamento</th>
 				<th>Tipo de Tratamento</th>
 				<th>Detalhe</th>
+				<th>Deletar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -56,6 +57,7 @@
 				<td><span th:text="${v.dataTratamento}"></span></td>
 				<td><span th:text="${v.tipoTratamento}"></span></td>
 				<td><span th:text="${v.detalhe}"></span></td>
+				<td><a th:href="|/cadastrarVacinas/delete/${v.codigoVacina}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>

@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.herokuapp.cristcc2.Models.Financeiro;
 
 public interface FinanceiroRepository extends CrudRepository<Financeiro, String>{
-
+	Financeiro findByCodigoFinanceiro(Long codigoFinanceiro);
 }

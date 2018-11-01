@@ -1,7 +1,6 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -37,7 +36,8 @@ public class Corte implements Serializable{
     @Size(min=10, max=10)
     private String dataEntrada;
     
-    private Date dataSaida;
+    @Size(min=10, max=10)
+    private String dataSaida;
     
     @NotEmpty
     @Size(min=1, max=15)
@@ -56,20 +56,20 @@ public class Corte implements Serializable{
 
 	
 	
+	public String getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(String dataSaida) {
+		this.dataSaida = dataSaida;
+	}
+
 	public String getDataEntrada() {
 		return dataEntrada;
 	}
 
 	public void setDataEntrada(String dataEntrada) {
 		this.dataEntrada = dataEntrada;
-	}
-
-	public Date getDataSaida() {
-		return dataSaida;
-	}
-
-	public void setDataSaida(Date dataSaida) {
-		this.dataSaida = dataSaida;
 	}
 
 	public List<Racao> getLoteRacao() {

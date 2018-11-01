@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,5 +44,12 @@ public class VacinasController {
 			attributes.addFlashAttribute("mensagem", "tratamento salvo com sucesso!");
 			return "redirect:/cadastrarVacinas";
 		}
+	}
+	
+	@RequestMapping("/cadastrarVacinas/delete/{codigoVacina}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarVacina(@PathVariable("codigoVacina") Long codigoVacina, RedirectAttributes redirectAttrs) {
+		Vacina vacina = vr.findByCodigoVacina(codigoVacina);
+		vr.delete(vacina);
+		return "redirect:/cadastrarPostura";
 	}
 }

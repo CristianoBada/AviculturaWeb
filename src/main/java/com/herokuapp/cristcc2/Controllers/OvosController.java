@@ -5,7 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,10 +47,12 @@ public class OvosController {
 		return "ovos/editarOvos";
 	}
 	
-	@DeleteMapping("/deletarOvos")
-	public String deletarOvos(long codigo) {
+	@RequestMapping("/cadastrarOvos/delete/{codigo}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarOvos(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Ovos ovos = ovosr.findByCodigo(codigo);
 		ovosr.delete(ovos);
 		return "redirect:/cadastrarOvos";
 	}
+	
+	
 }
