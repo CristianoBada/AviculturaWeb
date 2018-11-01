@@ -21,8 +21,8 @@ public class Financeiro implements Serializable{
 	@NotEmpty
     private String nome;
     
-	@NotEmpty
-    private String valor;
+	@NotNull
+    private Double valor;
     
     private String detalhe;
     
@@ -45,11 +45,11 @@ public class Financeiro implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(String valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 

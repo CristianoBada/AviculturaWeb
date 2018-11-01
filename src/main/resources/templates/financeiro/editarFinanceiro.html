@@ -13,6 +13,13 @@
     
     <link rel="stylesheet" href="style/styleCss.css"/>
 </head>
+<style media="screen">
+	 input::-webkit-inner-spin-button, 
+	 input::-webkit-outer-spin-button{ 
+	 -webkit-appearance:none; } 
+	 input[type="number"]{ 
+	 -moz-appearance:textfield; }
+</style>
 <body>
 	
 	<th:block th:include="mensagemValidacao"></th:block>
@@ -21,18 +28,22 @@
 		<form  method="post">
 			<div class="row">
 				<div class="input-field col s3">
-					Nome do produto: <input type="text" value="" name="nome"/>
+					<input type="text" value="" name="nome"/>
+					<label for="nome_produto">Nome do produto</label>
 				</div>
 				<div class="input-field col s1">
-					Valor: <input type="number" value="0" min="0" name="valor"/>
+					<input type="number" step="any"  name="valor"/> 
+					<label for="valor">Valor (R$)</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
-					Tipo de transicao: <input type="text" value=""  name="entrasaida"/>
+					<input type="text" value=""  name="entrasaida"/>
+					<label for="tipo_transicao">Tipo de trasição</label>
 				</div>
 				<div class="input-field col s4">
-					Detalhe: <input type="text" value="" name="detalhe"/>
+					<input type="text" value="" name="detalhe"/>
+					<label for="detalhe">Detalhe</label>
 				</div>
 			</div>
 		

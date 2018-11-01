@@ -55,7 +55,7 @@
 		<tbody>
 			<tr th:each="co : ${listaFinanceiro}">
 				<td><span th:text="${co.nome}"></span></td>
-				<td><span th:text="${co.valor}"></span></td>
+				<td>R$ <span th:text="${co.valor}"></span></td>
 				<td><span th:text="${co.detalhe}"></span></td>
 				<td><span th:text="${co.entrasaida}" ></span></td>
 			</tr>

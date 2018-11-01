@@ -19,10 +19,17 @@
 	
 	<div class="container formEvento">
 		<form  method="post">
-			
-			Data do Tratamento: <input type="date" value="" name="dataTratamento"/>
-			Tipo de Tratamento: <input type="text" value="" min="" name="tipoTratamento"/>
-			Detalhe: <input type="text" value="" min="" name="detalhe"/>
+			<div class="row">
+				<div class="input-field col s2">
+					Data do Tratamento: <input type="date" value="" name="dataTratamento"/>
+				</div>
+				<div class="input-field col s2">
+					Tipo de Tratamento: <input type="text" value="" min="" name="tipoTratamento"/>
+				</div>
+				<div class="input-field col s2">
+					Detalhe: <input type="text" value="" min="" name="detalhe"/>
+				</div>
+			</div>
 		
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
 			<a href="/cadastrarVacinas" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Voltar</a>

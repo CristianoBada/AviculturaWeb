@@ -1,15 +1,22 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.herokuapp.cristcc2.Json.JsonDateSerializer;
 
 @Entity
 public class Racao implements Serializable{
@@ -23,17 +30,25 @@ public class Racao implements Serializable{
 	@NotEmpty
 	private String tipoRacao;
 	
-	@NotEmpty
-    private String quantidade;
+	@NotNull
+    private Integer quantidade;
     
-	@NotEmpty
-    private String dataEntrada;
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+    private Date dataEntrada;
 	
 	 @ManyToOne
 	 private Postura granjaPostura;
 	 
 	 @ManyToOne
 	 private Corte granjaCorte;
+	 
+	 public Racao( ) {
+		 this.tipoRacao = "";
+		 this.quantidade = 0;
+		 this.dataEntrada = new Date();
+	 }
 
 
 	public Postura getGranjaPostura() {
@@ -68,19 +83,26 @@ public class Racao implements Serializable{
 		this.tipoRacao = tipoRacao;
 	}
 
-	public String getQuantidade() {
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(String quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public String getDataEntrada() {
+	@JsonSerialize(using=JsonDateSerializer.class) 
+	public Date getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(String dataEntrada) {
+	public void setDataEntrada(Date dataEntrada) {
 		this.dataEntrada = dataEntrada;
+	}
+	
+	public void print() {
+		System.out.print(this.getTipoRacao());
+		System.out.print(this.getQuantidade());
+		System.out.print(this.getDataEntrada());
 	}
 }

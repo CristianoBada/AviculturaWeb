@@ -36,10 +36,18 @@ public class RacoesController {
 	@RequestMapping(value = "/edicaoRacoes", method = RequestMethod.POST)
 	public String salvarvacinas(@Valid Racao racao, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
+			System.out.print("teste 01");
+			if (racao == null) {
+				System.out.print("não criou entidade");
+			} else {
+				racao.print();
+			}
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoRacoes";
 		} else {
+			System.out.print("teste 02");
 			rr.save(racao);
+			
 			attributes.addFlashAttribute("mensagem", "Lote de Racao salvo com sucesso!");
 			return "redirect:/cadastrarRacoes";
 		}
