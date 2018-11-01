@@ -21,8 +21,12 @@
 		<form  method="post">
 			<div class="row">
 				<div class="input-field col s2">
-					<input type="text" value="" name="tipoAve"/>
-					<label for="tipo_ave">Tipo de ave</label>
+    			<select name="tipoAve" >
+      				<option th:each="item : ${listaAves}"
+                		th:value="${item.nomeAve}"
+                		th:text="${item.nomeAve}" />
+    			</select>
+    			<label for="tipo_aves">Tipo de Ave</label>
 				</div>
 				<div class="input-field col s1">
 					<input type="number" value="0" min="0" name="quantidadeAves" />
@@ -30,7 +34,7 @@
 				</div>
 				<div class="input-field col s1">
 					<input type="number" value="0" min="0" name="maximo"/>
-					<label for="max_aves">Maximo de aves</label>
+					<label for="max_aves">Max. aves</label>
 				</div>
 			</div>
 			<div class="row">
@@ -59,7 +63,11 @@
 		</form>
 	</div>
 	
+	<script src="jquery.js"></script>
+	
 	<!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    
+    <script type="text/javascript" src="js/utils.js"></script>
 </body>
 </html>

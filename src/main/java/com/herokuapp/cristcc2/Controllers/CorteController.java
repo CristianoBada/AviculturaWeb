@@ -11,7 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.herokuapp.cristcc2.Models.Corte;
+import com.herokuapp.cristcc2.Models.TipoAve;
 import com.herokuapp.cristcc2.repository.CorteRepository;
+import com.herokuapp.cristcc2.repository.TipoAveRepository;
 
 
 @Controller
@@ -19,6 +21,9 @@ public class CorteController {
 
 	@Autowired
 	private CorteRepository cr;
+	
+	@Autowired
+	private TipoAveRepository tr;
 	
 	//Busca lista
 	@RequestMapping(value = "/cadastrarCorte", method = RequestMethod.GET)
@@ -29,9 +34,13 @@ public class CorteController {
 		return mv;
 	}
 	
-	@RequestMapping("/edicaoCorte")
-	public String formEdicaoOvos() {
-		return "corte/editarCorte";
+	
+	@RequestMapping(value = "/edicaoCorte", method = RequestMethod.GET)
+	public ModelAndView formEdicaoOvos() {
+		ModelAndView mv = new ModelAndView("corte/editarCorte");
+		Iterable<TipoAve> lista = tr.findAll();
+		mv.addObject("listaAves", lista);
+		return mv;
 	}
 	
 	//Salvar

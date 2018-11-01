@@ -21,13 +21,16 @@
 		<form  method="post">
 			<div class="row">
 				<div class="input-field col s2">
-					Data do Tratamento: <input type="date" value="" name="dataTratamento"/>
+					<input type="date" value="" name="dataTratamento" placeholder=""/>
+					<label for="data_tratamento">Data do Tratamento</label>
 				</div>
 				<div class="input-field col s2">
-					Tipo de Tratamento: <input type="text" value="" min="" name="tipoTratamento"/>
+					<input type="text" value="" min="" name="tipoTratamento"/>
+					<label for="tipo_tratamento">Tipo de Tratamento</label>
 				</div>
 				<div class="input-field col s2">
-					Detalhe: <input type="text" value="" min="" name="detalhe"/>
+					<input id="input_text" type="text" value="" max="100" name="detalhe" data-length="100"/>
+					<label for="detalhe">Observacao</label>
 				</div>
 			</div>
 		
@@ -36,7 +39,11 @@
 		</form>
 	</div>
 	
+	<script src="jquery.js"></script>
+	
 	<!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    
+    <script type="text/javascript" src="js/utils.js"></script>
 </body>
 </html>
