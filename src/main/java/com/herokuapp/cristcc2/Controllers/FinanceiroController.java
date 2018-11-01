@@ -12,13 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.herokuapp.cristcc2.Models.Financeiro;
+import com.herokuapp.cristcc2.Models.Produtos;
 import com.herokuapp.cristcc2.repository.FinanceiroRepository;
+import com.herokuapp.cristcc2.repository.ProdutoRepository;
 
 @Controller
 public class FinanceiroController {
 
 	@Autowired
 	private FinanceiroRepository fr;
+	
+	@Autowired
+	private ProdutoRepository pr;
 	
 	//Busca lista
 	@RequestMapping(value = "/cadastrarFinanceiro", method = RequestMethod.GET)
@@ -28,10 +33,13 @@ public class FinanceiroController {
 		mv.addObject("listaFinanceiro", lista);
 		return mv;
 	}
-	
-	@RequestMapping("/edicaoFinanceiro")
-	public String formEdicaoOvos() {
-		return "financeiro/editarFinanceiro";
+
+	@RequestMapping(value = "/edicaoFinanceiro", method = RequestMethod.GET)
+	public ModelAndView formEdicaoOvos() {
+		ModelAndView mv = new ModelAndView("financeiro/editarFinanceiro");
+		Iterable<Produtos> lista = pr.findAll();
+		mv.addObject("listaProdutos", lista);
+		return mv;
 	}
 	
 	@RequestMapping(value = "/edicaoFinanceiro", method = RequestMethod.POST)

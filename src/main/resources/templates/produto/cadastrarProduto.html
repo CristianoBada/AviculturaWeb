@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="style/styleCss.css"/>
 </head>
 <body>
-	
+
 	<header>
   		<nav class="nav-extended">
     		<div class="nav-wrapper container">
-      			<a href="#" class="brand-logo">Cadastro Tipo de Aves</a>
+      			<a href="#" class="brand-logo">Cadastro de Produtos</a>
       			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       			<ul id="nav-mobile" class="right hide-on-med-and-down">
       				<li><a href="/logout">Sair</a></li>
@@ -42,35 +42,32 @@
 	</header>
 	<br/>
 	
-	<th:block th:include="mensagemValidacao"></th:block>
+	
 	
 	<div class=" formEvento container">
+	<th:block th:include="mensagemValidacao"></th:block>
 		<form  method="post">
 			<div class="row">
-				<div class="input-field col s2">
-					Nome: <input type="text" value="" name="nomeAve"/>
-				</div>
-				<div class="input-field col s2">
-					Tempo: <input type="number" value="" name="tempoChocagem"/>
+				<div class="input-field col s3">
+					<input id="input_text" type="text" value="" name="nomeProduto" data-length="20"/>
+					<label for="tipo_aves">Nome do produto</label>
 				</div>
 			</div>
 			
-			
-		
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button>
 			<a href="/" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Voltar</a>
 		</form>
 	</div>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+	<script src="jquery.js"></script>
 	
 	<!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     
-    <script>
-    $(document).ready(function(){
-        $('select').formSelect();
-      });
-    </script>
+    <script type="text/javascript" src="js/utils.js"></script>
+
 </body>
 </html>
