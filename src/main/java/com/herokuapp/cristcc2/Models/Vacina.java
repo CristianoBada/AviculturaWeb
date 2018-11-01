@@ -28,6 +28,10 @@ public class Vacina implements Serializable{
 	
 	@Size(min=0, max=100)
     private String detalhe;
+	
+	public Vacina( ) {
+		
+	}
 
 	public long getCodigoVacina() {
 		return codigoVacina;

@@ -4,11 +4,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.herokuapp.cristcc2.Models.Vacina;
@@ -22,34 +22,45 @@ public class VacinasController {
 	
 	//Busca lista
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.GET)
-	public ModelAndView listaPostura() {
-		ModelAndView mv = new ModelAndView("vacinas/cadastrarVacinas");
-		Iterable<Vacina> lista = vr.findAll();
-		mv.addObject("listaVacinas", lista);
-		return mv;
+	public String cadastrarVacinas(Model model) {
+		model.addAttribute("listaVacinas", vr.findAll());
+		return "vacinas/cadastrarVacinas";
 	}
 	
 	@RequestMapping("/edicaoVacinas")
-	public String formEdicaoOvos() {
+	public String formEdicaoOvos(Model model) {
+		model.addAttribute("vacina", new Vacina());
 		return "vacinas/editarVacinas";
 	}
 	
-	@RequestMapping(value = "/edicaoVacinas", method = RequestMethod.POST)
-	public String salvarvacinas(@Valid Vacina vacina, BindingResult result, RedirectAttributes attributes) {
-		if (result.hasErrors()) {
-			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-			return "redirect:/edicaoPostura";
+	@RequestMapping("/cadastrarVacinas/editar/{codigoVacina}")
+	public String editarVacinas(@PathVariable Long codigoVacina, Model model){
+		model.addAttribute("vacina", vr.findByCodigoVacina(codigoVacina));
+		return "vacinas/editarVacinas";		
+	}
+	
+	@RequestMapping( value = "/editarVacinas/save", method = RequestMethod.POST )
+	public String save(@Valid Vacina vacina, BindingResult bindingResult, Model model) {
+				
+		if( bindingResult.hasErrors() ){
+			return "vacinas/editarVacinas";
 		} else {
 			vr.save(vacina);
-			attributes.addFlashAttribute("mensagem", "tratamento salvo com sucesso!");
-			return "redirect:/cadastrarVacinas";
+			return "redirect:/cadastrarVacinas";			
 		}
+
 	}
 	
 	@RequestMapping("/cadastrarVacinas/delete/{codigoVacina}") //@PathVariable Long id, RedirectAttributes redirectAttrs
 	public String deletarVacina(@PathVariable("codigoVacina") Long codigoVacina, RedirectAttributes redirectAttrs) {
 		Vacina vacina = vr.findByCodigoVacina(codigoVacina);
 		vr.delete(vacina);
-		return "redirect:/cadastrarPostura";
+		return "redirect:/cadastrarVacinas";
+	}
+	
+	@RequestMapping("/cadastrarVacinas/Vacina/criar")
+	public String createVacinas(Model model) {
+		model.addAttribute("vacina", new Vacina());
+		return "vacinas/editarVacinas";
 	}
 }

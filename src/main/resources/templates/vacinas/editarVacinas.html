@@ -43,18 +43,19 @@
 	<th:block th:include="mensagemValidacao"></th:block>
 	
 	<div class="container formEvento">
-		<form  method="post">
+		<form th:object="${vacina}" th:action="@{/editarVacinas/save}"  method="post">
+			<input type="hidden" th:field="*{codigoVacina}" />
 			<div class="row">
 				<div class="input-field col s2">
-					<input type="date" value="" name="dataTratamento" placeholder=""/>
+					<input type="date" value="" th:field="*{dataTratamento}" placeholder=""/>
 					<label for="data_tratamento">Data do Tratamento</label>
 				</div>
 				<div class="input-field col s2">
-					<input type="text" value="" min="" name="tipoTratamento"/>
+					<input type="text" value="" min="" th:field="*{tipoTratamento}"/>
 					<label for="tipo_tratamento">Tipo de Tratamento</label>
 				</div>
 				<div class="input-field col s2">
-					<input id="input_text" type="text" value="" max="100" name="detalhe" data-length="100"/>
+					<input id="input_text" type="text" value="" max="100" th:field="*{detalhe}" data-length="100"/>
 					<label for="detalhe">Observacao</label>
 				</div>
 			</div>
