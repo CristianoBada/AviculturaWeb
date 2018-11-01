@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Incubatorio implements Serializable{
@@ -32,12 +33,14 @@ public class Incubatorio implements Serializable{
     @NotNull
     private Integer tempoChocar;
     
-    @NotNull
-    private Date dataInicio;
+    @NotEmpty
+    @Size(min=10, max=10)
+    private String dataInicio;
     
     private Integer mortalidade;
     
     @NotEmpty
+    @Size(min=1, max=20)
     private String tipoAve;
     
     @OneToMany
@@ -91,11 +94,11 @@ public class Incubatorio implements Serializable{
 		this.tempoChocar = tempoChocar;
 	}
 
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 

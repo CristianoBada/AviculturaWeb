@@ -1,22 +1,15 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.herokuapp.cristcc2.Json.JsonDateSerializer;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Racao implements Serializable{
@@ -28,15 +21,15 @@ public class Racao implements Serializable{
 	private long codigoRacao;
 	
 	@NotEmpty
+	@Size(min=1, max=20)
 	private String tipoRacao;
 	
 	@NotNull
     private Integer quantidade;
     
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-    private Date dataEntrada;
+	@NotEmpty
+    @Size(min=10, max=10)
+    private String dataEntrada;
 	
 	 @ManyToOne
 	 private Postura granjaPostura;
@@ -47,7 +40,6 @@ public class Racao implements Serializable{
 	 public Racao( ) {
 		 this.tipoRacao = "";
 		 this.quantidade = 0;
-		 this.dataEntrada = new Date();
 	 }
 
 
@@ -91,12 +83,15 @@ public class Racao implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	@JsonSerialize(using=JsonDateSerializer.class) 
-	public Date getDataEntrada() {
+
+	public String getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(Date dataEntrada) {
+
+	public void setDataEntrada(String dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
+
+	
 }

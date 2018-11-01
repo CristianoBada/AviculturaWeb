@@ -1,14 +1,13 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Vacina implements Serializable{
@@ -19,13 +18,15 @@ public class Vacina implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigoVacina;
 	
-	@NotNull
-	private Date dataTratamento;
+	@NotEmpty
+    @Size(min=10, max=10)
+    private String dataTratamento;
 	
 	@NotEmpty
+	@Size(min=1, max=20)
     private String tipoTratamento;
 	
-	@NotEmpty
+	@Size(min=0, max=100)
     private String detalhe;
 
 	public long getCodigoVacina() {
@@ -36,11 +37,12 @@ public class Vacina implements Serializable{
 		this.codigoVacina = codigoVacina;
 	}
 
-	public Date getDataTratamento() {
+
+	public String getDataTratamento() {
 		return dataTratamento;
 	}
 
-	public void setDataTratamento(Date dataTratamento) {
+	public void setDataTratamento(String dataTratamento) {
 		this.dataTratamento = dataTratamento;
 	}
 

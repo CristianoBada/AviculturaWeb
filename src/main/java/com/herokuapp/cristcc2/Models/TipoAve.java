@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class TipoAve implements Serializable{
@@ -13,6 +14,7 @@ public class TipoAve implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Size(min=1, max=20)
 	private String nomeAve;
 	
 	@NotNull

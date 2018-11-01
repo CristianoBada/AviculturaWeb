@@ -34,6 +34,7 @@ public class Ovos implements Serializable{
     private Boolean incubacao = false;
     
     @NotEmpty
+    @Size(min=1, max=15)
     private String lote;
     
     @ManyToOne

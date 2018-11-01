@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -14,6 +15,7 @@ public class Role implements GrantedAuthority{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Size(min=1, max=15)
 	private String nomeRole;
 
 	@ManyToMany(mappedBy = "roles")

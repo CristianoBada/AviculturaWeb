@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Corte implements Serializable{
@@ -26,17 +27,20 @@ public class Corte implements Serializable{
     
     private Integer mortalidade;
     
+    @Size(min=0, max=100)
     private String comentario;
     
     @NotNull
     private Integer maximo;
     
-    @NotNull
-    private Date dataEntrada;
+    @NotEmpty
+    @Size(min=10, max=10)
+    private String dataEntrada;
     
     private Date dataSaida;
     
     @NotEmpty
+    @Size(min=1, max=15)
     private String tipoAve;
     
     @OneToMany
@@ -50,11 +54,13 @@ public class Corte implements Serializable{
 		this.maximo = maximo;
 	}
 
-	public Date getDataEntrada() {
+	
+	
+	public String getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(Date dataEntrada) {
+	public void setDataEntrada(String dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Produtos implements Serializable{
@@ -15,6 +16,7 @@ public class Produtos implements Serializable{
 	private long codigoProduto;
 	
 	@NotEmpty
+	@Size(min=1, max=20)
 	private String nomeProduto;
 
 	public long getCodigoProduto() {

@@ -1,7 +1,6 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,15 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.herokuapp.cristcc2.Json.JsonDateSerializer;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Postura implements Serializable{
@@ -31,19 +24,19 @@ public class Postura implements Serializable{
 	@NotNull
 	private Integer quantidade;
 	
+	@Size(min=0, max=100)
     private String comentario;
     
     @NotNull
     private Integer maximoAves;
     
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy HH:ii:ss")
-    private Date dataentrada;
+    @NotEmpty
+    @Size(min=10, max=10)
+    private String dataentrada;
     
-    @Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy HH:ii:ss")
-    private Date datasaida;
+    @NotEmpty
+    @Size(min=10, max=10)
+    private String datasaida;
     
     @NotEmpty
     private String tipoAve;
@@ -104,21 +97,21 @@ public class Postura implements Serializable{
 		this.maximoAves = maximoAves;
 	}
 
-	@JsonSerialize(using=JsonDateSerializer.class) 
-	public Date getDataentrada() {
+
+
+	public String getDataentrada() {
 		return dataentrada;
 	}
 
-	public void setDataentrada(Date dataentrada) {
+	public void setDataentrada(String dataentrada) {
 		this.dataentrada = dataentrada;
 	}
 
-	@JsonSerialize(using=JsonDateSerializer.class) 
-	public Date getDatasaida() {
+	public String getDatasaida() {
 		return datasaida;
 	}
 
-	public void setDatasaida(Date datasaida) {
+	public void setDatasaida(String datasaida) {
 		this.datasaida = datasaida;
 	}
 

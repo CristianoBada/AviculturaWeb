@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Financeiro implements Serializable{
@@ -19,14 +20,17 @@ public class Financeiro implements Serializable{
 	private long codigoFinanceiro;
 
 	@NotEmpty
+	@Size(min=1, max=20)
     private String nome;
     
 	@NotNull
     private Double valor;
     
+	@Size(min=0, max=100)
     private String detalhe;
     
     @NotEmpty
+    @Size(min=1, max=10)
     private String entrasaida;
 
 	public long getCodigoFinanceiro() {
