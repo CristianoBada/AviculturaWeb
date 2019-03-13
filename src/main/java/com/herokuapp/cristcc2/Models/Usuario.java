@@ -12,11 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 @Entity
-public class Usuario implements UserDetails, Serializable{
+public class Usuario implements Serializable{
 	
 private static final long serialVersionUID = 1L;
 	
@@ -30,15 +27,6 @@ private static final long serialVersionUID = 1L;
 	@NotEmpty
 	@Size(min=1, max=20)
 	private String senha;
-	
-	@ManyToMany
-	@JoinTable( 
-	        name = "usuarios_roles", 
-	        joinColumns = @JoinColumn(
-	          name = "usuario_id", referencedColumnName = "login"), 
-	        inverseJoinColumns = @JoinColumn(
-	          name = "role_id", referencedColumnName = "nomeRole")) 
-    private List<Role> roles;
 
 	public String getLogin() {
 		return login;
@@ -62,55 +50,5 @@ private static final long serialVersionUID = 1L;
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return (Collection<? extends GrantedAuthority>) this.roles;
-	}
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return this.senha;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return this.login;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
 	}
 }

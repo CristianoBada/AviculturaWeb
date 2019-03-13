@@ -3,7 +3,6 @@ package com.herokuapp.cristcc2.Controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +30,7 @@ public class UsuarioController {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/cadastrarUsuario";
 		} else {
-			usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
+			usuario.setSenha(usuario.getSenha());
 			ur.save(usuario);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
 			return "redirect:/";

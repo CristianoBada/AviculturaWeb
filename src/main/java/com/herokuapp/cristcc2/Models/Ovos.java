@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -40,11 +39,9 @@ public class Ovos implements Serializable{
     @NotEmpty
     private String tipoAve;
     
-    @ManyToOne
 	private Postura postura;
     
-    @ManyToOne
-	private Postura incubatorio;
+	private Incubatorio incubatorio;
     
     
 	public String getTipoAve() {
@@ -111,11 +108,11 @@ public class Ovos implements Serializable{
 		this.incubacao = incubacao;
 	}
 
-	public Postura getIncubatorio() {
+	public Incubatorio getIncubatorio() {
 		return incubatorio;
 	}
 
-	public void setIncubatorio(Postura incubatorio) {
+	public void setIncubatorio(Incubatorio incubatorio) {
 		this.incubatorio = incubatorio;
 	}
 	

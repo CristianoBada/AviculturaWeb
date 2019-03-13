@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -31,17 +30,14 @@ public class Racao implements Serializable{
     @Size(min=10, max=10)
     private String dataEntrada;
 	
-	 @ManyToOne
-	 private Postura granjaPostura;
+	private Postura granjaPostura;
 	 
-	 @ManyToOne
-	 private Corte granjaCorte;
+	private Corte granjaCorte;
 	 
-	 public Racao( ) {
-		 this.tipoRacao = "";
-		 this.quantidade = 0;
-	 }
-
+	public Racao( ) {
+		this.tipoRacao = "";
+		this.quantidade = 0;
+	}
 
 	public Postura getGranjaPostura() {
 		return granjaPostura;
@@ -83,15 +79,11 @@ public class Racao implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-
 	public String getDataEntrada() {
 		return dataEntrada;
 	}
 
-
 	public void setDataEntrada(String dataEntrada) {
 		this.dataEntrada = dataEntrada;
-	}
-
-	
+	}	
 }

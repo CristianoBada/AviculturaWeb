@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -43,9 +42,6 @@ public class Corte implements Serializable{
     @Size(min=1, max=15)
     private String tipoAve;
     
-    @OneToMany
-	 private List<Racao> loteRacao;
-    
 	public Integer getMaximo() {
 		return maximo;
 	}
@@ -54,8 +50,6 @@ public class Corte implements Serializable{
 		this.maximo = maximo;
 	}
 
-	
-	
 	public String getDataSaida() {
 		return dataSaida;
 	}
@@ -70,14 +64,6 @@ public class Corte implements Serializable{
 
 	public void setDataEntrada(String dataEntrada) {
 		this.dataEntrada = dataEntrada;
-	}
-
-	public List<Racao> getLoteRacao() {
-		return loteRacao;
-	}
-
-	public void setLoteRacao(List<Racao> loteRacao) {
-		this.loteRacao = loteRacao;
 	}
 
 	public long getCodigoCorte() {

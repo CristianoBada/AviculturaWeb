@@ -1,13 +1,10 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,17 +38,6 @@ public class Incubatorio implements Serializable{
     @NotEmpty
     @Size(min=1, max=20)
     private String tipoAve;
-    
-    @OneToMany
-	private List<Ovos> lotesOvos;
-    
-	public List<Ovos> getLotesOvos() {
-		return lotesOvos;
-	}
-
-	public void setLotesOvos(List<Ovos> lotesOvos) {
-		this.lotesOvos = lotesOvos;
-	}
 
 	public long getCodigoIncubatorio() {
 		return codigoIncubatorio;
