@@ -39,7 +39,7 @@ public class Ovos implements Serializable{
     @NotEmpty
     private String tipoAve;
     
-	private Postura postura;
+	private Integer codigoPostura;
     
 	private Integer codigoIncubatorio;
     
@@ -52,12 +52,12 @@ public class Ovos implements Serializable{
 		this.tipoAve = tipoAve;
 	}
 
-	public Postura getPostura() {
-		return postura;
+	public Integer getCodigoPostura() {
+		return codigoPostura;
 	}
 
-	public void setPostura(Postura postura) {
-		this.postura = postura;
+	public void setCodigoPostura(Integer codigoPostura) {
+		this.codigoPostura = codigoPostura;
 	}
 
 	public long getCodigo() {
