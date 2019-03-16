@@ -41,7 +41,7 @@ public class Ovos implements Serializable{
     
 	private Postura postura;
     
-	private Incubatorio incubatorio;
+	private Integer codigoIncubatorio;
     
     
 	public String getTipoAve() {
@@ -108,14 +108,11 @@ public class Ovos implements Serializable{
 		this.incubacao = incubacao;
 	}
 
-	public Incubatorio getIncubatorio() {
-		return incubatorio;
+	public Integer getCodigoIncubatorio() {
+		return codigoIncubatorio;
 	}
 
-	public void setIncubatorio(Incubatorio incubatorio) {
-		this.incubatorio = incubatorio;
+	public void setCodigoIncubatorio(Integer codigoIncubatorio) {
+		this.codigoIncubatorio = codigoIncubatorio;
 	}
-	
-	
-    
 }

@@ -30,29 +30,29 @@ public class Racao implements Serializable{
     @Size(min=10, max=10)
     private String dataEntrada;
 	
-	private Postura granjaPostura;
+	private Integer codigoPostura;
 	 
-	private Corte granjaCorte;
+	private Integer codigoCorte;
 	 
 	public Racao( ) {
 		this.tipoRacao = "";
 		this.quantidade = 0;
 	}
 
-	public Postura getGranjaPostura() {
-		return granjaPostura;
+	public Integer getCodigoPostura() {
+		return codigoPostura;
 	}
 
-	public void setGranjaPostura(Postura granjaPostura) {
-		this.granjaPostura = granjaPostura;
+	public void setCodigoPostura(Integer codigoPostura) {
+		this.codigoPostura = codigoPostura;
 	}
 
-	public Corte getGranjaCorte() {
-		return granjaCorte;
+	public Integer getCodigoCorte() {
+		return codigoCorte;
 	}
 
-	public void setGranjaCorte(Corte granjaCorte) {
-		this.granjaCorte = granjaCorte;
+	public void setCodigoCorte(Integer codigoCorte) {
+		this.codigoCorte = codigoCorte;
 	}
 
 	public long getCodigoRacao() {
