@@ -30,7 +30,8 @@ public class Ovos implements Serializable{
     private String data;
     
     @NotNull
-    private Boolean incubacao = false;
+    @Size(min=1, max=1)
+    private String incubacao = "F";
     
     @NotEmpty
     @Size(min=1, max=15)
@@ -38,11 +39,6 @@ public class Ovos implements Serializable{
     
     @NotEmpty
     private String tipoAve;
-    
-	private Integer codigoPostura;
-    
-	private Integer codigoIncubatorio;
-    
     
 	public String getTipoAve() {
 		return tipoAve;
@@ -52,14 +48,7 @@ public class Ovos implements Serializable{
 		this.tipoAve = tipoAve;
 	}
 
-	public Integer getCodigoPostura() {
-		return codigoPostura;
-	}
-
-	public void setCodigoPostura(Integer codigoPostura) {
-		this.codigoPostura = codigoPostura;
-	}
-
+	
 	public long getCodigo() {
 		return codigo;
 	}
@@ -100,19 +89,11 @@ public class Ovos implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public Boolean getIncubacao() {
+	public String getIncubacao() {
 		return incubacao;
 	}
 
-	public void setIncubacao(Boolean incubacao) {
+	public void setIncubacao(String incubacao) {
 		this.incubacao = incubacao;
-	}
-
-	public Integer getCodigoIncubatorio() {
-		return codigoIncubatorio;
-	}
-
-	public void setCodigoIncubatorio(Integer codigoIncubatorio) {
-		this.codigoIncubatorio = codigoIncubatorio;
 	}
 }
