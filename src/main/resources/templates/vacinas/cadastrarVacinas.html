@@ -15,20 +15,17 @@
   <body>
   
   	<!-- Inicio do menu -->
-  	<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-  		<a class="navbar-brand" href="#">AGRO</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
-  		</button>
+  	<nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+  		<a class=" navbar-brand" href="#">AGRO</a>
 
-  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  		<div class="container collapse navbar-collapse" id="navbarSupportedContent">
     		<ul class="navbar-nav mr-auto">
       			<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarPostura">Postura</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarIncubatorio">Incubatório</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarCorte">Corte</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarRacoe">Rações</a></li>
+      			<li class="nav-item"><a class="nav-link" href="/cadastrarRacoes">Rações</a></li>
       			<li class="nav-item active"><a class="nav-link" href="/cadastrarVacinas">Vacinas<span class="sr-only">(current)</span></a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarFinanceiro">Financeiro</a></li>
       			<li class="nav-item"><a class="nav-link" href="/gerarRelatorios">Relatórios</a></li>
@@ -42,18 +39,17 @@
 	</nav>
 	<!-- Fim do menu -->
 	
-	<div class="container-fluid">
+	<div class="container">
 		<a class="btn btn-light" href="/edicaoVacinas/novo" role="button">Novo</a>
 	</div>
 	
-	<table class="container-fluid table table-bordered">
+	<table class="container table table-bordered">
 		<thead>
 			<tr>
 				<th>Data do Tratamento</th>
 				<th>Tipo de Tratamento</th>
 				<th>Detalhe</th>
-				<th>Editar</th>
-				<th>Deletar</th>
+				<th>Opções</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -61,8 +57,8 @@
 				<td><span th:text="${v.dataTratamento}"></span></td>
 				<td><span th:text="${v.tipoTratamento}"></span></td>
 				<td><span th:text="${v.detalhe}"></span></td>
-				<td><a th:href="|/edicaoVacinas/editar/${v.codigoVacina}|">Editar</a></td>
-				<td><a th:href="|/cadastrarVacinas/delete/${v.codigoVacina}|">Excluir</a></td>
+				<td><a th:href="|/edicaoVacinas/editar/${v.codigoVacina}|">Editar    </a>  
+					<a th:href="|/cadastrarVacinas/delete/${v.codigoVacina}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>

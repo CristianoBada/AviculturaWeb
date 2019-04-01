@@ -15,20 +15,17 @@
   <body>
   
   	<!-- Inicio do menu -->
-  	<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-  		<a class="navbar-brand" href="#">AGRO</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
-  		</button>
+  	<nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+  		<a class=" navbar-brand" href="#">AGRO</a>
 
-  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  		<div class="container collapse navbar-collapse" id="navbarSupportedContent">
     		<ul class="navbar-nav mr-auto">
       			<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarPostura">Postura</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarIncubatorio">Incubatório</a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarCorte">Corte</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarRacoe">Rações</a></li>
+      			<li class="nav-item"><a class="nav-link" href="/cadastrarRacoes">Rações</a></li>
       			<li class="nav-item active"><a class="nav-link" href="/cadastrarVacinas">Vacinas<span class="sr-only">(current)</span></a></li>
       			<li class="nav-item"><a class="nav-link" href="/cadastrarFinanceiro">Financeiro</a></li>
       			<li class="nav-item"><a class="nav-link" href="/gerarRelatorios">Relatórios</a></li>
@@ -44,7 +41,7 @@
 	
 	<th:block th:include="mensagemValidacao"></th:block>
 	
-	<div class="container-fluid">
+	<div class="container">
 		<form th:object="${vacina}" th:action="@{/editarVacinas/save}"  method="post">
 			<input type="hidden" th:field="*{codigoVacina}" />
 			<div class="row">
