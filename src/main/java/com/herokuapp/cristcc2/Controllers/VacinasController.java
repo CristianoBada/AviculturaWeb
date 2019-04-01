@@ -27,13 +27,13 @@ public class VacinasController {
 		return "vacinas/cadastrarVacinas";
 	}
 	
-	@RequestMapping("/edicaoVacinas")
+	@RequestMapping("/edicaoVacinas/novo")
 	public String formEdicaoOvos(Model model) {
 		model.addAttribute("vacina", new Vacina());
 		return "vacinas/editarVacinas";
 	}
 	
-	@RequestMapping("/cadastrarVacinas/editar/{codigoVacina}")
+	@RequestMapping("/edicaoVacinas/editar/{codigoVacina}")
 	public String editarVacinas(@PathVariable Long codigoVacina, Model model){
 		model.addAttribute("vacina", vr.findByCodigoVacina(codigoVacina));
 		return "vacinas/editarVacinas";		
@@ -61,6 +61,6 @@ public class VacinasController {
 	@RequestMapping("/cadastrarVacinas/Vacina/criar")
 	public String createVacinas(Model model) {
 		model.addAttribute("vacina", new Vacina());
-		return "vacinas/editarVacinas";
+		return "vacinas/criarVacinas";
 	}
 }
