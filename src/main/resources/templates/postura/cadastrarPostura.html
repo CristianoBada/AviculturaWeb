@@ -47,8 +47,8 @@
 		</div>
 	</nav>
 	<!-- Fim do menu -->
-	
-	<br/>
+
+	<br />
 
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
@@ -73,16 +73,15 @@
 				<tr th:each="p : ${listaPostura}">
 					<td><span th:text="${p.codigo}"></span></td>
 					<td><span th:text="${p.quantidade}"></span></td>
-					<td><span th:text="${p.observacao}"></span></td>
 					<td><span th:text="${p.maximo}"></span></td>
 					<td><span th:text="${p.entrada}"></span></td>
 					<td><span th:text="${p.saida}"></span></td>
 					<td><span th:text="${p.tipoave}"></span></td>
+					<td><span th:text="${p.observacao}"></span></td>
 					<td><a class="btn btn-dark"
-						th:href="|/edicaoPostura/editar/${p.codigo}|">Editar
-					</a> <a class="btn btn-dark"
-						th:href="|/cadastrarPostura/delete/${p.codigo}|">Excluir
-					</td>
+						th:href="|/edicaoPostura/editar/${p.codigo}|">Editar </a> <a
+						class="btn btn-dark"
+						th:href="|/cadastrarPostura/delete/${p.codigo}|">Excluir </td>
 				</tr>
 			</tbody>
 		</table>
