@@ -10,59 +10,57 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Vacina implements Serializable{
-	
+public class Vacina implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long codigoVacina;
-	
+	private long codigo;
+
 	@NotEmpty
-    @Size(min=10, max=10)
-    private String dataTratamento;
-	
+	@Size(min = 10, max = 10)
+	private String data;
+
 	@NotEmpty
-	@Size(min=1, max=20)
-    private String tipoTratamento;
-	
-	@Size(min=0, max=100)
-    private String detalhe;
-	
-	public Vacina( ) {
-		
+	@Size(min = 1, max = 20)
+	private String tipo;
+
+	@Size(min = 0, max = 100)
+	private String observacao;
+
+	public Vacina() {
 	}
 
-	public long getCodigoVacina() {
-		return codigoVacina;
+	public long getCodigo() {
+		return codigo;
 	}
 
-	public void setCodigoVacina(long codigoVacina) {
-		this.codigoVacina = codigoVacina;
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
-
-	public String getDataTratamento() {
-		return dataTratamento;
+	public String getData() {
+		return data;
 	}
 
-	public void setDataTratamento(String dataTratamento) {
-		this.dataTratamento = dataTratamento;
+	public void setData(String data) {
+		this.data = data;
 	}
 
-	public String getTipoTratamento() {
-		return tipoTratamento;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setTipoTratamento(String tipoTratamento) {
-		this.tipoTratamento = tipoTratamento;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public String getDetalhe() {
-		return detalhe;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setDetalhe(String detalhe) {
-		this.detalhe = detalhe;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 }

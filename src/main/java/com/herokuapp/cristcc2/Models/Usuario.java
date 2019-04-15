@@ -1,14 +1,8 @@
 package com.herokuapp.cristcc2.Models;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 

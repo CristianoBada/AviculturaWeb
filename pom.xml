@@ -70,6 +70,8 @@
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.2.Final</version>
         </dependency>
+        
+  		
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
 <dependency>
     <groupId>org.hibernate</groupId>
@@ -108,7 +110,19 @@
     <groupId>org.microbule</groupId>
     <artifactId>microbule-decorator-errormap</artifactId>
     <version>0.1.1</version>
-</dependency>
+    </dependency>
+    
+    <dependency>
+   			<groupId>com.lowagie</groupId>
+   			<artifactId>itext</artifactId>
+   			<version>2.1.7</version>
+  		</dependency>
+  		<dependency>
+   <groupId>org.apache.poi</groupId>
+   <artifactId>poi</artifactId>
+   <version>3.15</version>
+  </dependency>
+
 	</dependencies>
 
 	<build>

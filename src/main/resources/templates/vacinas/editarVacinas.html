@@ -1,78 +1,97 @@
 <!doctype html>
-<html lang="pt"
-	xmlns:th="http://thymeleaf.org"
+<html lang="pt" xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 
-    <title>Edição Vacinas</title>
-  </head>
-  <body>
-  
-  	<!-- Inicio do menu -->
-  	<nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
-  		<a class=" navbar-brand" href="#">AGRO</a>
+<title>Edição Vacinas</title>
+</head>
+<body>
 
-  		<div class="container collapse navbar-collapse" id="navbarSupportedContent">
-    		<ul class="navbar-nav mr-auto">
-      			<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarPostura">Postura</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarIncubatorio">Incubatório</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarCorte">Corte</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarRacoes">Rações</a></li>
-      			<li class="nav-item active"><a class="nav-link" href="/cadastrarVacinas">Vacinas<span class="sr-only">(current)</span></a></li>
-      			<li class="nav-item"><a class="nav-link" href="/cadastrarFinanceiro">Financeiro</a></li>
-      			<li class="nav-item"><a class="nav-link" href="/gerarRelatorios">Relatórios</a></li>
-    		</ul>
-    		<form class="form-inline my-2 my-lg-0">
-      			<ul class="navbar-nav mr-auto">
-        			<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
-     	 		</ul>
-    		</form>
-  		</div>
+	<!-- Inicio do menu -->
+	<nav
+		class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class=" navbar-brand" href="#">AGRO</a>
+
+		<div class="container collapse navbar-collapse"
+			id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/cadastrarPostura">Postura</a></li>
+				<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/cadastrarIncubatorio">Incubatório</a></li>
+				<li class="nav-item"><a class="nav-link" href="/cadastrarCorte">Corte</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/cadastrarRacoes">Rações</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/cadastrarVacinas">Vacinas<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/cadastrarFinanceiro">Financeiro</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/gerarRelatorios">Relatórios</a></li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+				</ul>
+			</form>
+		</div>
 	</nav>
 	<!-- Fim do menu -->
-	
+
 	<th:block th:include="mensagemValidacao"></th:block>
-	
-	<div class="container">
-		<form th:object="${vacina}" th:action="@{/editarVacinas/save}"  method="post">
-			<input type="hidden" th:field="*{codigoVacina}" />
+
+	<br />
+	<div class="container p-3 mb-2 bg-secondary">
+		<form th:object="${vacina}" th:action="@{/editarVacinas/save}"
+			method="post">
+			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="data_tratamento">Data do Tratamento: </label>
-					<input type="date" value="" th:field="*{dataTratamento}" placeholder=""/>
+					<label for="tipo">Tipo de Tratamento: </label> <input type="text"
+						value="" min="" th:field="*{tipo}" />
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s2">
-					<label for="tipo_tratamento">Tipo de Tratamento: </label>
-					<input type="text" value="" min="" th:field="*{tipoTratamento}"/>
+					<label for="data">Data: </label> <input type="date" value=""
+						th:field="*{data}" placeholder="" />
 				</div>
 			</div>
+			<div class="row"></div>
 			<div class="row">
 				<div class="input-field col s6">
-					<label for="detalhe">Observacao: </label>
-					<input id="input_text" type="text" value="" max="100" th:field="*{detalhe}" data-length="100"/>
+					<label for="observacao">Observação: </label> <input id="input_text"
+						type="text" value="" max="100" th:field="*{observacao}"
+						data-length="100" />
 				</div>
 			</div>
-			
+
+			<hr size="30">
+
 			<!--button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button-->
-			<button type="submit"  class="btn btn-light">Salvar</button>
-			<a class="btn btn-light" href="/cadastrarVacinas" role="button">Voltar</a>
+			<button type="submit" class="btn btn-dark">Salvar</button>
+			<a class="btn btn-dark" href="/cadastrarVacinas" role="button">Voltar</a>
 		</form>
 	</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+</body>
 </html>
