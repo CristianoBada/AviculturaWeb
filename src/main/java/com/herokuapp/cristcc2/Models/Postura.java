@@ -11,48 +11,40 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Postura implements Serializable{
-	
+public class Postura implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long codigoPostura;
-	
+	private long codigo;
+
 	@NotNull
 	private Integer quantidade;
-	
-	@Size(min=0, max=100)
-    private String comentario;
-    
-    @NotNull
-    private Integer maximoAves;
-    
-    @NotEmpty
-    @Size(min=10, max=10)
-    private String dataentrada;
-    
-    @NotEmpty
-    @Size(min=10, max=10)
-    private String datasaida;
-    
-    @NotEmpty
-    private String tipoAve;
 
-	public long getCodigoPostura() {
-		return codigoPostura;
+	@Size(min = 0, max = 100)
+	private String observacao;
+
+	@NotNull
+	private Integer maximo;
+
+	@NotEmpty
+	@Size(min = 10, max = 10)
+	private String entrada;
+
+	@NotEmpty
+	@Size(min = 10, max = 10)
+	private String saida;
+
+	@NotEmpty
+	private String tipoave;
+
+	public long getCodigo() {
+		return codigo;
 	}
 
-	public void setCodigoPostura(long codigoPostura) {
-		this.codigoPostura = codigoPostura;
-	}
-
-	public String getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
 	public Integer getQuantidade() {
@@ -63,35 +55,43 @@ public class Postura implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public Integer getMaximoAves() {
-		return maximoAves;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setMaximoAves(Integer maximoAves) {
-		this.maximoAves = maximoAves;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
-	public String getDataentrada() {
-		return dataentrada;
+	public Integer getMaximo() {
+		return maximo;
 	}
 
-	public void setDataentrada(String dataentrada) {
-		this.dataentrada = dataentrada;
+	public void setMaximo(Integer maximo) {
+		this.maximo = maximo;
 	}
 
-	public String getDatasaida() {
-		return datasaida;
+	public String getEntrada() {
+		return entrada;
 	}
 
-	public void setDatasaida(String datasaida) {
-		this.datasaida = datasaida;
+	public void setEntrada(String entrada) {
+		this.entrada = entrada;
 	}
 
-	public String getTipoAve() {
-		return tipoAve;
+	public String getSaida() {
+		return saida;
 	}
 
-	public void setTipoAve(String tipoAve) {
-		this.tipoAve = tipoAve;
+	public void setSaida(String saida) {
+		this.saida = saida;
+	}
+
+	public String getTipoave() {
+		return tipoave;
+	}
+
+	public void setTipoave(String tipoave) {
+		this.tipoave = tipoave;
 	}
 }

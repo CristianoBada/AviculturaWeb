@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.herokuapp.cristcc2.Models.Postura;
 
 public interface PosturaRepository extends CrudRepository<Postura, String>{
-	Postura findByCodigoPostura(long codigo);
+	Postura findByCodigo(long codigo);
 }
