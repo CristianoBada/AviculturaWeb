@@ -58,17 +58,20 @@
 	<table class="container table table-bordered">
 		<thead>
 			<tr>
+			<th>Código</th>
 				<th>Tipoe de Racao</th>
 				<th>Quantidade</th>
 				<th>Data de Entrada</th>
+				<th>Data</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="ra : ${listaRacoes}">
-				<td><span th:text="${ra.tipoRacao}"></span></td>
+			<td><span th:text="${ra.codigo}"></span></td>
+				<td><span th:text="${ra.tiporacao}"></span></td>
 				<td><span th:text="${ra.quantidade}"></span></td>
-				<td><span th:text="${ra.dataEntrada}"></span></td>
-				<td><a class="btn btn-dark" th:href="|/cadastrarRacoes/delete/${ra.codigoRacao}|">Excluir</a></td>
+				<td><span th:text="${ra.data}"></span></td>
+				<td><a class="btn btn-dark" th:href="|/cadastrarRacoes/delete/${ra.codigo}|">Excluir</a></td>
 			</tr>
 		</tbody>
 	</table>

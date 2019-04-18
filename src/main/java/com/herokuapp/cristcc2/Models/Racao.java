@@ -17,58 +17,37 @@ public class Racao implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long codigoRacao;
+	private long codigo;
 	
 	@NotEmpty
 	@Size(min=1, max=20)
-	private String tipoRacao;
+	private String tiporacao;
 	
 	@NotNull
     private Integer quantidade;
-    
+	
+	private Integer codigopostura;
+	 
+	private Integer codigocorte;
+	
 	@NotEmpty
     @Size(min=10, max=10)
-    private String dataEntrada;
-	
-	private Integer codigoPostura;
-	 
-	private Integer codigoCorte;
-	 
-	public Racao( ) {
-		this.tipoRacao = "";
-		this.quantidade = 0;
+    private String data;
+
+	public long getCodigo() {
+		return codigo;
 	}
 
-	public Integer getCodigoPostura() {
-		return codigoPostura;
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
-	public void setCodigoPostura(Integer codigoPostura) {
-		this.codigoPostura = codigoPostura;
+	public String getTiporacao() {
+		return tiporacao;
 	}
 
-	public Integer getCodigoCorte() {
-		return codigoCorte;
-	}
-
-	public void setCodigoCorte(Integer codigoCorte) {
-		this.codigoCorte = codigoCorte;
-	}
-
-	public long getCodigoRacao() {
-		return codigoRacao;
-	}
-
-	public void setCodigoRacao(long codigoRacao) {
-		this.codigoRacao = codigoRacao;
-	}
-
-	public String getTipoRacao() {
-		return tipoRacao;
-	}
-
-	public void setTipoRacao(String tipoRacao) {
-		this.tipoRacao = tipoRacao;
+	public void setTiporacao(String tiporacao) {
+		this.tiporacao = tiporacao;
 	}
 
 	public Integer getQuantidade() {
@@ -79,11 +58,27 @@ public class Racao implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public String getDataEntrada() {
-		return dataEntrada;
+	public Integer getCodigopostura() {
+		return codigopostura;
 	}
 
-	public void setDataEntrada(String dataEntrada) {
-		this.dataEntrada = dataEntrada;
-	}	
+	public void setCodigopostura(Integer codigopostura) {
+		this.codigopostura = codigopostura;
+	}
+
+	public Integer getCodigocorte() {
+		return codigocorte;
+	}
+
+	public void setCodigocorte(Integer codigocorte) {
+		this.codigocorte = codigocorte;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 }

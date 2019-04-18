@@ -17,7 +17,7 @@ public class Financeiro implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long codigoFinanceiro;
+	private long codigo;
 
 	@NotEmpty
 	@Size(min=1, max=20)
@@ -27,18 +27,30 @@ public class Financeiro implements Serializable{
     private Double valor;
     
 	@Size(min=0, max=100)
-    private String detalhe;
+    private String observacao;
     
     @NotEmpty
     @Size(min=1, max=10)
     private String entrasaida;
+    
+    @NotEmpty
+    @Size(min=10, max=10)
+    private String data;
 
-	public long getCodigoFinanceiro() {
-		return codigoFinanceiro;
+	public String getData() {
+		return data;
 	}
 
-	public void setCodigoFinanceiro(long codigoFinanceiro) {
-		this.codigoFinanceiro = codigoFinanceiro;
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -57,12 +69,12 @@ public class Financeiro implements Serializable{
 		this.valor = valor;
 	}
 
-	public String getDetalhe() {
-		return detalhe;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setDetalhe(String detalhe) {
-		this.detalhe = detalhe;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public String getEntrasaida() {

@@ -48,9 +48,9 @@ public class RacoesController {
 		}
 	}
 	
-	@RequestMapping("/cadastrarRacoes/delete/{codigoRacao}") //@PathVariable Long id, RedirectAttributes redirectAttrs
-	public String deletarRacoes(@PathVariable("codigoRacao") Long codigoRacao, RedirectAttributes redirectAttrs) {
-		Racao racao = rr.findByCodigoRacao(codigoRacao);
+	@RequestMapping("/cadastrarRacoes/delete/{codigo}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarRacoes(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
+		Racao racao = rr.findByCodigo(codigo);
 		rr.delete(racao);
 		return "redirect:/cadastrarRacoes";
 	}

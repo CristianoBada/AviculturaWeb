@@ -56,23 +56,27 @@
 
 		<hr size="30">
 
-		<table class="container">
+		<table class="container table table-bordered">
 			<thead>
 				<tr>
+					<th>Código</th>
 					<th>Nome do produto</th>
 					<th>Valor</th>
-					<th>Detalhe</th>
+					<th>Data</th>
 					<th>Tipo de transicao</th>
+					<th>Observação</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="co : ${listaFinanceiro}">
+					<td><span th:text="${co.codigo}"></span></td>
 					<td><span th:text="${co.nome}"></span></td>
 					<td>R$ <span th:text="${co.valor}"></span></td>
-					<td><span th:text="${co.detalhe}"></span></td>
+					<td><span th:text="${co.data}"></span></td>
 					<td><span th:text="${co.entrasaida}"></span></td>
+					<td><span th:text="${co.observacao}"></span></td>
 					<td><a class="btn btn-dark"
-						th:href="|/cadastrarFinanceiro/delete/${co.codigoFinanceiro}|">Excluir</a></td>
+						th:href="|/cadastrarFinanceiro/delete/${co.codigo}|">Excluir</a></td>
 				</tr>
 			</tbody>
 		</table>

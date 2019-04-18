@@ -57,14 +57,14 @@
 		<form method="post">
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="tipo_aves">Tipo de Ave:</label> <select name="tipoAve">
+					<label for="tipo_aves">Tipo de Ave:</label> <select name="tipoave">
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
 					</select>
 				</div>
 				<div class="input-field col s1">
 					<label for="quantidade">Quantidade:</label> <input type="number"
-						value="0" min="0" name="quantidadeAves" />
+						value="0" min="0" name="quantidade" />
 				</div>
 				<div class="input-field col s1">
 					<label for="max_aves">Maximo de aves:</label> <input type="number"
@@ -74,11 +74,11 @@
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="data_entrada">Data de Entrada:</label> <input
-						type="date" value="" name="dataEntrada" placeholder="" />
+						type="date" value="" name="entrada" placeholder="" />
 				</div>
 				<div class="input-field col s2">
 					<label for="data_saida">Data de Saida:</label> <input type="date"
-						value="" name="dataSaida" placeholder="" />
+						value="" name="saida" placeholder="" />
 				</div>
 				<div class="input-field col s1">
 					<label for="mortalidade">Mortalidade:</label> <input type="number"
@@ -88,7 +88,7 @@
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="comentario">Observação:</label> <input type="text"
-						value="" name="comentario" />
+						value="" name="observacao" />
 				</div>
 			</div>
 

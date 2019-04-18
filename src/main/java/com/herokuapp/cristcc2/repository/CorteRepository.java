@@ -6,5 +6,5 @@ import com.herokuapp.cristcc2.Models.Corte;
 
 
 public interface CorteRepository extends CrudRepository<Corte, String>{
-	Corte findByCodigoCorte(Long codigoCorte);
+	Corte findByCodigo(Long codigo);
 }

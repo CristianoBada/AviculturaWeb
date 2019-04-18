@@ -54,9 +54,9 @@ public class FinanceiroController {
 		}
 	}
 	
-	@RequestMapping("/cadastrarFinanceiro/delete/{codigoFinanceiro}") //@PathVariable Long id, RedirectAttributes redirectAttrs
-	public String deletarPostura(@PathVariable("codigoFinanceiro") Long codigoFinanceiro, RedirectAttributes redirectAttrs) {
-		Financeiro fin = fr.findByCodigoFinanceiro(codigoFinanceiro);
+	@RequestMapping("/cadastrarFinanceiro/delete/{codigo}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarPostura(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
+		Financeiro fin = fr.findByCodigo(codigo);
 		fr.delete(fin);
 		return "redirect:/cadastrarFinanceiro";
 	}

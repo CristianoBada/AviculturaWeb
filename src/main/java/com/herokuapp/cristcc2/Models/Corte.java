@@ -16,68 +16,52 @@ public class Corte implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long codigoCorte;
+	private long codigo;
 	
 	@NotNull
-    private Integer quantidadeAves;
+    private Integer quantidade;
     
     private Integer mortalidade;
     
     @Size(min=0, max=100)
-    private String comentario;
+    private String observacao;
     
     @NotNull
     private Integer maximo;
     
     @NotEmpty
     @Size(min=10, max=10)
-    private String dataEntrada;
+    private String entrada;
     
     @Size(min=10, max=10)
-    private String dataSaida;
+    private String saida;
     
     @NotEmpty
     @Size(min=1, max=15)
-    private String tipoAve;
-    
-	public Integer getMaximo() {
-		return maximo;
+    private String tipoave;
+
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setMaximo(Integer maximo) {
-		this.maximo = maximo;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
-	public String getDataSaida() {
-		return dataSaida;
+	public long getCodigo() {
+		return codigo;
 	}
 
-	public void setDataSaida(String dataSaida) {
-		this.dataSaida = dataSaida;
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
-	public String getDataEntrada() {
-		return dataEntrada;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setDataEntrada(String dataEntrada) {
-		this.dataEntrada = dataEntrada;
-	}
-
-	public long getCodigoCorte() {
-		return codigoCorte;
-	}
-
-	public void setCodigoCorte(long codigoCorte) {
-		this.codigoCorte = codigoCorte;
-	}
-
-	public Integer getQuantidadeAves() {
-		return quantidadeAves;
-	}
-
-	public void setQuantidadeAves(Integer quantidadeAves) {
-		this.quantidadeAves = quantidadeAves;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public Integer getMortalidade() {
@@ -88,20 +72,35 @@ public class Corte implements Serializable{
 		this.mortalidade = mortalidade;
 	}
 
-	public String getComentario() {
-		return comentario;
+	public Integer getMaximo() {
+		return maximo;
 	}
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setMaximo(Integer maximo) {
+		this.maximo = maximo;
 	}
 
-
-	public String getTipoAve() {
-		return tipoAve;
+	public String getEntrada() {
+		return entrada;
 	}
 
-	public void setTipoAve(String tipoAve) {
-		this.tipoAve = tipoAve;
+	public void setEntrada(String entrada) {
+		this.entrada = entrada;
+	}
+
+	public String getSaida() {
+		return saida;
+	}
+
+	public void setSaida(String saida) {
+		this.saida = saida;
+	}
+
+	public String getTipoave() {
+		return tipoave;
+	}
+
+	public void setTipoave(String tipoave) {
+		this.tipoave = tipoave;
 	}
 }

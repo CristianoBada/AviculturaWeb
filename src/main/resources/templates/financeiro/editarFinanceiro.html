@@ -66,7 +66,7 @@ input[type="number"] {
 		<form method="post">
 			<div class="row">
 				<div class="input-field col s3">
-					<label for="nome_produto">Nome do produto:</label> <select
+					<label for="nome">Nome do produto:</label> <select
 						name="nome">
 						<option th:each="item : ${listaProdutos}"
 							th:value="${item.nomeProduto}" th:text="${item.nomeProduto}" />
@@ -77,6 +77,10 @@ input[type="number"] {
 					<label for="valor">Valor (R$):</label> <input type="number"
 						step="any" name="valor" />
 				</div>
+				<div class="input-field col s2">
+					<label for="data_u">Data:</label> <input type="date"
+						value="" name="data" placeholder="" />
+				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
@@ -85,7 +89,7 @@ input[type="number"] {
 				</div>
 				<div class="input-field col s4">
 					<label for="detalhe">Observação:</label> <input id="input_text"
-						type="text" value="" name="detalhe" data-length="100" />
+						type="text" value="" name="observacao" data-length="100" />
 				</div>
 			</div>
 

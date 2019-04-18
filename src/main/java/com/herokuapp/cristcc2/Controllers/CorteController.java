@@ -57,9 +57,9 @@ public class CorteController {
 		}
 	}
 	
-	@RequestMapping("/cadastrarCorte/delete/{codigoCorte}") //@PathVariable Long id, RedirectAttributes redirectAttrs
-	public String deletarCorte(@PathVariable("codigoCorte") Long codigoCorte, RedirectAttributes redirectAttrs) {
-		Corte corte = cr.findByCodigoCorte(codigoCorte);
+	@RequestMapping("/cadastrarCorte/delete/{codigo}") //@PathVariable Long id, RedirectAttributes redirectAttrs
+	public String deletarCorte(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
+		Corte corte = cr.findByCodigo(codigo);
 		cr.delete(corte);
 		return "redirect:/cadastrarCorte";
 	}
