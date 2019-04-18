@@ -1,6 +1,5 @@
 package com.herokuapp.cristcc2.Models;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;

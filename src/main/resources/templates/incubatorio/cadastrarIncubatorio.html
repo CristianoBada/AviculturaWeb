@@ -51,7 +51,7 @@
 	<br />
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
-			<a href="/edicaoIncubatorio" class="btn btn-dark">Novo</a>
+			<a href="/edicaoIncubatorio/novo" class="btn btn-dark">Novo</a>
 		</div>
 		<hr size="30">
 
@@ -62,7 +62,7 @@
 					<th>Lote de Ovos</th>
 					<th>Temperatura</th>
 					<th>Umidade</th>
-					<th>Tempo para Eclodir</th>
+					<th>Tempo p/ Eclodir</th>
 					<th>Data de Inicio</th>
 					<th>Mortalidade</th>
 					<th>Tipo de Ave</th>
@@ -70,16 +70,18 @@
 			</thead>
 			<tbody>
 				<tr th:each="ic : ${listaIncubatorio}">
-					<td><span th:text="${ic.codigoIncubatorio}"></span></td>
-					<td><span th:text="${ic.loteOvos}"></span></td>
+					<td><span th:text="${ic.codigo}"></span></td>
+					<td><span th:text="${ic.loteovos}"></span></td>
 					<td><span th:text="${ic.temperatura}"></span> °C</td>
 					<td><span th:text="${ic.umidade}"></span></td>
-					<td><span th:text="${ic.tempoChocar}"></span></td>
-					<td><span th:text="${ic.dataInicio}"></span></td>
+					<td><span th:text="${ic.tempo}"></span> dias</td>
+					<td><span th:text="${ic.inicio}"></span></td>
 					<td><span th:text="${ic.mortalidade}"></span></td>
-					<td><span th:text="${ic.tipoAve}"></span></td>
+					<td><span th:text="${ic.tipoave}"></span></td>
 					<td><a class="btn btn-dark"
-						th:href="|/cadastrarIncubatorio/delete/${ic.codigoIncubatorio}|">Excluir</a></td>
+						th:href="|/edicaoIncubatorio/editar/${ic.codigo}|">Editar</a> <a
+						class="btn btn-dark"
+						th:href="|/cadastrarIncubatorio/delete/${ic.codigo}|">Excluir</a></td>
 				</tr>
 			</tbody>
 		</table>

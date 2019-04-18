@@ -6,5 +6,5 @@ import com.herokuapp.cristcc2.Models.Incubatorio;
 
 public interface IncubatorioRepository extends CrudRepository<Incubatorio, String>{
 	
-	Incubatorio findByCodigoIncubatorio(long codigo);
+	Incubatorio findByCodigo(long codigo);
 }

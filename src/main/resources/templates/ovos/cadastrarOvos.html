@@ -50,31 +50,35 @@
 		<!-- Fim do menu -->
 	</header>
 
-	<br/>
+	<br />
 
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
-			<a href="/edicaoOvos" class="btn btn-dark">Novo</a>
+			<a href="/edicaoOvos/novo" class="btn btn-dark">Novo</a>
 		</div>
 		<hr size="30">
 		<table class="container table table-bordered">
 			<thead>
 				<tr>
+					<th>Código</th>
 					<th>Lote</th>
 					<th>Quantidade</th>
 					<th>Qualidade</th>
-					<th>Data de ponhagem</th>
-					<th>Tipo de Ave</th>
+					<th>Data de produção</th>
+					<th>Tipo de ave</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="ovos : ${listaOvos}">
+					<td><span th:text="${ovos.codigo}"></span></td>
 					<td><span th:text="${ovos.lote}"></span></td>
 					<td><span th:text="${ovos.quantidade}"></span></td>
 					<td><span th:text="${ovos.qualidade}"></span></td>
 					<td><span th:text="${ovos.data}"></span></td>
-					<td><span th:text="${ovos.tipoAve}"></span></td>
+					<td><span th:text="${ovos.tipoave}"></span></td>
 					<td><a class="btn btn-dark"
+						th:href="|/edicaoOvos/editar/${ovos.codigo}|">Editar</a> <a
+						class="btn btn-dark"
 						th:href="|/cadastrarOvos/delete/${ovos.codigo}|">Excluir</a></td>
 				</tr>
 			</tbody>

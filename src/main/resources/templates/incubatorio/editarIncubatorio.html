@@ -54,41 +54,43 @@
 	<th:block th:include="mensagemValidacao"></th:block>
 
 	<div class="container p-3 mb-2 bg-secondary">
-		<form method="post">
+		<form th:object="${incubatorio}" th:action="@{/edicaoIncubatorio/save}"
+			method="post">
+			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
 				<div class="input-field col s3">
-					<label for="tipo_ave">Tipo da Ave:</label> <select name="tipoAve">
+					<label for="tipo_ave">Tipo da Ave:</label> <select th:field="*{tipoave}">
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
 					</select>
 				</div>
 				<div class="input-field col s2">
 					<label for="lote_ovos">Lote de Ovos:</label> <input type="text"
-						value="" name="loteOvos" />
+						value="" th:field="*{loteovos}" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="data_inicio">Data de Inicio:</label> <input type="date"
-						value="" name="dataInicio" placeholder="" />
+						value="" th:field="*{inicio}" placeholder="" />
 				</div>
 				<div class="input-field col s1">
 					<label for="temperatura">Temperatura (°C):</label> <input
-						type="number" value="0" name="temperatura" />
+						type="number" value="0" th:field="*{temperatura}" />
 				</div>
 				<div class="input-field col s1">
 					<label for="umidade">Umidade:</label> <input type="number"
-						value="0" min="0" name="umidade" />
+						value="0" min="0" th:field="*{umidade}" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s1">
 					<label for="mortalidade">Mortalidade:</label> <input type="number"
-						value="0" min="0" name="mortalidade" />
+						value="0" min="0" th:field="*{mortalidade}" />
 				</div>
 				<div class="input-field col s1">
-					<label for="eclosao">Eclosão:</label> <input type="number"
-						value="0" min="0" name="tempoChocar" />
+					<label for="eclosao">Tempo para eclodir (dias):</label> <input type="number"
+						value="0" min="0" th:field="*{tempo}" />
 				</div>
 			</div>
 

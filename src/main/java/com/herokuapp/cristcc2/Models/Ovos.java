@@ -38,14 +38,14 @@ public class Ovos implements Serializable{
     private String lote;
     
     @NotEmpty
-    private String tipoAve;
+    private String tipoave;
     
-	public String getTipoAve() {
-		return tipoAve;
+	public String getTipoave() {
+		return tipoave;
 	}
 
-	public void setTipoAve(String tipoAve) {
-		this.tipoAve = tipoAve;
+	public void setTipoave(String tipoave) {
+		this.tipoave = tipoave;
 	}
 
 	

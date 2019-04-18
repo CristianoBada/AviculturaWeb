@@ -10,49 +10,49 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Incubatorio implements Serializable{
-	
+public class Incubatorio implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long codigoIncubatorio;
-	
+	private long codigo;
+
 	@NotEmpty
-	private String loteOvos;
-	
+	private String loteovos;
+
 	@NotNull
-    private Integer temperatura;
-	
-    private Integer umidade;
-    
-    @NotNull
-    private Integer tempoChocar;
-    
-    @NotEmpty
-    @Size(min=10, max=10)
-    private String dataInicio;
-    
-    private Integer mortalidade;
-    
-    @NotEmpty
-    @Size(min=1, max=20)
-    private String tipoAve;
+	private Integer temperatura;
 
-	public long getCodigoIncubatorio() {
-		return codigoIncubatorio;
+	private Integer umidade;
+
+	@NotNull
+	private Integer tempo;
+
+	@NotEmpty
+	@Size(min = 10, max = 10)
+	private String inicio;
+
+	private Integer mortalidade;
+
+	@NotEmpty
+	@Size(min = 1, max = 20)
+	private String tipoave;
+
+	public long getCodigo() {
+		return codigo;
 	}
 
-	public void setCodigoIncubatorio(long codigoIncubatorio) {
-		this.codigoIncubatorio = codigoIncubatorio;
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
-	public String getLoteOvos() {
-		return loteOvos;
+	public String getLoteovos() {
+		return loteovos;
 	}
 
-	public void setLoteOvos(String loteOvos) {
-		this.loteOvos = loteOvos;
+	public void setLoteovos(String loteovos) {
+		this.loteovos = loteovos;
 	}
 
 	public Integer getTemperatura() {
@@ -71,20 +71,20 @@ public class Incubatorio implements Serializable{
 		this.umidade = umidade;
 	}
 
-	public Integer getTempoChocar() {
-		return tempoChocar;
+	public Integer getTempo() {
+		return tempo;
 	}
 
-	public void setTempoChocar(Integer tempoChocar) {
-		this.tempoChocar = tempoChocar;
+	public void setTempo(Integer tempo) {
+		this.tempo = tempo;
 	}
 
-	public String getDataInicio() {
-		return dataInicio;
+	public String getInicio() {
+		return inicio;
 	}
 
-	public void setDataInicio(String dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setInicio(String inicio) {
+		this.inicio = inicio;
 	}
 
 	public Integer getMortalidade() {
@@ -95,11 +95,11 @@ public class Incubatorio implements Serializable{
 		this.mortalidade = mortalidade;
 	}
 
-	public String getTipoAve() {
-		return tipoAve;
+	public String getTipoave() {
+		return tipoave;
 	}
 
-	public void setTipoAve(String tipoAve) {
-		this.tipoAve = tipoAve;
+	public void setTipoave(String tipoave) {
+		this.tipoave = tipoave;
 	}
 }

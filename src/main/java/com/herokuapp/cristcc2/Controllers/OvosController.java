@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.herokuapp.cristcc2.Models.Ovos;
 import com.herokuapp.cristcc2.Models.TipoAve;
+import com.herokuapp.cristcc2.Uteis.Convercoes;
 import com.herokuapp.cristcc2.repository.OvosRepository;
 import com.herokuapp.cristcc2.repository.TipoAveRepository;
 
@@ -32,6 +34,8 @@ public class OvosController {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoOvos";
 		} else {
+			Convercoes convercoes = new Convercoes();
+			ovos.setData((convercoes.convertDateUStoDataBR((ovos.getData()))));
 			ovosr.save(ovos);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
 			return "redirect:/cadastrarOvos";
@@ -47,12 +51,12 @@ public class OvosController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/edicaoOvos", method = RequestMethod.GET)
-	public ModelAndView formEdicaoOvos() {
-		ModelAndView mv = new ModelAndView("ovos/editarOvos");
+	@RequestMapping("/edicaoOvos/novo")
+	public String novoOvos(Model model) {
+		model.addAttribute("ovos", new Ovos());
 		Iterable<TipoAve> lista = tr.findAll();
-		mv.addObject("listaAves", lista);
-		return mv;
+		model.addAttribute("listaAves", lista);
+		return "ovos/editarOvos";
 	}
 	
 	@RequestMapping("/cadastrarOvos/delete/{codigo}") //@PathVariable Long id, RedirectAttributes redirectAttrs
@@ -62,5 +66,18 @@ public class OvosController {
 		return "redirect:/cadastrarOvos";
 	}
 	
-	
+	@RequestMapping("/edicaoOvos/editar/{codigo}")
+	public String editarOvos(@PathVariable Long codigo, Model model) {
+		Ovos ovos = ovosr.findByCodigo(codigo);
+
+		Convercoes convercoes = new Convercoes();
+		ovos.setData(convercoes.convertDateBRtoDataUS(ovos.getData()));
+
+		Iterable<TipoAve> lista = tr.findAll();
+		model.addAttribute("listaAves", lista);
+		
+		model.addAttribute("ovos", ovos);
+		
+		return "ovos/editarOvos";
+	}
 }

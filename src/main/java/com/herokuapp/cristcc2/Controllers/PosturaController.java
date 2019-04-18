@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.herokuapp.cristcc2.Models.Postura;
 import com.herokuapp.cristcc2.Models.TipoAve;
-import com.herokuapp.cristcc2.Models.Vacina;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
 import com.herokuapp.cristcc2.repository.PosturaRepository;
 import com.herokuapp.cristcc2.repository.TipoAveRepository;
@@ -28,7 +27,7 @@ public class PosturaController {
 	@Autowired
 	private TipoAveRepository tr;
 	
-	//Busca lista
+	//Inicio
 	@RequestMapping(value = "/cadastrarPostura", method = RequestMethod.GET)
 	public ModelAndView listaPostura() {
 		ModelAndView mv = new ModelAndView("postura/cadastrarPostura");
@@ -37,14 +36,16 @@ public class PosturaController {
 		return mv;
 	}
 	
+	//Novo
 	@RequestMapping("/edicaoPostura/novo")
-	public String formEdicaoOvos(Model model) {
+	public String novoPostura(Model model) {
 		model.addAttribute("postura", new Postura());
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
 		return "postura/editarPostura";
 	}
 	
+	//Salvar
 	@RequestMapping(value = "/edicaoPostura/save", method = RequestMethod.POST)
 	public String salvarPostura(@Valid Postura postura, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
@@ -60,6 +61,7 @@ public class PosturaController {
 		}
 	}
 	
+	//Deletar
 	@RequestMapping("/cadastrarPostura/delete/{codigo}") 
 	public String deletarPostura(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Postura postura = pr.findByCodigo(codigo);
@@ -67,15 +69,8 @@ public class PosturaController {
 		return "redirect:/cadastrarPostura";
 	}
 	
-	//Busca lista
-	@RequestMapping(value = "/editarPostura", method = RequestMethod.GET)
-	public ModelAndView listaAves() {
-		ModelAndView mv = new ModelAndView("postura/cadastrarPostura");
-		Iterable<TipoAve> lista = tr.findAll();
-		mv.addObject("listaAves", lista);
-		return mv;
-	}
 	
+	//Editar
 	@RequestMapping("/edicaoPostura/editar/{codigo}")
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
 		Postura postura = pr.findByCodigo(codigo);
