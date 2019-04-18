@@ -28,7 +28,7 @@ public class OvosController {
 	private TipoAveRepository tr;
 	
 	//Salvar
-	@RequestMapping(value = "/edicaoOvos", method = RequestMethod.POST)
+	@RequestMapping(value = "/edicaoOvos/save", method = RequestMethod.POST)
 	public String salvarOvos(@Valid Ovos ovos, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
