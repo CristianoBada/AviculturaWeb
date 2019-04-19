@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
+import com.herokuapp.cristcc2.Entidades.Vacina;
 import com.lowagie.text.Document;
 import com.lowagie.text.Table;
 import com.lowagie.text.pdf.PdfWriter;
-
-import com.herokuapp.cristcc2.Models.Vacina;
 
 public class PdfVacinaReportView extends AbstractPdfView {
 
