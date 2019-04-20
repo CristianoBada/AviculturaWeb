@@ -1,5 +1,8 @@
 package com.herokuapp.cristcc2.Controles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Lists;
 import com.herokuapp.cristcc2.Entidades.Incubatorio;
-import com.herokuapp.cristcc2.Entidades.Postura;
 import com.herokuapp.cristcc2.Entidades.TipoAve;
+import com.herokuapp.cristcc2.Relatorios.PdfIncubatorioReportView;
 import com.herokuapp.cristcc2.Repository.IncubatorioRepository;
 import com.herokuapp.cristcc2.Repository.TipoAveRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
@@ -84,5 +88,14 @@ public class IncubatorioController {
 		model.addAttribute("incubatorio", incubatorio);
 
 		return "incubatorio/editarIncubatorio";
+	}
+
+	// Relatório
+	@RequestMapping(value = "/gerarPDFIncubatorio", method = RequestMethod.GET)
+	public ModelAndView gerarPDFIncubatorio() {
+		List<Incubatorio> list = new ArrayList<>();
+		list = Lists.newArrayList(ir.findAll());
+
+		return new ModelAndView(new PdfIncubatorioReportView(), "incubatorioList", list);
 	}
 }

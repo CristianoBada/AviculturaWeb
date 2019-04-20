@@ -132,8 +132,8 @@ public class VacinasController {
 	}
 
 	//Relatório
-	@RequestMapping(value = "/report", method = RequestMethod.GET)
-	public ModelAndView userListReport() {
+	@RequestMapping(value = "/gerarPDFVacinas", method = RequestMethod.GET)
+	public ModelAndView gerarPDFVacinas() {
 		List<Vacina> list = new ArrayList<>();
 		list = Lists.newArrayList(vr.findAll());
 

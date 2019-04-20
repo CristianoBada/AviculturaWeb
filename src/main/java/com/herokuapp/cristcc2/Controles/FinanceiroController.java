@@ -1,5 +1,8 @@
 package com.herokuapp.cristcc2.Controles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Lists;
 import com.herokuapp.cristcc2.Entidades.Financeiro;
 import com.herokuapp.cristcc2.Entidades.Produtos;
+import com.herokuapp.cristcc2.Relatorios.PdfFinanceiroReportView;
 import com.herokuapp.cristcc2.Repository.FinanceiroRepository;
 import com.herokuapp.cristcc2.Repository.ProdutoRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
@@ -82,4 +87,13 @@ public class FinanceiroController {
 		model.addAttribute("listaProdutos", lista);
 		return "financeiro/editarFinanceiro";
 	}
+	
+	//Relatório
+		@RequestMapping(value = "/gerarPDFFinanceiro", method = RequestMethod.GET)
+		public ModelAndView gerarPDFFinanceiro() {
+			List<Financeiro> list = new ArrayList<>();
+			list = Lists.newArrayList(fr.findAll());
+
+			return new ModelAndView(new PdfFinanceiroReportView(), "financeiroList", list);
+		}
 }

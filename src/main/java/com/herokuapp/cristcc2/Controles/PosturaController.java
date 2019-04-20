@@ -1,5 +1,8 @@
 package com.herokuapp.cristcc2.Controles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Lists;
 import com.herokuapp.cristcc2.Entidades.Postura;
 import com.herokuapp.cristcc2.Entidades.TipoAve;
+import com.herokuapp.cristcc2.Relatorios.PdfPosturaReportView;
 import com.herokuapp.cristcc2.Repository.PosturaRepository;
 import com.herokuapp.cristcc2.Repository.TipoAveRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
@@ -86,4 +91,13 @@ public class PosturaController {
 		
 		return "postura/editarPostura";
 	}
+	
+	//Relatório
+		@RequestMapping(value = "/gerarPDFPostura", method = RequestMethod.GET)
+		public ModelAndView gerarPDFPostura() {
+			List<Postura> list = new ArrayList<>();
+			list = Lists.newArrayList(pr.findAll());
+
+			return new ModelAndView(new PdfPosturaReportView(), "posturaList", list);
+		}
 }
