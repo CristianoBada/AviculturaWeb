@@ -52,7 +52,7 @@
 
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
-			<a href="/edicaoCorte" class="btn btn-dark">Novo</a>
+			<a href="/edicaoCorte/novo" class="btn btn-dark">Novo</a>
 		</div>
 		<hr size="30">
 		<table class="container table table-bordered">
@@ -79,6 +79,8 @@
 					<td><span th:text="${co.tipoave}"></span></td>
 					<td><span th:text="${co.observacao}"></span></td>
 					<td><a class="btn btn-dark"
+						th:href="|/edicaoCorte/editar/${co.codigo}|">Editar </a> <a
+						class="btn btn-dark"
 						th:href="|/cadastrarCorte/delete/${co.codigo}|">Excluir</a></td>
 				</tr>
 			</tbody>

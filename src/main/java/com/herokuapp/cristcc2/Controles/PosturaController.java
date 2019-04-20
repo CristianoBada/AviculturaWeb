@@ -72,7 +72,7 @@ public class PosturaController {
 	
 	//Editar
 	@RequestMapping("/edicaoPostura/editar/{codigo}")
-	public String editarVacinas(@PathVariable Long codigo, Model model) {
+	public String editarPostura(@PathVariable Long codigo, Model model) {
 		Postura postura = pr.findByCodigo(codigo);
 
 		Convercoes convercoes = new Convercoes();

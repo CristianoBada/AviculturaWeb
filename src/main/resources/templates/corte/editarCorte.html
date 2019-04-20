@@ -54,41 +54,43 @@
 	<th:block th:include="mensagemValidacao"></th:block>
 
 	<div class="container p-3 mb-2 bg-secondary">
-		<form method="post">
+		<form th:object="${corte}" th:action="@{/edicaoCorte/save}"
+			method="post">
+			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="tipo_aves">Tipo de Ave:</label> <select name="tipoave">
+					<label for="tipo_aves">Tipo de Ave:</label> <select th:field="*{tipoave}">
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
 					</select>
 				</div>
 				<div class="input-field col s1">
 					<label for="quantidade">Quantidade:</label> <input type="number"
-						value="0" min="0" name="quantidade" />
+						value="0" min="0" th:field="*{quantidade}" />
 				</div>
 				<div class="input-field col s1">
 					<label for="max_aves">Maximo de aves:</label> <input type="number"
-						value="0" min="0" name="maximo" />
+						value="0" min="0" th:field="*{maximo}" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="data_entrada">Data de Entrada:</label> <input
-						type="date" value="" name="entrada" placeholder="" />
+						type="date" value="" th:field="*{entrada}" placeholder="" />
 				</div>
 				<div class="input-field col s2">
 					<label for="data_saida">Data de Saida:</label> <input type="date"
-						value="" name="saida" placeholder="" />
+						value="" th:field="*{saida}" placeholder="" />
 				</div>
 				<div class="input-field col s1">
 					<label for="mortalidade">Mortalidade:</label> <input type="number"
-						value="0" min="0" name="mortalidade" />
+						value="0" min="0" th:field="*{mortalidade}" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="comentario">Observação:</label> <input type="text"
-						value="" name="observacao" />
+						value="" th:field="*{observacao}" />
 				</div>
 			</div>
 

@@ -63,11 +63,13 @@ input[type="number"] {
 	<th:block th:include="mensagemValidacao"></th:block>
 
 	<div class="container p-3 mb-2 bg-secondary">
-		<form method="post">
+		<form th:object="${financeiro}" th:action="@{/edicaoFinanceiro/save}"
+			method="post">
+			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
 				<div class="input-field col s3">
 					<label for="nome">Nome do produto:</label> <select
-						name="nome">
+						th:field="*{nome}">
 						<option th:each="item : ${listaProdutos}"
 							th:value="${item.nomeProduto}" th:text="${item.nomeProduto}" />
 					</select>
@@ -75,21 +77,21 @@ input[type="number"] {
 
 				<div class="input-field col s1">
 					<label for="valor">Valor (R$):</label> <input type="number"
-						step="any" name="valor" />
+						step="any" th:field="*{valor}" />
 				</div>
 				<div class="input-field col s2">
 					<label for="data_u">Data:</label> <input type="date"
-						value="" name="data" placeholder="" />
+						value="" th:field="*{data}" placeholder="" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="tipo_transicao">Tipo de trasição:</label> <input
-						type="text" value="" name="entrasaida" />
+						type="text" value="" th:field="*{entrasaida}" />
 				</div>
 				<div class="input-field col s4">
 					<label for="detalhe">Observação:</label> <input id="input_text"
-						type="text" value="" name="observacao" data-length="100" />
+						type="text" value="" th:field="*{observacao}" data-length="100" />
 				</div>
 			</div>
 

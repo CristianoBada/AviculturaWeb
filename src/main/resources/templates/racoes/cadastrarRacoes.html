@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<title>Cadastro Rações</title>
-	<!-- Required meta tags -->
+<title>Cadastro Rações</title>
+<!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,67 +16,71 @@
 </head>
 <body background="imagens/aves.jpg">
 	<header>
-  		<!-- Inicio do menu -->
-	<nav
-		class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class=" navbar-brand" href="#">ASF - Avicultura</a>
+		<!-- Inicio do menu -->
+		<nav
+			class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class=" navbar-brand" href="#">ASF - Avicultura</a>
 
-		<div class="container collapse navbar-collapse"
-			id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarPostura">Postura</a></li>
-				<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarIncubatorio">Incubatório</a></li>
-				<li class="nav-item"><a class="nav-link" href="/cadastrarCorte">Corte</a></li>
-				<li class="nav-item active"><a class="nav-link"
-					href="/cadastrarRacoes">Rações<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item "><a class="nav-link"
-					href="/cadastrarVacinas">Vacinas</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarFinanceiro">Financeiro</a></li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<div class="container collapse navbar-collapse"
+				id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarPostura">Postura</a></li>
+					<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarIncubatorio">Incubatório</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarCorte">Corte</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="/cadastrarRacoes">Rações<span class="sr-only">(current)</span></a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/cadastrarVacinas">Vacinas</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarFinanceiro">Financeiro</a></li>
 				</ul>
-			</form>
-		</div>
-	</nav>
-	<!-- Fim do menu -->
+				<form class="form-inline my-2 my-lg-0">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+					</ul>
+				</form>
+			</div>
+		</nav>
+		<!-- Fim do menu -->
 	</header>
-	<br/>
+	<br />
 	<div class="container p-3 mb-2 bg-secondary">
-	
-	<div class="container">
-		<a href="/edicaoRacoes" class="btn btn-dark">Novo</a>
+
+		<div class="container">
+			<a href="/edicaoRacoes/novo" class="btn btn-dark">Novo</a>
+		</div>
+		<hr size="30">
+
+		<table class="container table table-bordered">
+			<thead>
+				<tr>
+					<th>Código</th>
+					<th>Tipo de Racao</th>
+					<th>Quantidade</th>
+					<th>Data de Entrada</th>
+					<th>Data</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ra : ${listaRacoes}">
+					<td><span th:text="${ra.codigo}"></span></td>
+					<td><span th:text="${ra.tiporacao}"></span></td>
+					<td><span th:text="${ra.quantidade}"></span></td>
+					<td><span th:text="${ra.data}"></span></td>
+					<td><a class="btn btn-dark"
+						th:href="|/edicaoRacoes/editar/${ra.codigo}|">Editar </a> <a
+						class="btn btn-dark"
+						th:href="|/cadastrarRacoes/delete/${ra.codigo}|">Excluir</a></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	<hr size="30">
-	
-	<table class="container table table-bordered">
-		<thead>
-			<tr>
-			<th>Código</th>
-				<th>Tipoe de Racao</th>
-				<th>Quantidade</th>
-				<th>Data de Entrada</th>
-				<th>Data</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="ra : ${listaRacoes}">
-			<td><span th:text="${ra.codigo}"></span></td>
-				<td><span th:text="${ra.tiporacao}"></span></td>
-				<td><span th:text="${ra.quantidade}"></span></td>
-				<td><span th:text="${ra.data}"></span></td>
-				<td><a class="btn btn-dark" th:href="|/cadastrarRacoes/delete/${ra.codigo}|">Excluir</a></td>
-			</tr>
-		</tbody>
-	</table>
-	</div>
-	
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -52,19 +52,21 @@
 	<th:block th:include="mensagemValidacao"></th:block>
 	
 	<div class="container p-3 mb-2 bg-secondary">
-		<form  method="post">
+		<form th:object="${racoes}" th:action="@{/edicaoRacoes/save}"
+			method="post">
+			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="tipo_racao">Tipo de ração:</label>
-					<input type="text" value=""  name="tiporacao"/>
+					<input type="text" value=""  th:field="*{tiporacao}"/>
 				</div>
 				<div class="input-field col s1">
 					<label for="quantidade">Quantidade:</label>
-					<input type="number" value="0" min="0" name="quantidade"/>
+					<input type="number" value="0" min="0" th:field="*{quantidade}"/>
 				</div>
 				<div class="input-field col s2">
 					<label for="data_entrada">Data de entrada:</label>
-					<input type="date" value="" name="data" placeholder=""/>
+					<input type="date" value="" th:field="*{data}" placeholder=""/>
 				</div>
 			</div>
 			<hr size="30">

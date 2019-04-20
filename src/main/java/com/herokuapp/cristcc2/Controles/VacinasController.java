@@ -28,15 +28,16 @@ public class VacinasController {
 	@Autowired
 	private VacinasRepository vr;
 
-	// Busca lista
+	//Iniciar
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.GET)
 	public String cadastrarVacinas(Model model) {
 		model.addAttribute("listaVacinas", vr.findAll());
 		return "vacinas/cadastrarVacinas";
 	}
 
+	//pesquisar
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.POST)
-	public String salvarvacinas(Model model, @Valid Vacina vacina, BindingResult result,
+	public String pesquisarVacinas(Model model, @Valid Vacina vacina, BindingResult result,
 			RedirectAttributes attributes) {	
 		model.addAttribute("listaVacinas", retornaLista(vacina));
 		return "vacinas/cadastrarVacinas";
@@ -87,12 +88,14 @@ public class VacinasController {
 		return list;
 	}
 
+	//Novo
 	@RequestMapping("/edicaoVacinas/novo")
-	public String formEdicaoOvos(Model model) {
+	public String edicaoVacina(Model model) {
 		model.addAttribute("vacina", new Vacina());
 		return "vacinas/editarVacinas";
 	}
 
+	//Editar
 	@RequestMapping("/edicaoVacinas/editar/{codigo}")
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
 		Vacina vacina = vr.findByCodigo(codigo).get(0);
@@ -104,8 +107,9 @@ public class VacinasController {
 		return "vacinas/editarVacinas";
 	}
 
-	@RequestMapping(value = "/editarVacinas/save", method = RequestMethod.POST)
-	public String save(@Valid Vacina vacina, BindingResult bindingResult, Model model) throws ParseException {
+	//Salvar
+	@RequestMapping(value = "/edicaoVacinas/save", method = RequestMethod.POST)
+	public String salvarVacina(@Valid Vacina vacina, BindingResult bindingResult, Model model) throws ParseException {
 
 		if (bindingResult.hasErrors()) {
 			return "vacinas/editarVacinas";
@@ -118,7 +122,8 @@ public class VacinasController {
 		}
 
 	}
-
+	
+	//Deletar
 	@RequestMapping("/cadastrarVacinas/delete/{codigo}") // @PathVariable Long id, RedirectAttributes redirectAttrs
 	public String deletarVacina(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Vacina vacina = vr.findByCodigo(codigo).get(0);
@@ -126,6 +131,7 @@ public class VacinasController {
 		return "redirect:/cadastrarVacinas";
 	}
 
+	//Relatório
 	@RequestMapping(value = "/report", method = RequestMethod.GET)
 	public ModelAndView userListReport() {
 		List<Vacina> list = new ArrayList<>();
