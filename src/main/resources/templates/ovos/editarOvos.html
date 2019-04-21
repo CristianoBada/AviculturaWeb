@@ -13,40 +13,49 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+
+<style>
+body {
+	background:
+		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
+</style>
 </head>
-<body background="imagens/aves.jpg">
+<body>
 
 	<header>
 		<!-- Inicio do menu -->
-	<nav
-		class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class=" navbar-brand" href="#">ASF - Avicultura</a>
+		<nav
+			class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class=" navbar-brand" href="#">ASF - Avicultura</a>
 
-		<div class="container collapse navbar-collapse"
-			id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarPostura">Postura</a></li>
-				<li class="nav-item active"><a class="nav-link" href="/cadastrarOvos">Ovos<span class="sr-only">(current)</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarIncubatorio">Incubatório</a></li>
-				<li class="nav-item"><a class="nav-link" href="/cadastrarCorte">Corte</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarRacoes">Rações</a></li>
-				<li class="nav-item "><a class="nav-link"
-					href="/cadastrarVacinas">Vacinas</span></a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarFinanceiro">Financeiro</a></li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<div class="container collapse navbar-collapse"
+				id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarPostura">Postura</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="/cadastrarOvos">Ovos<span class="sr-only">(current)</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarIncubatorio">Incubatório</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarCorte">Corte</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarRacoes">Rações</a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/cadastrarVacinas">Vacinas</span></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarFinanceiro">Financeiro</a></li>
 				</ul>
-			</form>
-		</div>
-	</nav>
-	<!-- Fim do menu -->
+				<form class="form-inline my-2 my-lg-0">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+					</ul>
+				</form>
+			</div>
+		</nav>
+		<!-- Fim do menu -->
 	</header>
 	<br />
 
@@ -58,39 +67,34 @@
 			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="tipo_aves">Tipo de Ave:</label>
-					<select th:field="*{tipoave}">
+					<label for="tipo_aves">Tipo de Ave:</label> <select
+						th:field="*{tipoave}">
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
-					</select> 
+					</select>
 				</div>
 				<div class="input-field col s2">
-				<label for="lote">Lote:</label>
-					<input id="input_text" type="text" value="" th:field="*{lote}"
-						data-length="10" /> 
+					<label for="lote">Lote:</label> <input id="input_text" type="text"
+						value="" th:field="*{lote}" data-length="10" />
 				</div>
 				<div class="input-field col s1">
-					<label
-						for="quantidade">Quantidade:</label>
-					<input type="number" value="0" min="0" th:field="*{quantidade}" /> 
+					<label for="quantidade">Quantidade:</label> <input type="number"
+						value="0" min="0" th:field="*{quantidade}" />
 				</div>
 			</div>
 			<div class="row">
 
 				<div class="input-field col s2">
-				<label
-						for="data">Data:</label>
-					<input type="date" value="" th:field="*{data}" placeholder="" /> 
+					<label for="data">Data:</label> <input type="date" value=""
+						th:field="*{data}" placeholder="" />
 				</div>
 				<div class="input-field col s2">
-				<label for="qualidade">Qualidade:</label>
-					<input id="input_text" type="text" value="" th:field="*{qualidade}"
-						data-length="15" /> 
+					<label for="qualidade">Qualidade:</label> <input id="input_text"
+						type="text" value="" th:field="*{qualidade}" data-length="15" />
 				</div>
 			</div>
 
-			<button class="btn btn-dark" type="submit">Salvar
-			</button>
+			<button class="btn btn-dark" type="submit">Salvar</button>
 			<a href="/cadastrarOvos" class="btn btn-dark">Voltar</a>
 		</form>
 	</div>

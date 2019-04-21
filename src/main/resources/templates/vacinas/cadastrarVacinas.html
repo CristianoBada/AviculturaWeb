@@ -16,7 +16,7 @@
 
 <title>Cadastro Vacinas</title>
 </head>
-<body background="imagens/aves.jpg">
+<body style = "background: url(imagens/aves.jpg)">
 
 	<!-- Inicio do menu -->
 	<nav
@@ -57,8 +57,9 @@
 							value="" name="codigo" placeholder="" />
 					</div>
 					<div class="input-field col s2">
-					<label for="data">Data:</label>
-						<input type="date" value="" name="data" /> 
+						<label for="data">Data:</label> <input type="date" value=""
+							name="data" /> <label for="data2"> a </label>  <input type="date" value=""
+							name="data2" />
 					</div>
 					<div class="input-field col s2">
 						<label for="tipo_tratamento">Tipo:</label> <input type="text"
@@ -67,7 +68,8 @@
 				</div>
 				<hr size="30">
 				<a class="btn btn-dark" href="/edicaoVacinas/novo" role="button">Novo</a>
-				<button type="submit" class="btn btn-dark">Pesquisar</button>
+				<button type="submit" class="btn btn-dark"
+					href="/cadastrarVacinas?data2=${data2}">Pesquisar</button>
 				<a class="btn btn-dark" href="/cadastrarVacinas" role="button">Limpar</a>
 				<a class="btn btn-dark" href="/gerarPDFVacinas">Gerar PDF</a>
 			</form>
@@ -108,5 +110,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -37,20 +37,21 @@ public class VacinasController {
 
 	//pesquisar
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.POST)
-	public String pesquisarVacinas(Model model, @Valid Vacina vacina, BindingResult result,
+	public String pesquisarVacinas(String data2, Model model, @Valid Vacina vacina, BindingResult result,
 			RedirectAttributes attributes) {	
-		model.addAttribute("listaVacinas", retornaLista(vacina));
+		model.addAttribute("listaVacinas", retornaLista(vacina, data2));
 		return "vacinas/cadastrarVacinas";
 	}
 	
-	private List<Vacina> retornaLista(Vacina vacina){
+	private List<Vacina> retornaLista(Vacina vacina, String data2){
 		int key = 0;
 		if (vacina.getCodigo() > 0) {
 			key += 1;
 		}
-		if (vacina.getData().length() > 0) {
+		if (vacina.getData().length() > 0 && data2.length() > 0) {
 			Convercoes convercoes = new Convercoes();
-			vacina.setData(convercoes.convertDateUStoDataBR((vacina.getData())));
+			vacina.setData(convercoes.convertDateUStoDataBR(vacina.getData()));
+			data2 = convercoes.convertDateUStoDataBR(data2);
 			key += 2;
 		}	
 		if (vacina.getTipo().length() > 0) {
@@ -64,10 +65,10 @@ public class VacinasController {
 			list = vr.findByCodigo(vacina.getCodigo());
 			break;
 		case 2:
-			list = vr.findByData(vacina.getData());
+			list = vr.findByDataBetween(vacina.getData(), data2);
 			break;
 		case 3:
-			list = vr.findByCodigoAndData(vacina.getCodigo(), vacina.getData());
+			list = vr.findByCodigoAndDataBetween(vacina.getCodigo(), vacina.getData(), data2);
 			break;
 		case 4:
 			list = vr.findByTipo(vacina.getTipo());
@@ -76,10 +77,10 @@ public class VacinasController {
 			list = vr.findByCodigoAndTipo(vacina.getCodigo(), vacina.getTipo());
 			break;
 		case 6: 
-			list = vr.findByDataAndTipo(vacina.getData(), vacina.getTipo());
+			list = vr.findByDataBetweenAndTipo(vacina.getData(), data2, vacina.getTipo());
 			break;
 		case 7:
-			list = vr.findByCodigoAndDataAndTipo(vacina.getCodigo(), vacina.getData(), vacina.getTipo());
+			list = vr.findByCodigoAndDataBetweenAndTipo(vacina.getCodigo(), vacina.getData(), data2, vacina.getTipo());
 			break;
 		default:
 			list = (List<Vacina>)vr.findAll();
