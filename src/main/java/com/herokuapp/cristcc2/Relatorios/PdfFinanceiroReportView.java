@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.herokuapp.cristcc2.Entidades.Financeiro;
+import com.herokuapp.cristcc2.Uteis.AjustesTable;
+import com.herokuapp.cristcc2.Uteis.Informacoes;
 import com.lowagie.text.Document;
-import com.lowagie.text.Table;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class PdfFinanceiroReportView extends AbstractPdfView {
@@ -24,7 +27,7 @@ public class PdfFinanceiroReportView extends AbstractPdfView {
 		@SuppressWarnings("unchecked")
 		List<Financeiro> list = (List<Financeiro>) model.get("financeiroList");
 
-		Table table = new Table(6);
+		PdfPTable table = new AjustesTable().criaTabela(6);
 		table.addCell("Código");
 		table.addCell("Nome");
 		table.addCell("Valor");
@@ -40,6 +43,11 @@ public class PdfFinanceiroReportView extends AbstractPdfView {
 			table.addCell(financeiro.getEntrasaida());
 			table.addCell(financeiro.getObservacao());		
 		}
+		
+		document.add(new Paragraph("ASF - Avicultura"));
+		document.add(new Paragraph("Lista Financeiro"));
+		document.add(new Paragraph("Usuário: " + new Informacoes().usuarioAtual()));
+		document.add(new Paragraph(" "));
 		document.add(table);
 	}
 }

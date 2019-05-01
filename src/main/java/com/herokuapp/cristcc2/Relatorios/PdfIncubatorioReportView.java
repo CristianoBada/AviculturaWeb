@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.herokuapp.cristcc2.Entidades.Incubatorio;
+import com.herokuapp.cristcc2.Uteis.AjustesTable;
 import com.lowagie.text.Document;
-import com.lowagie.text.Table;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class PdfIncubatorioReportView extends AbstractPdfView {
@@ -24,7 +25,7 @@ public class PdfIncubatorioReportView extends AbstractPdfView {
 		@SuppressWarnings("unchecked")
 		List<Incubatorio> list = (List<Incubatorio>) model.get("incubatorioList");
 
-		Table table = new Table(8);
+		PdfPTable table = new AjustesTable().criaTabela(8);
 		table.addCell("Código");
 		table.addCell("Lote ovos");
 		table.addCell("Tipo ave");
