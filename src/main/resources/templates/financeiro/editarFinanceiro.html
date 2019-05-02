@@ -83,8 +83,13 @@ body {
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="tipo_transicao">Tipo de trasição:</label> <input
-						type="text" value="" th:field="*{entrasaida}" />
+					<label for="tipo_transicao">Tipo de trasição:</label> <select
+						th:field="*{entrasaida}">
+						<option th:each="item : ${itemSelecionado}"
+							th:value="${item}" th:text="${item}" />
+						<option th:each="item : ${item}"
+							th:value="${item}" th:text="${item}" />
+					</select>
 				</div>
 				<div class="input-field col s4">
 					<label for="detalhe">Observação:</label> <input id="input_text"

@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.herokuapp.cristcc2.Entidades.Racao;
+import com.herokuapp.cristcc2.Uteis.AjustesTable;
+import com.herokuapp.cristcc2.Uteis.Informacoes;
 import com.lowagie.text.Document;
-import com.lowagie.text.Table;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class PdfRacoesReportView extends AbstractPdfView {
@@ -24,19 +27,28 @@ public class PdfRacoesReportView extends AbstractPdfView {
 		@SuppressWarnings("unchecked")
 		List<Racao> list = (List<Racao>) model.get("racoesList");
 
-		Table table = new Table(4);
-		table.addCell("Código");
-		table.addCell("Tipo de ração");
-		table.addCell("Data");
-		table.addCell("Quantidade");
+		AjustesTable ajustesTable = new AjustesTable();
+
+		PdfPTable table = ajustesTable.criaTabela(4);
+		float[] widths = new float[] { 32f, 45f, 40f, 40f};
+		table.setWidths(widths);
+
+		ajustesTable.addCell(table, "Código");
+		ajustesTable.addCell(table, "Tipo de ração");
+		ajustesTable.addCell(table, "Data");
+		ajustesTable.addCell(table, "Quantidade");
 
 		for (Racao racao : list) {
-			table.addCell(racao.getCodigo() + "");
-			table.addCell(racao.getTiporacao());
-			table.addCell(racao.getData());
-			table.addCell(racao.getQuantidade() + "Kg");
+			ajustesTable.addCell(table, racao.getCodigo() + "");
+			ajustesTable.addCell(table, racao.getTiporacao());
+			ajustesTable.addCell(table, racao.getData());
+			ajustesTable.addCell(table, racao.getQuantidade() + "Kg");
 		}
 
+		document.add(new Paragraph("ASF - Avicultura"));
+		document.add(new Paragraph("Lista de Lotes de Ração"));
+		document.add(new Paragraph("Usuário: " + new Informacoes().usuarioAtual()));
+		document.add(new Paragraph(" "));
 		document.add(table);
 	}
 

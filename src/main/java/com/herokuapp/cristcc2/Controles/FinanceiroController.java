@@ -47,6 +47,8 @@ public class FinanceiroController {
 		model.addAttribute("financeiro", new Financeiro());
 		Iterable<Produtos> lista = pr.findAll();
 		model.addAttribute("listaProdutos", lista);
+		model.addAttribute("itemSelecionado", "entrada");
+		model.addAttribute("item", "saida");
 		return "financeiro/editarFinanceiro";
 	}
 
@@ -85,6 +87,15 @@ public class FinanceiroController {
 		model.addAttribute("financeiro", fin);
 		Iterable<Produtos> lista = pr.findAll();
 		model.addAttribute("listaProdutos", lista);
+		
+		if (fin.getEntrasaida().equals("entrada")) {
+			model.addAttribute("itemSelecionado", "entrada");
+			model.addAttribute("item", "saida");
+		} else {
+			model.addAttribute("itemSelecionado", "saida");
+			model.addAttribute("item", "entrada");
+		}
+		
 		return "financeiro/editarFinanceiro";
 	}
 	

@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.herokuapp.cristcc2.Entidades.Vacina;
+import com.herokuapp.cristcc2.Uteis.AjustesTable;
+import com.herokuapp.cristcc2.Uteis.Informacoes;
 import com.lowagie.text.Document;
-import com.lowagie.text.Table;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class PdfVacinaReportView extends AbstractPdfView {
@@ -24,19 +27,28 @@ public class PdfVacinaReportView extends AbstractPdfView {
 		@SuppressWarnings("unchecked")
 		List<Vacina> list = (List<Vacina>) model.get("vacinaList");
 
-		Table table = new Table(4);
-		table.addCell("Código");
-		table.addCell("Tipo de tratamento");
-		table.addCell("Data");
-		table.addCell("Observação");
+		AjustesTable ajustesTable = new AjustesTable();
+
+		PdfPTable table = ajustesTable.criaTabela(4);
+		float[] widths = new float[] { 32f, 45f, 40f, 90f };
+		table.setWidths(widths);
+
+		ajustesTable.addCell(table, "Código");
+		ajustesTable.addCell(table, "Tipo de tratamento");
+		ajustesTable.addCell(table, "Data");
+		ajustesTable.addCell(table, "Observação");
 
 		for (Vacina vacina : list) {
-			table.addCell(vacina.getCodigo() + "");
-			table.addCell(vacina.getTipo());
-			table.addCell(vacina.getData().toString());
-			table.addCell(vacina.getObservacao());
+			ajustesTable.addCell(table, vacina.getCodigo() + "");
+			ajustesTable.addCell(table, vacina.getTipo());
+			ajustesTable.addCell(table, vacina.getData().toString());
+			ajustesTable.addCell(table, vacina.getObservacao());
 		}
 
+		document.add(new Paragraph("ASF - Avicultura"));
+		document.add(new Paragraph("Lista de Tratamentos"));
+		document.add(new Paragraph("Usuário: " + new Informacoes().usuarioAtual()));
+		document.add(new Paragraph(" "));
 		document.add(table);
 	}
 }

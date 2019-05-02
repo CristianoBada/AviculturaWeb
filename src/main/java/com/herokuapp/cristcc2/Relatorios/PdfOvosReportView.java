@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.herokuapp.cristcc2.Entidades.Ovos;
+import com.herokuapp.cristcc2.Uteis.AjustesTable;
+import com.herokuapp.cristcc2.Uteis.Informacoes;
 import com.lowagie.text.Document;
-import com.lowagie.text.Table;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class PdfOvosReportView extends AbstractPdfView {
@@ -24,23 +27,32 @@ public class PdfOvosReportView extends AbstractPdfView {
 		@SuppressWarnings("unchecked")
 		List<Ovos> list = (List<Ovos>) model.get("ovosList");
 
-		Table table = new Table(6);
-		table.addCell("Código");
-		table.addCell("Lote");
-		table.addCell("Quantidade");
-		table.addCell("Tipo de Ave");
-		table.addCell("Qualidade");
-		table.addCell("Data");
+AjustesTable ajustesTable = new AjustesTable();
+		
+		PdfPTable table = ajustesTable.criaTabela(6);
+		float[] widths = new float[] { 32f, 45f, 40f, 40f, 55f, 40f};
+		table.setWidths(widths);
+		
+		ajustesTable.addCell(table, "Código");
+		ajustesTable.addCell(table, "Lote");
+		ajustesTable.addCell(table, "Quantidade");
+		ajustesTable.addCell(table, "Tipo de Ave");
+		ajustesTable.addCell(table, "Qualidade");
+		ajustesTable.addCell(table, "Data");
 
 		for (Ovos ovos : list) {
-			table.addCell(ovos.getCodigo() + "");
-			table.addCell(ovos.getLote());
-			table.addCell(ovos.getQuantidade() + "");
-			table.addCell(ovos.getTipoave());
-			table.addCell(ovos.getQualidade());
-			table.addCell(ovos.getData());
+			ajustesTable.addCell(table, ovos.getCodigo() + "");
+			ajustesTable.addCell(table, ovos.getLote());
+			ajustesTable.addCell(table, ovos.getQuantidade() + "");
+			ajustesTable.addCell(table, ovos.getTipoave());
+			ajustesTable.addCell(table, ovos.getQualidade());
+			ajustesTable.addCell(table, ovos.getData());
 		}
-
+		
+		document.add(new Paragraph("ASF - Avicultura"));
+		document.add(new Paragraph("Lista de Lotes de Ovos"));
+		document.add(new Paragraph("Usuário: " + new Informacoes().usuarioAtual()));
+		document.add(new Paragraph(" "));
 		document.add(table);
 	}
 }

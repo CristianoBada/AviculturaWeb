@@ -26,22 +26,36 @@ public class PdfFinanceiroReportView extends AbstractPdfView {
 
 		@SuppressWarnings("unchecked")
 		List<Financeiro> list = (List<Financeiro>) model.get("financeiroList");
+		
+		AjustesTable ajustesTable = new AjustesTable();
 
-		PdfPTable table = new AjustesTable().criaTabela(6);
-		table.addCell("Código");
-		table.addCell("Nome");
-		table.addCell("Valor");
-		table.addCell("Data");
-		table.addCell("Tipo de transição");
-		table.addCell("Observação");
+		PdfPTable table = ajustesTable.criaTabela(6);
+		float[] widths = new float[] { 32f, 60f, 30f, 40f, 55f, 80f};
+		table.setWidths(widths);
+		
+		ajustesTable.addCell(table, "Código");
+		ajustesTable.addCell(table, "Nome");
+		ajustesTable.addCell(table, "Valor");
+		ajustesTable.addCell(table, "Data");
+		ajustesTable.addCell(table, "Tipo de transição");
+		ajustesTable.addCell(table, "Observação");
+		
+		double entrada = 0;
+		double saida = 0;
 
 		for (Financeiro financeiro : list) {
-			table.addCell(financeiro.getCodigo() + "");
-			table.addCell(financeiro.getNome());
-			table.addCell("R$ " + financeiro.getValor());
-			table.addCell(financeiro.getData());
-			table.addCell(financeiro.getEntrasaida());
-			table.addCell(financeiro.getObservacao());		
+			ajustesTable.addCell(table, financeiro.getCodigo() + "");
+			ajustesTable.addCell(table, financeiro.getNome());
+			ajustesTable.addCell(table, "R$ " + financeiro.getValor());
+			ajustesTable.addCell(table, financeiro.getData());
+			ajustesTable.addCell(table, financeiro.getEntrasaida());
+			ajustesTable.addCell(table, financeiro.getObservacao());	
+			
+			if (financeiro.getEntrasaida().equals("entrada")) {
+				entrada += financeiro.getValor();
+			} else {
+				saida += financeiro.getValor();
+			}
 		}
 		
 		document.add(new Paragraph("ASF - Avicultura"));
@@ -49,5 +63,8 @@ public class PdfFinanceiroReportView extends AbstractPdfView {
 		document.add(new Paragraph("Usuário: " + new Informacoes().usuarioAtual()));
 		document.add(new Paragraph(" "));
 		document.add(table);
+		document.add(new Paragraph(" "));
+		document.add(new Paragraph("Total de entrada: R$ " + entrada));
+		document.add(new Paragraph("Total de saída: R$ " + saida));
 	}
 }
