@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.common.collect.Lists;
 import com.herokuapp.cristcc2.Entidades.Vacina;
 import com.herokuapp.cristcc2.Relatorios.PdfVacinaReportView;
 import com.herokuapp.cristcc2.Repository.VacinasRepository;
@@ -27,11 +26,14 @@ public class VacinasController {
 
 	@Autowired
 	private VacinasRepository vr;
+	
+	private List<Vacina> lista = new ArrayList<>();
 
 	//Iniciar
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.GET)
 	public String cadastrarVacinas(Model model) {
-		model.addAttribute("listaVacinas", vr.findAll());
+		lista = vr.findAll();
+		model.addAttribute("listaVacinas", lista);
 		return "vacinas/cadastrarVacinas";
 	}
 
@@ -39,7 +41,8 @@ public class VacinasController {
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.POST)
 	public String pesquisarVacinas(String data2, Model model, @Valid Vacina vacina, BindingResult result,
 			RedirectAttributes attributes) {	
-		model.addAttribute("listaVacinas", retornaLista(vacina, data2));
+		lista = retornaLista(vacina, data2);
+		model.addAttribute("listaVacinas", lista);
 		return "vacinas/cadastrarVacinas";
 	}
 	
@@ -135,9 +138,6 @@ public class VacinasController {
 	//Relatório
 	@RequestMapping(value = "/gerarPDFVacinas", method = RequestMethod.GET)
 	public ModelAndView gerarPDFVacinas() {
-		List<Vacina> list = new ArrayList<>();
-		list = Lists.newArrayList(vr.findAll());
-
-		return new ModelAndView(new PdfVacinaReportView(), "vacinaList", list);
+		return new ModelAndView(new PdfVacinaReportView(), "vacinaList", lista);
 	}
 }

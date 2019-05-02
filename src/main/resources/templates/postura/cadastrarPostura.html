@@ -50,8 +50,32 @@
 
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
-			<a href="/edicaoPostura/novo" class="btn btn-dark">Novo</a> <a
-				class="btn btn-dark" href="/gerarPDFPostura">Gerar PDF</a>
+			<form method="post">
+				<div class="row">
+					<div class="input-field col s2">
+						<label for="data_tratamento">Código:</label> <input type="text"
+							value="" name="codigo" placeholder="" />
+					</div>
+					<div class="input-field col s2">
+						<label for="entrada">Data de entrada:</label> <input type="date"
+							value="" name="entrada" /> <label for="data2"> a </label> <input
+							type="date" value="" name="data2" />
+					</div>
+				</div>
+				<div>
+					<div class="input-field col s2">
+						<label for="saida">Data de saída:</label> <input type="date"
+							value="" name="saida" /> <label for="data4"> a </label> <input
+							type="date" value="" name="data4" />
+					</div>
+				</div>
+				<hr size="30">
+				<a href="/edicaoPostura/novo" class="btn btn-dark">Novo</a>
+				<button type="submit" class="btn btn-dark"
+					href="/cadastrarPostura?data2=${data2}&data4${data4}">Pesquisar</button>
+				<a class="btn btn-dark" href="/cadastrarPostura" role="button">Limpar</a>
+				<a class="btn btn-dark" href="/gerarPDFPostura">Gerar Relatório</a>
+			</form>
 		</div>
 
 		<hr size="30">
