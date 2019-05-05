@@ -49,7 +49,7 @@ public class RacoesController {
 		Racao racao = rr.findByCodigo(codigo);
 
 		Convercoes convercoes = new Convercoes();
-		racao.setData(convercoes.convertDateBRtoDataUS(racao.getData()));
+		//racao.setData(convercoes.convertDateBRtoDataUS(racao.getData()));
 
 		model.addAttribute("racoes", racao);
 		return "racoes/editarRacoes";
@@ -59,10 +59,12 @@ public class RacoesController {
 	public String salvarvacinas(@Valid Racao racao, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-			return "redirect:/edicaoRacoes";
+			return "redirect:/edicaoRacoes/novo";
 		} else {
-			Convercoes convercoes = new Convercoes();
-			racao.setData(convercoes.convertDateUStoDataBR(racao.getData()));
+			
+			System.out.println("011111111111");
+			racao.setData2(new Convercoes().convertDateUStoDataBR(racao.getData().toString()));
+			System.out.println("022222222222");
 			rr.save(racao);
 
 			attributes.addFlashAttribute("mensagem", "Lote de Racao salvo com sucesso!");

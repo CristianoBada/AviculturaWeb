@@ -52,7 +52,7 @@
 	<div class="container p-3 mb-2 bg-secondary">
 
 		<div class="container">
-			<a href="/edicaoRacoes/novo" class="btn btn-dark">Novo</a> <a
+			<a href="/edicaoRacoes/novo" class="btn btn-dark" title="Criar novo lote de Ração">Novo</a> <a
 				class="btn btn-dark" href="/gerarPDFRacoes">Gerar PDF</a>
 		</div>
 		<hr size="30">
@@ -63,7 +63,6 @@
 					<th>Código</th>
 					<th>Tipo de Racao</th>
 					<th>Quantidade</th>
-					<th>Data de Entrada</th>
 					<th>Data</th>
 				</tr>
 			</thead>
@@ -71,8 +70,8 @@
 				<tr th:each="ra : ${listaRacoes}">
 					<td><span th:text="${ra.codigo}"></span></td>
 					<td><span th:text="${ra.tiporacao}"></span></td>
-					<td><span th:text="${ra.quantidade}"></span></td>
-					<td><span th:text="${ra.data}"></span></td>
+					<td><span th:text="${ra.quantidade}"></span>Kg</td>
+					<td><span th:text="${ra.data2}"></span></td>
 					<td><a class="btn btn-dark"
 						th:href="|/edicaoRacoes/editar/${ra.codigo}|">Editar </a> <a
 						class="btn btn-dark"
@@ -91,5 +90,8 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 		crossorigin="anonymous"></script>
+		<script type="text/javascript">
+		
+		</script>
 </body>
 </html>

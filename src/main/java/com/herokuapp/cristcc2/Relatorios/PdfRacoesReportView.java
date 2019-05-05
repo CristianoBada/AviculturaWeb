@@ -41,7 +41,7 @@ public class PdfRacoesReportView extends AbstractPdfView {
 		for (Racao racao : list) {
 			ajustesTable.addCell(table, racao.getCodigo() + "");
 			ajustesTable.addCell(table, racao.getTiporacao());
-			ajustesTable.addCell(table, racao.getData());
+			ajustesTable.addCell(table, racao.getData2());
 			ajustesTable.addCell(table, racao.getQuantidade() + "Kg");
 		}
 
