@@ -39,6 +39,8 @@ public class PosturaController {
 		ModelAndView mv = new ModelAndView("postura/cadastrarPostura");
 		lista = pr.findAll();
 		mv.addObject("listaPostura", lista);
+		Iterable<TipoAve> listaTA = tr.findAll();
+		mv.addObject("listaAves", listaTA);
 		return mv;
 	}
 
@@ -59,8 +61,8 @@ public class PosturaController {
 			return "redirect:/edicaoPostura";
 		} else {
 			Convercoes convercoes = new Convercoes();
-			postura.setEntrada(convercoes.convertDateUStoDataBR((postura.getEntrada())));
-			postura.setSaida(convercoes.convertDateUStoDataBR((postura.getSaida())));
+			postura.setEntrada2(convercoes.convertDateUStoDataBR((postura.getEntrada())));
+			postura.setSaida2(convercoes.convertDateUStoDataBR((postura.getSaida())));
 			pr.save(postura);
 
 			return "redirect:/cadastrarPostura";
@@ -79,16 +81,9 @@ public class PosturaController {
 	@RequestMapping("/edicaoPostura/editar/{codigo}")
 	public String editarPostura(@PathVariable Long codigo, Model model) {
 		Postura postura = pr.findByCodigo(codigo).get(0);
-
-		Convercoes convercoes = new Convercoes();
-		postura.setEntrada(convercoes.convertDateBRtoDataUS(postura.getEntrada()));
-		postura.setSaida(convercoes.convertDateBRtoDataUS(postura.getSaida()));
-
 		Iterable<TipoAve> listaTA = tr.findAll();
 		model.addAttribute("listaAves", listaTA);
-
 		model.addAttribute("postura", postura);
-
 		return "postura/editarPostura";
 	}
 
@@ -104,6 +99,8 @@ public class PosturaController {
 			BindingResult result, RedirectAttributes attributes) {
 		lista = retornaLista(postura, data2, data4);
 		model.addAttribute("listaPostura", lista);
+		Iterable<TipoAve> listaTA = tr.findAll();
+		model.addAttribute("listaAves", listaTA);
 		return "postura/cadastrarPostura";
 	}
 
@@ -113,35 +110,69 @@ public class PosturaController {
 			key += 1;
 		}
 		if (postura.getEntrada().length() > 0 && data2.length() > 0) {
-			Convercoes convercoes = new Convercoes();
-			postura.setEntrada(convercoes.convertDateUStoDataBR(postura.getEntrada()));
-			data2 = convercoes.convertDateUStoDataBR(data2);
 			key += 2;
 		}
 		if (postura.getSaida().length() > 0 && data4.length() > 0) {
-			Convercoes convercoes = new Convercoes();
-			postura.setSaida(convercoes.convertDateUStoDataBR(postura.getSaida()));
-			data4 = convercoes.convertDateUStoDataBR(data4);
 			key += 4;
 		}
-		
+		if (!postura.getTipoave().equals("Todos")) {
+			key += 8;
+		}
+
 		switch (key) {
 		case 0:
-			return pr.findAll();
+			lista = pr.findAll();
+			break;
 		case 1:
-			return pr.findByCodigo(postura.getCodigo());
+			lista = pr.findByCodigo(postura.getCodigo());
+			break;
 		case 2:
-			return pr.findByEntradaBetween(postura.getEntrada(), data2);
+			lista = pr.findByEntradaBetween(postura.getEntrada(), data2);
+			break;
 		case 3:
-			return pr.findByCodigoAndEntradaBetween(postura.getCodigo(), postura.getEntrada(), data2);
+			lista = pr.findByCodigoAndEntradaBetween(postura.getCodigo(), postura.getEntrada(), data2);
+			break;
 		case 4:
-			return pr.findBySaidaBetween(postura.getSaida(), data4);
-		case 5: 
-			return pr.findByCodigoAndSaidaBetween(postura.getCodigo(), postura.getSaida(), data4);
-		case 6: 
-			return pr.findByEntradaBetweenAndSaidaBetween(postura.getEntrada(), data2, postura.getSaida(), data4);
+			lista = pr.findBySaidaBetween(postura.getSaida(), data4);
+			break;
+		case 5:
+			lista = pr.findByCodigoAndSaidaBetween(postura.getCodigo(), postura.getSaida(), data4);
+			break;
+		case 6:
+			lista = pr.findByEntradaBetweenAndSaidaBetween(postura.getEntrada(), data2, postura.getSaida(), data4);
+			break;
 		case 7:
-			return pr.findByCodigoAndEntradaBetweenAndSaidaBetween(postura.getCodigo(), postura.getEntrada(), data2, postura.getSaida(), data4);
+			lista = pr.findByCodigoAndEntradaBetweenAndSaidaBetween(postura.getCodigo(), postura.getEntrada(), data2,
+					postura.getSaida(), data4);
+			break;
+		case 8:
+			lista = pr.findByTipoave(postura.getTipoave());
+			break;
+		case 9:
+			lista = pr.findByCodigoAndTipoave(postura.getCodigo(), postura.getTipoave());
+			break;
+		case 10:
+			lista = pr.findByEntradaBetweenAndTipoave(postura.getEntrada(), data2, postura.getTipoave());
+			break;
+		case 11:
+			lista = pr.findByCodigoAndEntradaBetweenAndTipoave(postura.getCodigo(), postura.getEntrada(), data2,
+					postura.getTipoave());
+			break;
+		case 12:
+			lista = pr.findBySaidaBetweenAndTipoave(postura.getSaida(), data4, postura.getTipoave());
+			break;
+		case 13:
+			lista = pr.findByCodigoAndSaidaBetweenAndTipoave(postura.getCodigo(), postura.getSaida(), data4,
+					postura.getTipoave());
+			break;
+		case 14:
+			lista = pr.findByEntradaBetweenAndSaidaBetweenAndTipoave(postura.getEntrada(), data2, postura.getSaida(),
+					data4, postura.getTipoave());
+			break;
+		case 15:
+			lista = pr.findByCodigoAndEntradaBetweenAndSaidaBetweenAndTipoave(postura.getCodigo(), postura.getEntrada(),
+					data2, postura.getSaida(), data4, postura.getTipoave());
+			break;
 		}
 		return lista;
 	}

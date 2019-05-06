@@ -46,8 +46,8 @@ public class PdfPosturaReportView extends AbstractPdfView {
 			ajustesTable.addCell(table, vacina.getTipoave());
 			ajustesTable.addCell(table, vacina.getQuantidade() + "");
 			ajustesTable.addCell(table, vacina.getMaximo() + "");
-			ajustesTable.addCell(table, vacina.getEntrada());
-			ajustesTable.addCell(table, vacina.getSaida());
+			ajustesTable.addCell(table, vacina.getEntrada2());
+			ajustesTable.addCell(table, vacina.getSaida2());
 			ajustesTable.addCell(table, vacina.getObservacao());
 		}
 

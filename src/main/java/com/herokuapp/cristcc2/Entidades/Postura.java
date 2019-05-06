@@ -31,10 +31,16 @@ public class Postura implements Serializable {
 	@NotEmpty
 	@Size(min = 10, max = 10)
 	private String entrada;
+	
+	@Size(min = 10, max = 10)
+	private String entrada2;
 
 	@NotEmpty
 	@Size(min = 10, max = 10)
 	private String saida;
+	
+	@Size(min = 10, max = 10)
+	private String saida2;
 
 	@NotEmpty
 	private String tipoave;
@@ -93,5 +99,21 @@ public class Postura implements Serializable {
 
 	public void setTipoave(String tipoave) {
 		this.tipoave = tipoave;
+	}
+
+	public String getSaida2() {
+		return saida2;
+	}
+
+	public void setSaida2(String saida2) {
+		this.saida2 = saida2;
+	}
+	
+	public String getEntrada2() {
+		return entrada2;
+	}
+
+	public void setEntrada2(String entrada2) {
+		this.entrada2 = entrada2;
 	}
 }

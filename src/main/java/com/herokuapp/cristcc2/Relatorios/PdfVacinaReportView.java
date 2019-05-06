@@ -41,7 +41,7 @@ public class PdfVacinaReportView extends AbstractPdfView {
 		for (Vacina vacina : list) {
 			ajustesTable.addCell(table, vacina.getCodigo() + "");
 			ajustesTable.addCell(table, vacina.getTipo());
-			ajustesTable.addCell(table, vacina.getData().toString());
+			ajustesTable.addCell(table, vacina.getData2().toString());
 			ajustesTable.addCell(table, vacina.getObservacao());
 		}
 

@@ -62,7 +62,16 @@
 							type="date" value="" name="data2" />
 					</div>
 				</div>
-				<div>
+				<div class="row">
+					<div class="input-field col s2">
+						<label for="tipo_aves">Tipo de Ave:</label> <select
+							name="tipoave">
+							<option th:value="Todos"
+								th:text="Todos"></option>
+							<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
+								th:text="${item.nomeAve}" />
+						</select>
+					</div>
 					<div class="input-field col s2">
 						<label for="saida">Data de saída:</label> <input type="date"
 							value="" name="saida" /> <label for="data4"> a </label> <input
@@ -97,8 +106,8 @@
 					<td><span th:text="${p.codigo}"></span></td>
 					<td><span th:text="${p.quantidade}"></span></td>
 					<td><span th:text="${p.maximo}"></span></td>
-					<td><span th:text="${p.entrada}"></span></td>
-					<td><span th:text="${p.saida}"></span></td>
+					<td><span th:text="${p.entrada2}"></span></td>
+					<td><span th:text="${p.saida2}"></span></td>
 					<td><span th:text="${p.tipoave}"></span></td>
 					<td><span th:text="${p.observacao}"></span></td>
 					<td><a class="btn btn-dark"
