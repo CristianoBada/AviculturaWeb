@@ -1,7 +1,6 @@
 package com.herokuapp.cristcc2.Entidades;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +31,7 @@ public class Racao implements Serializable{
 	private Integer codigocorte;
 	
 	@NotNull
-    private Date data;
+    private String data;
 	
 	@Size(min=10, max=10)
 	private String data2;
@@ -77,11 +76,11 @@ public class Racao implements Serializable{
 		this.codigocorte = codigocorte;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

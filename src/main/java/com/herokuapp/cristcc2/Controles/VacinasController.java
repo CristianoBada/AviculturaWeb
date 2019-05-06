@@ -1,5 +1,6 @@
 package com.herokuapp.cristcc2.Controles;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,10 @@ public class VacinasController {
 
 	@Autowired
 	private VacinasRepository vr;
-	
+
 	private List<Vacina> lista = new ArrayList<>();
 
-	//Iniciar
+	// Iniciar
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.GET)
 	public String cadastrarVacinas(Model model) {
 		lista = vr.findAll();
@@ -37,41 +38,38 @@ public class VacinasController {
 		return "vacinas/cadastrarVacinas";
 	}
 
-	//pesquisar
+	// pesquisar
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.POST)
 	public String pesquisarVacinas(String data2, Model model, @Valid Vacina vacina, BindingResult result,
-			RedirectAttributes attributes) {	
+			RedirectAttributes attributes) {
 		lista = retornaLista(vacina, data2);
 		model.addAttribute("listaVacinas", lista);
 		return "vacinas/cadastrarVacinas";
 	}
-	
-	private List<Vacina> retornaLista(Vacina vacina, String data2){
+
+	private List<Vacina> retornaLista(Vacina vacina, String date) {
 		int key = 0;
 		if (vacina.getCodigo() > 0) {
 			key += 1;
 		}
-		if (vacina.getData().length() > 0 && data2.length() > 0) {
-			Convercoes convercoes = new Convercoes();
-			vacina.setData(convercoes.convertDateUStoDataBR(vacina.getData()));
-			data2 = convercoes.convertDateUStoDataBR(data2);
+		if (vacina.getData().length() > 0 && date.length() > 0) {
 			key += 2;
-		}	
+		}
 		if (vacina.getTipo().length() > 0) {
 			key += 4;
 		}
-		
+
 		List<Vacina> list;
-		
+
 		switch (key) {
 		case 1:
 			list = vr.findByCodigo(vacina.getCodigo());
 			break;
 		case 2:
-			list = vr.findByDataBetween(vacina.getData(), data2);
+			list = vr.findByDataBetween(vacina.getData(), date);
 			break;
 		case 3:
-			list = vr.findByCodigoAndDataBetween(vacina.getCodigo(), vacina.getData(), data2);
+			list = vr.findByCodigoAndDataBetween(vacina.getCodigo(), vacina.getData(), date);
 			break;
 		case 4:
 			list = vr.findByTipo(vacina.getTipo());
@@ -79,55 +77,49 @@ public class VacinasController {
 		case 5:
 			list = vr.findByCodigoAndTipo(vacina.getCodigo(), vacina.getTipo());
 			break;
-		case 6: 
-			list = vr.findByDataBetweenAndTipo(vacina.getData(), data2, vacina.getTipo());
+		case 6:
+			list = vr.findByDataBetweenAndTipo(vacina.getData(), date, vacina.getTipo());
 			break;
 		case 7:
-			list = vr.findByCodigoAndDataBetweenAndTipo(vacina.getCodigo(), vacina.getData(), data2, vacina.getTipo());
+			list = vr.findByCodigoAndDataBetweenAndTipo(vacina.getCodigo(), vacina.getData(), date, vacina.getTipo());
 			break;
 		default:
-			list = (List<Vacina>)vr.findAll();
+			list = (List<Vacina>) vr.findAll();
 			break;
 		}
 		return list;
 	}
 
-	//Novo
+	// Novo
 	@RequestMapping("/edicaoVacinas/novo")
 	public String edicaoVacina(Model model) {
 		model.addAttribute("vacina", new Vacina());
 		return "vacinas/editarVacinas";
 	}
 
-	//Editar
+	// Editar
 	@RequestMapping("/edicaoVacinas/editar/{codigo}")
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
 		Vacina vacina = vr.findByCodigo(codigo).get(0);
-
-		Convercoes convercoes = new Convercoes();
-		vacina.setData(convercoes.convertDateBRtoDataUS(vacina.getData()));
-
 		model.addAttribute("vacina", vacina);
 		return "vacinas/editarVacinas";
 	}
 
-	//Salvar
+	// Salvar
 	@RequestMapping(value = "/edicaoVacinas/save", method = RequestMethod.POST)
 	public String salvarVacina(@Valid Vacina vacina, BindingResult bindingResult, Model model) throws ParseException {
 
 		if (bindingResult.hasErrors()) {
 			return "vacinas/editarVacinas";
 		} else {
-			Convercoes convercoes = new Convercoes();
-			vacina.setData(convercoes.convertDateUStoDataBR((vacina.getData())));
-
+			vacina.setData2(new Convercoes().convertDateUStoDataBR(vacina.getData().toString()));
 			vr.save(vacina);
 			return "redirect:/cadastrarVacinas";
 		}
 
 	}
-	
-	//Deletar
+
+	// Deletar
 	@RequestMapping("/cadastrarVacinas/delete/{codigo}") // @PathVariable Long id, RedirectAttributes redirectAttrs
 	public String deletarVacina(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Vacina vacina = vr.findByCodigo(codigo).get(0);
@@ -135,7 +127,7 @@ public class VacinasController {
 		return "redirect:/cadastrarVacinas";
 	}
 
-	//Relatório
+	// Relatório
 	@RequestMapping(value = "/gerarPDFVacinas", method = RequestMethod.GET)
 	public ModelAndView gerarPDFVacinas() {
 		return new ModelAndView(new PdfVacinaReportView(), "vacinaList", lista);

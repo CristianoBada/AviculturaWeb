@@ -88,7 +88,7 @@
 				<tr th:each="v : ${listaVacinas}">
 					<td><span th:text="${v.codigo}"></span></td>
 					<td><span th:text="${v.tipo}"></span></td>
-					<td><span th:text="${v.data}"></span></td>
+					<td><span th:text="${v.data2}"></span></td>
 					<td><span th:text="${v.observacao}"></span></td>
 					<td><a class="btn btn-dark"
 						th:href="|/edicaoVacinas/editar/${v.codigo}|">Editar </a> <a

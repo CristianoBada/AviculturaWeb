@@ -47,10 +47,6 @@ public class RacoesController {
 	@RequestMapping("/edicaoRacoes/editar/{codigo}")
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
 		Racao racao = rr.findByCodigo(codigo);
-
-		Convercoes convercoes = new Convercoes();
-		//racao.setData(convercoes.convertDateBRtoDataUS(racao.getData()));
-
 		model.addAttribute("racoes", racao);
 		return "racoes/editarRacoes";
 	}
@@ -61,12 +57,8 @@ public class RacoesController {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoRacoes/novo";
 		} else {
-			
-			System.out.println("011111111111");
 			racao.setData2(new Convercoes().convertDateUStoDataBR(racao.getData().toString()));
-			System.out.println("022222222222");
 			rr.save(racao);
-
 			attributes.addFlashAttribute("mensagem", "Lote de Racao salvo com sucesso!");
 			return "redirect:/cadastrarRacoes";
 		}

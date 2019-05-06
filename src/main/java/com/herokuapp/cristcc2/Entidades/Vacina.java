@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -18,9 +19,11 @@ public class Vacina implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
 
-	@NotEmpty
 	@Size(min = 10, max = 10)
-	private String data;
+	private String data2;
+	
+	@NotNull
+    private String data;
 
 	@NotEmpty
 	@Size(min = 1, max = 20)
@@ -40,14 +43,6 @@ public class Vacina implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
 	public String getTipo() {
 		return tipo;
 	}
@@ -62,5 +57,21 @@ public class Vacina implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public String getData2() {
+		return data2;
+	}
+
+	public void setData2(String data2) {
+		this.data2 = data2;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 }

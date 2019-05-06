@@ -10,7 +10,7 @@ public class Convercoes {
 	public String convertDateUStoDataBR(String dataUS) {
 		try {
 			DateFormat formatUS = new SimpleDateFormat("yyyy-mm-dd");
-			Date date = (Date) formatUS.parse(dataUS);
+			Date date = formatUS.parse(dataUS);
 			DateFormat formatBR = new SimpleDateFormat("dd/mm/yyyy");
 			String dateBR = formatBR.format(date);
 			return dateBR;
@@ -25,7 +25,7 @@ public class Convercoes {
 	public String convertDateBRtoDataUS(String dataBR) {
 		try {
 			DateFormat formatUS = new SimpleDateFormat("dd/mm/yyyy");
-			Date date = (Date) formatUS.parse(dataBR);
+			Date date = formatUS.parse(dataBR);
 			DateFormat formatBR = new SimpleDateFormat("yyyy-mm-dd");
 			String dateUS = formatBR.format(date);
 			return dateUS;
@@ -36,5 +36,4 @@ public class Convercoes {
 
 		return dataBR;
 	}
-
 }
