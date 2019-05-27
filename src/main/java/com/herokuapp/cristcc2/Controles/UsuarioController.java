@@ -20,13 +20,13 @@ public class UsuarioController {
 	private UsuarioRepository ur;
 	
 	@RequestMapping("/cadastrarUsuario")
-	public String formCadastroAves() {
+	public String cadastroAves() {
 		return "usuario/cadastrarUsuario";
 	}
 	
 	//Salvar
 	@RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.POST)
-	public String salvarTipoAve(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+	public String salvarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/cadastrarUsuario";

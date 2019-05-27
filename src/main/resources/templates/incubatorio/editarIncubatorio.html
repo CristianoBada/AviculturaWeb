@@ -67,24 +67,24 @@ body {
 			<div class="row">
 				<div class="input-field col s3">
 					<label for="tipo_ave">Tipo da Ave:</label> <select
-						th:field="*{tipoave}">
+						th:field="*{tipoave}" required >
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
 					</select>
 				</div>
 				<div class="input-field col s2">
 					<label for="lote_ovos">Lote de Ovos:</label> <input type="text"
-						value="" th:field="*{loteovos}" />
+						value="" th:field="*{loteovos}" required />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="data_inicio">Data de Inicio:</label> <input type="date"
-						value="" th:field="*{inicio}" placeholder="" />
+						value="" th:field="*{inicio}" placeholder="" required />
 				</div>
 				<div class="input-field col s1">
 					<label for="temperatura">Temperatura (°C):</label> <input
-						type="number" value="0" th:field="*{temperatura}" />
+						type="number" value="0" th:field="*{temperatura}" required />
 				</div>
 				<div class="input-field col s1">
 					<label for="umidade">Umidade:</label> <input type="number"
@@ -98,7 +98,7 @@ body {
 				</div>
 				<div class="input-field col s1">
 					<label for="eclosao">Tempo para eclodir (dias):</label> <input
-						type="number" value="0" min="0" th:field="*{tempo}" />
+						type="number" value="0" min="0" th:field="*{tempo}" required />
 				</div>
 			</div>
 

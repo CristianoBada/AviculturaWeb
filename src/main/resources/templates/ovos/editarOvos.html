@@ -68,25 +68,25 @@ body {
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="tipo_aves">Tipo de Ave:</label> <select
-						th:field="*{tipoave}">
+						th:field="*{tipoave}" required >
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
 					</select>
 				</div>
 				<div class="input-field col s2">
 					<label for="lote">Lote:</label> <input id="input_text" type="text"
-						value="" th:field="*{lote}" data-length="10" />
+						value="" th:field="*{lote}" data-length="10" required />
 				</div>
 				<div class="input-field col s1">
 					<label for="quantidade">Quantidade:</label> <input type="number"
-						value="0" min="0" th:field="*{quantidade}" />
+						value="0" min="0" th:field="*{quantidade}" required />
 				</div>
 			</div>
 			<div class="row">
 
 				<div class="input-field col s2">
 					<label for="data">Data:</label> <input type="date" value=""
-						th:field="*{data}" placeholder="" />
+						th:field="*{data}" placeholder="" required />
 				</div>
 				<div class="input-field col s2">
 					<label for="qualidade">Qualidade:</label> <input id="input_text"

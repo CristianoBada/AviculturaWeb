@@ -65,7 +65,7 @@
 				<div class="row">
 					<div class="input-field col s2">
 						<label for="tipo_aves">Tipo de Ave:</label> <select
-							name="tipoave">
+							name="tipoave" >
 							<option th:value="Todos"
 								th:text="Todos"></option>
 							<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"

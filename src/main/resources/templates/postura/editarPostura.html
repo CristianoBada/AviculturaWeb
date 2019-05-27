@@ -64,24 +64,24 @@ body {
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="tipo_aves">Tipo de Ave:</label> <select
-						th:field="*{tipoave}">
+						th:field="*{tipoave}" required >
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
 					</select>
 				</div>
 				<div class="input-field col s1">
 					<label for="Quantidade">Quantidade:</label> <input type="number"
-						value="0" min="0" th:field="*{quantidade}" />
+						value="0" min="0" th:field="*{quantidade}" required />
 				</div>
 				<div class="input-field col s1">
 					<label for="max_aves">Maximo de aves:</label> <input type="number"
-						value="0" min="0" th:field="*{maximo}" />
+						value="0" min="0" th:field="*{maximo}" required />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="data_entrada">Data de Entrada:</label> <input
-						type="date" value="" th:field="*{entrada}" placeholder="" />
+						type="date" value="" th:field="*{entrada}" placeholder="" required />
 				</div>
 				<div class="input-field col s2">
 					<label for="data_saida">Data de saida:</label> <input type="date"
