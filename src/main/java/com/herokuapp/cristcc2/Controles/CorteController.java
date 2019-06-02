@@ -62,8 +62,8 @@ public class CorteController {
 			return "redirect:/edicaoCorte";
 		} else {
 			Convercoes convercoes = new Convercoes();
-			corte.setEntrada(convercoes.convertDateUStoDataBR((corte.getEntrada())));
-			corte.setSaida(convercoes.convertDateUStoDataBR((corte.getSaida())));
+			corte.setEntrada2(convercoes.convertDateUStoDataBR((corte.getEntrada())));
+			corte.setSaida2(convercoes.convertDateUStoDataBR((corte.getSaida())));
 			cr.save(corte);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
 			return "redirect:/cadastrarCorte";
