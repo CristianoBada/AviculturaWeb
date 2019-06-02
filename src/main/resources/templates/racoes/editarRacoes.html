@@ -69,12 +69,30 @@ body {
 						value="" th:field="*{tiporacao}" required />
 				</div>
 				<div class="input-field col s1">
-					<label for="quantidade">Quantidade (kg):</label> <input type="number"
-						value="0" min="0" th:field="*{quantidade}" required />
+					<label for="quantidade">Quantidade (kg):</label> <input
+						type="number" value="0" min="0" th:field="*{quantidade}" required />
 				</div>
 				<div class="input-field col s2">
 					<label for="data_entrada">Data de entrada:</label> <input
 						type="date" value="" th:field="*{data}" placeholder="" required />
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s2">
+					<label for="postura">Código Postura:</label> <select
+						th:field="*{postura}" required>
+						<option th:value=0></option>
+						<option th:each="item : ${listaPostura}" th:value="${item.codigo}"
+							th:text="${item.codigo}" />
+					</select>
+				</div>
+				<div class="input-field col s2">
+					<label for="postura">Código Corte:</label> <select
+						th:field="*{corte}" required>
+						<option th:value=0></option>
+						<option th:each="item : ${listaCorte}" th:value="${item.codigo}"
+							th:text="${item.codigo}" />
+					</select>
 				</div>
 			</div>
 			<hr size="30">

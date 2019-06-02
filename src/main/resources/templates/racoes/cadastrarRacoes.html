@@ -64,6 +64,8 @@
 					<th>Tipo de Racao</th>
 					<th>Quantidade</th>
 					<th>Data</th>
+					<th>Cód. Postura</th>
+					<th>Cód. Corte</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -72,6 +74,8 @@
 					<td><span th:text="${ra.tiporacao}"></span></td>
 					<td><span th:text="${ra.quantidade}"></span>Kg</td>
 					<td><span th:text="${ra.data2}"></span></td>
+					<td><span th:text="${ra.postura}"></span></td>
+					<td><span th:text="${ra.corte}"></span></td>
 					<td><a class="btn btn-dark"
 						th:href="|/edicaoRacoes/editar/${ra.codigo}|">Editar </a> <a
 						class="btn btn-dark"

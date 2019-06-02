@@ -81,7 +81,9 @@
 					<th>Código</th>
 					<th>Tipo de tratamento</th>
 					<th>Data</th>
-					<th>Observação</th>
+					<th>Cód. Postura</th>
+					<th>Cód. Corte</th>
+					<th>Observação</th>					
 				</tr>
 			</thead>
 			<tbody>
@@ -89,6 +91,8 @@
 					<td><span th:text="${v.codigo}"></span></td>
 					<td><span th:text="${v.tipo}"></span></td>
 					<td><span th:text="${v.data2}"></span></td>
+					<td><span th:text="${v.postura}"></span></td>
+					<td><span th:text="${v.corte}"></span></td>
 					<td><span th:text="${v.observacao}"></span></td>
 					<td><a class="btn btn-dark"
 						th:href="|/edicaoVacinas/editar/${v.codigo}|">Editar </a> <a

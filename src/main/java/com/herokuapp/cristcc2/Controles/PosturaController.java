@@ -72,7 +72,7 @@ public class PosturaController {
 	// Deletar
 	@RequestMapping("/cadastrarPostura/delete/{codigo}")
 	public String deletarPostura(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
-		Postura postura = pr.findByCodigo(codigo).get(0);
+		Postura postura = pr.findByCodigo(codigo);
 		pr.delete(postura);
 		return "redirect:/cadastrarPostura";
 	}
@@ -80,7 +80,7 @@ public class PosturaController {
 	// Editar
 	@RequestMapping("/edicaoPostura/editar/{codigo}")
 	public String editarPostura(@PathVariable Long codigo, Model model) {
-		Postura postura = pr.findByCodigo(codigo).get(0);
+		Postura postura = pr.findByCodigo(codigo);
 		Iterable<TipoAve> listaTA = tr.findAll();
 		model.addAttribute("listaAves", listaTA);
 		model.addAttribute("postura", postura);
@@ -124,7 +124,8 @@ public class PosturaController {
 			lista = pr.findAll();
 			break;
 		case 1:
-			lista = pr.findByCodigo(postura.getCodigo());
+			lista = new ArrayList<>();
+			lista.add(pr.findByCodigo(postura.getCodigo()));
 			break;
 		case 2:
 			lista = pr.findByEntradaBetween(postura.getEntrada(), data2);

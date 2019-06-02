@@ -31,8 +31,25 @@ public class Vacina implements Serializable {
 
 	@Size(min = 0, max = 100)
 	private String observacao;
+	
+	private long corte;
+	
+	private long postura;
+	
+	public long getPostura() {
+		return postura;
+	}
 
-	public Vacina() {
+	public void setPostura(long postura) {
+		this.postura = postura;
+	}
+
+	public long getCorte() {
+		return corte;
+	}
+
+	public void setCorte(long corte) {
+		this.corte = corte;
 	}
 
 	public long getCodigo() {

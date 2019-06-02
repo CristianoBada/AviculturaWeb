@@ -34,7 +34,7 @@ AjustesTable ajustesTable = new AjustesTable();
 		table.setWidths(widths);
 		
 		ajustesTable.addCell(table, "Código");
-		ajustesTable.addCell(table, "Lote");
+		ajustesTable.addCell(table, "Cód. Postura");
 		ajustesTable.addCell(table, "Quantidade");
 		ajustesTable.addCell(table, "Tipo de Ave");
 		ajustesTable.addCell(table, "Qualidade");
@@ -42,7 +42,7 @@ AjustesTable ajustesTable = new AjustesTable();
 
 		for (Ovos ovos : list) {
 			ajustesTable.addCell(table, ovos.getCodigo() + "");
-			ajustesTable.addCell(table, ovos.getLote());
+			ajustesTable.addCell(table, ovos.getPostura() + "");
 			ajustesTable.addCell(table, ovos.getQuantidade() + "");
 			ajustesTable.addCell(table, ovos.getTipoave());
 			ajustesTable.addCell(table, ovos.getQualidade());

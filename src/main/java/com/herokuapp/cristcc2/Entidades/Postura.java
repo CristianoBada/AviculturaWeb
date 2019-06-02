@@ -35,11 +35,10 @@ public class Postura implements Serializable {
 	@Size(min = 10, max = 10)
 	private String entrada2;
 
-	@NotEmpty
-	@Size(min = 10, max = 10)
+	@Size(min = 0, max = 10)
 	private String saida;
 	
-	@Size(min = 10, max = 10)
+	@Size(min = 0, max = 10)
 	private String saida2;
 
 	@NotEmpty

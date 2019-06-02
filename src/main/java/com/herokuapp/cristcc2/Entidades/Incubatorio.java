@@ -18,9 +18,6 @@ public class Incubatorio implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
 
-	@NotEmpty
-	private String loteovos;
-
 	@NotNull
 	private Integer temperatura;
 
@@ -32,12 +29,33 @@ public class Incubatorio implements Serializable {
 	@NotEmpty
 	@Size(min = 10, max = 10)
 	private String inicio;
+	
+	@Size(min = 10, max = 10)
+	private String inicio2;
 
 	private Integer mortalidade;
 
 	@NotEmpty
 	@Size(min = 1, max = 20)
 	private String tipoave;
+	
+	private long ovos;
+
+	public String getInicio2() {
+		return inicio2;
+	}
+
+	public void setInicio2(String inicio2) {
+		this.inicio2 = inicio2;
+	}
+
+	public long getOvos() {
+		return ovos;
+	}
+
+	public void setOvos(long ovos) {
+		this.ovos = ovos;
+	}
 
 	public long getCodigo() {
 		return codigo;
@@ -45,14 +63,6 @@ public class Incubatorio implements Serializable {
 
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getLoteovos() {
-		return loteovos;
-	}
-
-	public void setLoteovos(String loteovos) {
-		this.loteovos = loteovos;
 	}
 
 	public Integer getTemperatura() {

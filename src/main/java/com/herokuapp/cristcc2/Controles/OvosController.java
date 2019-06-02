@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.common.collect.Lists;
 import com.herokuapp.cristcc2.Entidades.Ovos;
+import com.herokuapp.cristcc2.Entidades.Postura;
 import com.herokuapp.cristcc2.Entidades.TipoAve;
 import com.herokuapp.cristcc2.Relatorios.PdfOvosReportView;
 import com.herokuapp.cristcc2.Repository.OvosRepository;
+import com.herokuapp.cristcc2.Repository.PosturaRepository;
 import com.herokuapp.cristcc2.Repository.TipoAveRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
 
@@ -32,6 +33,11 @@ public class OvosController {
 	@Autowired
 	private TipoAveRepository tr;
 
+	@Autowired
+	private PosturaRepository pr;
+
+	private List<Ovos> lista = new ArrayList<>();
+
 	// Salvar
 	@RequestMapping(value = "/edicaoOvos/save", method = RequestMethod.POST)
 	public String salvarOvos(@Valid Ovos ovos, BindingResult result, RedirectAttributes attributes) {
@@ -40,7 +46,10 @@ public class OvosController {
 			return "redirect:/edicaoOvos";
 		} else {
 			Convercoes convercoes = new Convercoes();
-			ovos.setData((convercoes.convertDateUStoDataBR((ovos.getData()))));
+			System.out.println("01");
+			System.out.println(pr.findByCodigo(ovos.getPostura()).getTipoave());
+			ovos.setTipoave(pr.findByCodigo(ovos.getPostura()).getTipoave());
+			ovos.setData2(convercoes.convertDateUStoDataBR(ovos.getData()));
 			ovosr.save(ovos);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
 			return "redirect:/cadastrarOvos";
@@ -51,8 +60,10 @@ public class OvosController {
 	@RequestMapping(value = "/cadastrarOvos", method = RequestMethod.GET)
 	public ModelAndView listaOvos() {
 		ModelAndView mv = new ModelAndView("ovos/cadastrarOvos");
-		Iterable<Ovos> lista = ovosr.findAll();
+		lista = ovosr.findAll();
 		mv.addObject("listaOvos", lista);
+		Iterable<TipoAve> listaTA = tr.findAll();
+		mv.addObject("listaAves", listaTA);
 		return mv;
 	}
 
@@ -61,6 +72,8 @@ public class OvosController {
 		model.addAttribute("ovos", new Ovos());
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
+		Iterable<Postura> lista2 = pr.findAll();
+		model.addAttribute("listaPostura", lista2);
 		return "ovos/editarOvos";
 	}
 
@@ -83,15 +96,54 @@ public class OvosController {
 
 		model.addAttribute("ovos", ovos);
 
+		Iterable<Postura> lista2 = pr.findAll();
+		model.addAttribute("listaPostura", lista2);
+
 		return "ovos/editarOvos";
 	}
 
 	// Relatório
 	@RequestMapping(value = "/gerarPDFOvos", method = RequestMethod.GET)
 	public ModelAndView gerarPDFOvos() {
-		List<Ovos> list = new ArrayList<>();
-		list = Lists.newArrayList(ovosr.findAll());
+		return new ModelAndView(new PdfOvosReportView(), "ovosList", lista);
+	}
 
-		return new ModelAndView(new PdfOvosReportView(), "ovosList", list);
+	// pesquisar
+	@RequestMapping(value = "/cadastrarOvos", method = RequestMethod.POST)
+	public String pesquisarOvos(String data2, Model model, @Valid Ovos ovos, BindingResult result,
+			RedirectAttributes attributes) {
+		lista = retornaLista(ovos, data2);
+		model.addAttribute("listaOvos", lista);
+		Iterable<TipoAve> listaTA = tr.findAll();
+		model.addAttribute("listaAves", listaTA);
+		return "ovos/cadastrarOvos";
+	}
+
+	private List<Ovos> retornaLista(Ovos ovos, String data2) {
+		int key = 0;
+
+		if (ovos.getData().length() > 0 && data2.length() > 0) {
+			key += 1;
+		}
+		if (!ovos.getTipoave().equals("Todos")) {
+			key += 2;
+		}
+
+		switch (key) {
+		case 0:
+			lista = ovosr.findAll();
+			break;
+		case 1:
+			lista = ovosr.findByDataBetween(ovos.getData(), data2);
+			break;
+		case 2:
+			lista = ovosr.findByTipoave(ovos.getTipoave());
+			break;
+		case 3:
+			lista = ovosr.findByDataBetweenAndTipoave(ovos.getData(), data2, ovos.getTipoave());
+			break;
+
+		}
+		return lista;
 	}
 }

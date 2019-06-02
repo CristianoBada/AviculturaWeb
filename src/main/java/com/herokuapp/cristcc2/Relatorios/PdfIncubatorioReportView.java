@@ -30,11 +30,11 @@ public class PdfIncubatorioReportView extends AbstractPdfView {
 		AjustesTable ajustesTable = new AjustesTable();
 		
 		PdfPTable table = ajustesTable.criaTabela(8);
-		float[] widths = new float[] { 32f, 45f, 40f, 40f, 55f, 40f, 30f, 45f};
+		float[] widths = new float[] { 32f, 32f, 40f, 40f, 55f, 40f, 30f, 45f};
 		table.setWidths(widths);
 		
 		ajustesTable.addCell(table, "Código");
-		ajustesTable.addCell(table, "Lote ovos");
+		ajustesTable.addCell(table, "Cód. Ovos");
 		ajustesTable.addCell(table, "Tipo ave");
 		ajustesTable.addCell(table, "Data");
 		ajustesTable.addCell(table, "Temperatura");
@@ -44,7 +44,7 @@ public class PdfIncubatorioReportView extends AbstractPdfView {
 
 		for (Incubatorio incubatorio : list) {
 			ajustesTable.addCell(table, incubatorio.getCodigo() + "");
-			ajustesTable.addCell(table, incubatorio.getLoteovos());
+			ajustesTable.addCell(table, incubatorio.getOvos() + "");
 			ajustesTable.addCell(table, incubatorio.getTipoave());
 			ajustesTable.addCell(table, incubatorio.getInicio());
 			ajustesTable.addCell(table, incubatorio.getTemperatura() + "°C");

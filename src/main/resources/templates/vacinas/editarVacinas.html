@@ -70,7 +70,24 @@
 						th:field="*{data}" placeholder="" required/>
 				</div>
 			</div>
-			<div class="row"></div>
+			<div class="row">
+				<div class="input-field col s2">
+					<label for="postura">Código Postura:</label> <select
+						th:field="*{postura}" required>
+						<option th:value=0></option>
+						<option th:each="item : ${listaPostura}" th:value="${item.codigo}"
+							th:text="${item.codigo} + ' ' + ${item.tipoave}" />
+					</select>
+				</div>
+				<div class="input-field col s2">
+					<label for="postura">Código Corte:</label> <select
+						th:field="*{corte}" required>
+						<option th:value=0></option>
+						<option th:each="item : ${listaCorte}" th:value="${item.codigo}"
+							th:text="${item.codigo} + ' ' + ${item.tipoave}" />
+					</select>
+				</div>
+			</div>
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="observacao">Observação: </label> <input id="input_text"
@@ -78,7 +95,7 @@
 						data-length="100" />
 				</div>
 			</div>
-
+			
 			<hr size="30">
 
 			<!--button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button-->

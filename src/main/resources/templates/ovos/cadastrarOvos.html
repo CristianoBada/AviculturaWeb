@@ -54,15 +54,35 @@
 
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
-			<a href="/edicaoOvos/novo" class="btn btn-dark">Novo</a> <a
-				class="btn btn-dark" href="/gerarPDFOvos">Gerar PDF</a>
+			<form method="post">
+				<div class="row">
+					<div class="input-field col s2">
+						<label for="tipo_aves">Tipo de Ave:</label> <select name="tipoave">
+							<option th:value="Todos" th:text="Todos"></option>
+							<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
+								th:text="${item.nomeAve}" />
+						</select>
+					</div>
+					<div class="input-field col s3">
+						<label for="data">Data:</label> <input type="date" value=""
+							name="data" /> <label for="data2"> a </label> <input type="date"
+							value="" name="data2" />
+					</div>
+				</div>
+				<hr size="30">
+				<a href="/edicaoOvos/novo" class="btn btn-dark">Novo</a>
+				<button type="submit" class="btn btn-dark"
+					href="/cadastrarOvos?data2=${data2}">Pesquisar</button>
+				<a class="btn btn-dark" href="/cadastrarOvos" role="button">Limpar</a>
+				<a class="btn btn-dark" href="/gerarPDFOvos">Gerar Relatório</a>
+			</form>
 		</div>
 		<hr size="30">
 		<table class="container table table-bordered">
 			<thead>
 				<tr>
 					<th>Código</th>
-					<th>Lote</th>
+					<th>Cód. Postura</th>
 					<th>Quantidade</th>
 					<th>Qualidade</th>
 					<th>Data de produção</th>
@@ -72,10 +92,10 @@
 			<tbody>
 				<tr th:each="ovos : ${listaOvos}">
 					<td><span th:text="${ovos.codigo}"></span></td>
-					<td><span th:text="${ovos.lote}"></span></td>
+					<td><span th:text="${ovos.postura}"></span></td>
 					<td><span th:text="${ovos.quantidade}"></span></td>
 					<td><span th:text="${ovos.qualidade}"></span></td>
-					<td><span th:text="${ovos.data}"></span></td>
+					<td><span th:text="${ovos.data2}"></span></td>
 					<td><span th:text="${ovos.tipoave}"></span></td>
 					<td><a class="btn btn-dark"
 						th:href="|/edicaoOvos/editar/${ovos.codigo}|">Editar</a> <a

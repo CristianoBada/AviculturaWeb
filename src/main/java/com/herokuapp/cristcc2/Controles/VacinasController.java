@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.herokuapp.cristcc2.Entidades.Corte;
+import com.herokuapp.cristcc2.Entidades.Postura;
 import com.herokuapp.cristcc2.Entidades.Vacina;
 import com.herokuapp.cristcc2.Relatorios.PdfVacinaReportView;
+import com.herokuapp.cristcc2.Repository.CorteRepository;
+import com.herokuapp.cristcc2.Repository.PosturaRepository;
 import com.herokuapp.cristcc2.Repository.VacinasRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
 
@@ -26,6 +30,12 @@ public class VacinasController {
 
 	@Autowired
 	private VacinasRepository vr;
+	
+	@Autowired
+	private PosturaRepository pr;
+	
+	@Autowired
+	private CorteRepository cr;
 
 	private List<Vacina> lista = new ArrayList<>();
 
@@ -93,6 +103,10 @@ public class VacinasController {
 	@RequestMapping("/edicaoVacinas/novo")
 	public String edicaoVacina(Model model) {
 		model.addAttribute("vacina", new Vacina());
+		Iterable<Postura> lista = pr.findAll();
+		model.addAttribute("listaPostura", lista);
+		Iterable<Corte> lista2 = cr.findAll();
+		model.addAttribute("listaCorte", lista2);
 		return "vacinas/editarVacinas";
 	}
 
@@ -101,6 +115,10 @@ public class VacinasController {
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
 		Vacina vacina = vr.findByCodigo(codigo).get(0);
 		model.addAttribute("vacina", vacina);
+		Iterable<Postura> lista = pr.findAll();
+		model.addAttribute("listaPostura", lista);
+		Iterable<Corte> lista2 = cr.findAll();
+		model.addAttribute("listaCorte", lista2);
 		return "vacinas/editarVacinas";
 	}
 

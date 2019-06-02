@@ -29,20 +29,24 @@ public class PdfVacinaReportView extends AbstractPdfView {
 
 		AjustesTable ajustesTable = new AjustesTable();
 
-		PdfPTable table = ajustesTable.criaTabela(4);
-		float[] widths = new float[] { 32f, 45f, 40f, 90f };
+		PdfPTable table = ajustesTable.criaTabela(6);
+		float[] widths = new float[] {32f, 45f, 40f, 90f, 32f, 32f};
 		table.setWidths(widths);
 
 		ajustesTable.addCell(table, "Código");
 		ajustesTable.addCell(table, "Tipo de tratamento");
 		ajustesTable.addCell(table, "Data");
 		ajustesTable.addCell(table, "Observação");
+		ajustesTable.addCell(table, "Cód. Postura");
+		ajustesTable.addCell(table, "Cód. Corte");
 
 		for (Vacina vacina : list) {
 			ajustesTable.addCell(table, vacina.getCodigo() + "");
 			ajustesTable.addCell(table, vacina.getTipo());
 			ajustesTable.addCell(table, vacina.getData2().toString());
 			ajustesTable.addCell(table, vacina.getObservacao());
+			ajustesTable.addCell(table, vacina.getPostura() + "");
+			ajustesTable.addCell(table, vacina.getCorte() + "");
 		}
 
 		document.add(new Paragraph("ASF - Avicultura"));

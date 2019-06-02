@@ -22,24 +22,28 @@ public class Ovos implements Serializable{
 	@NotNull
 	private Integer quantidade;
 	
-	 @Size(min=1, max=15)
+	 @Size(min=0, max=15)
     private String qualidade;
     
     @NotEmpty
     @Size(min=10, max=10)
     private String data;
     
-    @NotNull
-    @Size(min=1, max=1)
-    private String incubacao = "F";
+    @Size(min=10, max=10)
+    private String data2;
     
-    @NotEmpty
-    @Size(min=1, max=15)
-    private String lote;
+    private long postura;
     
-    @NotEmpty
     private String tipoave;
     
+	public String getData2() {
+		return data2;
+	}
+
+	public void setData2(String data2) {
+		this.data2 = data2;
+	}
+
 	public String getTipoave() {
 		return tipoave;
 	}
@@ -73,14 +77,6 @@ public class Ovos implements Serializable{
 		this.data = data;
 	}
 
-	public String getLote() {
-		return lote;
-	}
-
-	public void setLote(String lote) {
-		this.lote = lote;
-	}
-
 	public Integer getQuantidade() {
 		return quantidade;
 	}
@@ -89,11 +85,11 @@ public class Ovos implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public String getIncubacao() {
-		return incubacao;
+	public long getPostura() {
+		return postura;
 	}
 
-	public void setIncubacao(String incubacao) {
-		this.incubacao = incubacao;
+	public void setPostura(long postura) {
+		this.postura = postura;
 	}
 }

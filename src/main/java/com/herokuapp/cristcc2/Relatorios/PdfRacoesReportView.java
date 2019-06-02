@@ -29,20 +29,24 @@ public class PdfRacoesReportView extends AbstractPdfView {
 
 		AjustesTable ajustesTable = new AjustesTable();
 
-		PdfPTable table = ajustesTable.criaTabela(4);
-		float[] widths = new float[] { 32f, 45f, 40f, 40f};
+		PdfPTable table = ajustesTable.criaTabela(6);
+		float[] widths = new float[] { 32f, 45f, 40f, 40f, 32f, 32f};
 		table.setWidths(widths);
 
 		ajustesTable.addCell(table, "Código");
 		ajustesTable.addCell(table, "Tipo de ração");
 		ajustesTable.addCell(table, "Data");
 		ajustesTable.addCell(table, "Quantidade");
+		ajustesTable.addCell(table, "Cód. Postura");
+		ajustesTable.addCell(table, "Cód. Corte");
 
 		for (Racao racao : list) {
 			ajustesTable.addCell(table, racao.getCodigo() + "");
 			ajustesTable.addCell(table, racao.getTiporacao());
 			ajustesTable.addCell(table, racao.getData2());
 			ajustesTable.addCell(table, racao.getQuantidade() + "Kg");
+			ajustesTable.addCell(table, racao.getPostura() + "");
+			ajustesTable.addCell(table, racao.getCorte() + "");
 		}
 
 		document.add(new Paragraph("ASF - Avicultura"));

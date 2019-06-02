@@ -26,10 +26,26 @@ public class Racao implements Serializable{
 	@NotNull
     private Integer quantidade;
 	
-	private Integer codigopostura;
+	private long postura;
 	 
-	private Integer codigocorte;
+	private long corte;
 	
+	public long getPostura() {
+		return postura;
+	}
+
+	public void setPostura(long postura) {
+		this.postura = postura;
+	}
+
+	public long getCorte() {
+		return corte;
+	}
+
+	public void setCorte(long corte) {
+		this.corte = corte;
+	}
+
 	@NotNull
     private String data;
 	
@@ -58,22 +74,6 @@ public class Racao implements Serializable{
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	public Integer getCodigopostura() {
-		return codigopostura;
-	}
-
-	public void setCodigopostura(Integer codigopostura) {
-		this.codigopostura = codigopostura;
-	}
-
-	public Integer getCodigocorte() {
-		return codigocorte;
-	}
-
-	public void setCodigocorte(Integer codigocorte) {
-		this.codigocorte = codigocorte;
 	}
 
 	public String getData() {

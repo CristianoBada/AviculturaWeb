@@ -16,8 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
+import com.herokuapp.cristcc2.Entidades.Corte;
+import com.herokuapp.cristcc2.Entidades.Postura;
 import com.herokuapp.cristcc2.Entidades.Racao;
 import com.herokuapp.cristcc2.Relatorios.PdfRacoesReportView;
+import com.herokuapp.cristcc2.Repository.CorteRepository;
+import com.herokuapp.cristcc2.Repository.PosturaRepository;
 import com.herokuapp.cristcc2.Repository.RacaoRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
 
@@ -26,6 +30,12 @@ public class RacoesController {
 
 	@Autowired
 	private RacaoRepository rr;
+	
+	@Autowired
+	private PosturaRepository pr;
+	
+	@Autowired
+	private CorteRepository cr;
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarRacoes", method = RequestMethod.GET)
@@ -40,6 +50,10 @@ public class RacoesController {
 	@RequestMapping("/edicaoRacoes/novo")
 	public String novaRavoes(Model model) {
 		model.addAttribute("racoes", new Racao());
+		Iterable<Postura> lista = pr.findAll();
+		model.addAttribute("listaPostura", lista);
+		Iterable<Corte> lista2 = cr.findAll();
+		model.addAttribute("listaCorte", lista2);
 		return "racoes/editarRacoes";
 	}
 
@@ -48,6 +62,10 @@ public class RacoesController {
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
 		Racao racao = rr.findByCodigo(codigo);
 		model.addAttribute("racoes", racao);
+		Iterable<Postura> lista = pr.findAll();
+		model.addAttribute("listaPostura", lista);
+		Iterable<Corte> lista2 = cr.findAll();
+		model.addAttribute("listaCorte", lista2);
 		return "racoes/editarRacoes";
 	}
 

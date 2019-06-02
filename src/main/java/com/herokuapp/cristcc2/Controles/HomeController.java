@@ -12,4 +12,8 @@ public class HomeController {
 		return "index2";
 	}
 	
+	@RequestMapping("/tutorial")
+	public String tutorial(Model model) {
+		return "tutorial";
+	}
 }

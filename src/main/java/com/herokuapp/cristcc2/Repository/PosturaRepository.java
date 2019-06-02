@@ -7,7 +7,7 @@ import com.herokuapp.cristcc2.Entidades.Postura;
 
 public interface PosturaRepository extends JpaRepository<Postura, String>{
 	
-	List<Postura> findByCodigo(long codigo);
+	Postura findByCodigo(long codigo);
 	
 	List<Postura> findByEntradaBetween(String data1, String data2);
 	

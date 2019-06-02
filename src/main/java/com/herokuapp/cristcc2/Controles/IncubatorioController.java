@@ -17,9 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 import com.herokuapp.cristcc2.Entidades.Incubatorio;
+import com.herokuapp.cristcc2.Entidades.Ovos;
 import com.herokuapp.cristcc2.Entidades.TipoAve;
 import com.herokuapp.cristcc2.Relatorios.PdfIncubatorioReportView;
 import com.herokuapp.cristcc2.Repository.IncubatorioRepository;
+import com.herokuapp.cristcc2.Repository.OvosRepository;
 import com.herokuapp.cristcc2.Repository.TipoAveRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
 
@@ -31,6 +33,9 @@ public class IncubatorioController {
 
 	@Autowired
 	private TipoAveRepository tr;
+	
+	@Autowired
+	private OvosRepository ovr;
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarIncubatorio", method = RequestMethod.GET)
@@ -47,6 +52,8 @@ public class IncubatorioController {
 		model.addAttribute("incubatorio", new Incubatorio());
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
+		Iterable<Ovos> lista2 = ovr.findAll();
+		model.addAttribute("listaOvos", lista2);
 		return "incubatorio/editarIncubatorio";
 	}
 
@@ -84,6 +91,9 @@ public class IncubatorioController {
 
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
+		
+		Iterable<Ovos> lista2 = ovr.findAll();
+		model.addAttribute("listaOvos", lista2);
 
 		model.addAttribute("incubatorio", incubatorio);
 
