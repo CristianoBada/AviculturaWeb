@@ -13,8 +13,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	<style>
+body {
+	background:
+		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
+</style>
 </head>
-<body background="imagens/aves.jpg">
+<body>
 	<header>
 		<!-- Inicio do menu -->
 		<nav
@@ -51,8 +57,37 @@
 	<br />
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
-			<a href="/edicaoFinanceiro/novo" class="btn btn-dark">Novo</a> <a
-				class="btn btn-dark" href="/gerarPDFFinanceiro">Gerar PDF</a>
+			<form method="post">
+				<div class="row">
+					<div class="input-field col s2">
+						<label for="data_tratamento">Tipo de Transisão:</label> <select name=entrasaida>
+							<option th:value="Todos" th:text="Todos"></option>
+							<option th:value="entrada" th:text="entrada"></option>
+							<option th:value="saida" th:text="saida"></option>
+						</select>
+					</div>
+					<div class="input-field col s2">
+						<label for="entrada">Data:</label> <input type="date"
+							value="" name="data" /> <label for="data2"> a </label> <input
+							type="date" value="" name="data2" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s2">
+						<label for="nome">Produto:</label> <select name="nome">
+							<option th:value="Todos" th:text="Todos"></option>
+							<option th:each="item : ${listaProdutos}" th:value="${item.nomeProduto}"
+								th:text="${item.nomeProduto}" />
+						</select>
+					</div>
+				</div>
+				<hr size="30">
+				<a href="/edicaoFinanceiro/novo" class="btn btn-dark">Novo</a>
+				<button type="submit" class="btn btn-dark"
+					href="/cadastrarFinanceiro?data2=${data2}">Pesquisar</button>
+				<a class="btn btn-dark" href="/cadastrarFinanceiro" role="button">Limpar</a> <a
+					class="btn btn-dark" href="/gerarPDFFinanceiro">Gerar Relatório</a>
+			</form>
 		</div>
 
 		<hr size="30">

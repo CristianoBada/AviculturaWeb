@@ -65,20 +65,17 @@ body {
 			th:action="@{/edicaoIncubatorio/save}" method="post">
 			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
-				<div class="input-field col s3">
-					<label for="tipo_ave">Tipo da Ave:</label> <select
-						th:field="*{tipoave}" required >
-						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
-							th:text="${item.nomeAve}" />
-					</select>
-				</div>
 				<div class="input-field col s2">
 					<label for="lote_ovos">Lote de Ovos:</label> 
 						<select
 						th:field="*{ovos}" required >
 						<option th:each="item : ${listaOvos}" th:value="${item.codigo}"
-							th:text="${item.codigo}" />
+							th:text="${item.codigo} + ' ' + ${item.tipoave}" />
 					</select>
+				</div>
+				<div class="input-field col s1">
+					<label for="mortalidade">Mortalidade:</label> <input type="number"
+						value="0" min="0" th:field="*{mortalidade}" />
 				</div>
 			</div>
 			<div class="row">
@@ -93,16 +90,6 @@ body {
 				<div class="input-field col s1">
 					<label for="umidade">Umidade:</label> <input type="number"
 						value="0" min="0" th:field="*{umidade}" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s1">
-					<label for="mortalidade">Mortalidade:</label> <input type="number"
-						value="0" min="0" th:field="*{mortalidade}" />
-				</div>
-				<div class="input-field col s1">
-					<label for="eclosao">Tempo para eclodir (dias):</label> <input
-						type="number" value="0" min="0" th:field="*{tempo}" required />
 				</div>
 			</div>
 

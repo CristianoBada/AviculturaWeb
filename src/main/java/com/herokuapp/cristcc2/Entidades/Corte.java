@@ -34,7 +34,13 @@ public class Corte implements Serializable{
     private String entrada;
     
     @Size(min=10, max=10)
+    private String entrada2;
+    
+    @Size(min=0, max=10)
     private String saida;
+    
+    @Size(min=0, max=10)
+    private String saida2;
     
     @NotEmpty
     @Size(min=1, max=15)
@@ -42,6 +48,22 @@ public class Corte implements Serializable{
 
 	public String getObservacao() {
 		return observacao;
+	}
+
+	public String getEntrada2() {
+		return entrada2;
+	}
+
+	public void setEntrada2(String entrada2) {
+		this.entrada2 = entrada2;
+	}
+
+	public String getSaida2() {
+		return saida2;
+	}
+
+	public void setSaida2(String saida2) {
+		this.saida2 = saida2;
 	}
 
 	public void setObservacao(String observacao) {

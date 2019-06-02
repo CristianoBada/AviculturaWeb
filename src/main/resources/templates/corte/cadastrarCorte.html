@@ -13,8 +13,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	<style>
+body {
+	background:
+		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
+</style>
 </head>
-<body background="imagens/aves.jpg">
+<body >
 	<header>
 		<!-- Inicio do menu -->
 		<nav
@@ -52,8 +58,34 @@
 
 	<div class="container p-3 mb-2 bg-secondary">
 		<div class="container">
-			<a href="/edicaoCorte/novo" class="btn btn-dark">Novo</a> <a
-				class="btn btn-dark" href="/gerarPDFCorte">Gerar PDF</a>
+			<form method="post">
+				<div class="row">
+					<div class="input-field col s2">
+						<label for="entrada">Data de entrada:</label> <input type="date"
+							value="" name="entrada" /> <label for="data2"> a </label> <input
+							type="date" value="" name="data2" />
+					</div>
+					<div class="input-field col s2">
+						<label for="tipo_aves">Tipo de Ave:</label> <select name="tipoave">
+							<option th:value="Todos" th:text="Todos"></option>
+							<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
+								th:text="${item.nomeAve}" />
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s2">
+						<label for="saida">Data de saída:</label> <input type="date"
+							value="" name="saida" /> <label for="data4"> a </label> <input
+							type="date" value="" name="data4" />
+					</div>
+				</div>
+				<hr size="30">
+				<a href="/edicaoCorte/novo" class="btn btn-dark">Novo</a> <button type="submit" class="btn btn-dark"
+					href="/cadastrarCorte?data2=${data2}&data4${data4}">Pesquisar</button>
+				<a class="btn btn-dark" href="/cadastrarCorte" role="button">Limpar</a> <a
+					class="btn btn-dark" href="/gerarPDFCorte">Gerar Relatório</a>
+			</form>
 		</div>
 		<hr size="30">
 		<table class="container table table-bordered">

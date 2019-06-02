@@ -36,6 +36,17 @@ public class Financeiro implements Serializable{
     @NotEmpty
     @Size(min=10, max=10)
     private String data;
+    
+    @Size(min=10, max=10)
+    private String data2;
+
+	public String getData2() {
+		return data2;
+	}
+
+	public void setData2(String data2) {
+		this.data2 = data2;
+	}
 
 	public String getData() {
 		return data;

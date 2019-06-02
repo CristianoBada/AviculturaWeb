@@ -23,8 +23,7 @@ public class Incubatorio implements Serializable {
 
 	private Integer umidade;
 
-	@NotNull
-	private Integer tempo;
+	private Integer tempo = 0;
 
 	@NotEmpty
 	@Size(min = 10, max = 10)
@@ -35,7 +34,6 @@ public class Incubatorio implements Serializable {
 
 	private Integer mortalidade;
 
-	@NotEmpty
 	@Size(min = 1, max = 20)
 	private String tipoave;
 	

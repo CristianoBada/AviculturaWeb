@@ -31,13 +31,17 @@ public class CorteController {
 
 	@Autowired
 	private TipoAveRepository tr;
+	
+	private List<Corte> lista = new ArrayList<>();
 
 	// Busca lista
 	@RequestMapping(value = "/cadastrarCorte", method = RequestMethod.GET)
 	public ModelAndView listaOvos() {
 		ModelAndView mv = new ModelAndView("corte/cadastrarCorte");
-		Iterable<Corte> lista = cr.findAll();
+		lista = cr.findAll();
 		mv.addObject("listaCorte", lista);
+		Iterable<TipoAve> listaTA = tr.findAll();
+		mv.addObject("listaAves", listaTA);
 		return mv;
 	}
 
@@ -99,4 +103,57 @@ public class CorteController {
 
 		return new ModelAndView(new PdfCorteReportView(), "corteList", list);
 	}
+	
+	// pesquisar
+		@RequestMapping(value = "/cadastrarCorte", method = RequestMethod.POST)
+		public String pesquisarCorte(String data2, String data4, Model model, @Valid Corte corte,
+				BindingResult result, RedirectAttributes attributes) {
+			lista = retornaLista(corte, data2, data4);
+			model.addAttribute("listaCorte", lista);
+			Iterable<TipoAve> listaTA = tr.findAll();
+			model.addAttribute("listaAves", listaTA);
+			return "corte/cadastrarCorte";
+		}
+
+		private List<Corte> retornaLista(Corte corte, String data2, String data4) {
+			int key = 0;
+			if (corte.getEntrada().length() > 0 && data2.length() > 0) {
+				key += 1;
+			}
+			if (corte.getSaida().length() > 0 && data4.length() > 0) {
+				key += 2;
+			}
+			if (!corte.getTipoave().equals("Todos")) {
+				key += 4;
+			}
+
+			switch (key) {
+			case 0:
+				lista = cr.findAll();
+				break;
+			case 1:
+				lista = cr.findByEntradaBetween(corte.getEntrada(), data2);
+				break;
+			case 2:
+				lista = cr.findBySaidaBetween(corte.getSaida(), data4);
+				break;
+			case 3:
+				lista = cr.findByEntradaBetweenAndSaidaBetween(corte.getEntrada(), data2, corte.getSaida(), data4);
+				break;
+			case 4:
+				lista = cr.findByTipoave(corte.getTipoave());
+				break;
+			case 5:
+				lista = cr.findByEntradaBetweenAndTipoave(corte.getEntrada(), data2, corte.getTipoave());
+				break;
+			case 6:
+				lista = cr.findBySaidaBetweenAndTipoave(corte.getSaida(), data4, corte.getTipoave());
+				break;
+			case 7:
+				lista = cr.findByEntradaBetweenAndSaidaBetweenAndTipoave(corte.getEntrada(), data2, corte.getSaida(),
+						data4, corte.getTipoave());
+				break;
+			}
+			return lista;
+		}
 }

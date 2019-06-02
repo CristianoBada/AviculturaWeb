@@ -36,13 +36,17 @@ public class IncubatorioController {
 	
 	@Autowired
 	private OvosRepository ovr;
+	
+	private List<Incubatorio> lista = new ArrayList<>();
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarIncubatorio", method = RequestMethod.GET)
 	public ModelAndView listaIncubatorio() {
 		ModelAndView mv = new ModelAndView("incubatorio/cadastrarIncubatorio");
-		Iterable<Incubatorio> lista = ir.findAll();
+		lista = ir.findAll();
 		mv.addObject("listaIncubatorio", lista);
+		Iterable<TipoAve> lista2 = tr.findAll();
+		mv.addObject("listaAves", lista2);
 		return mv;
 	}
 
@@ -66,7 +70,9 @@ public class IncubatorioController {
 			return "redirect:/edicaoIncubatorio";
 		} else {
 			Convercoes convercoes = new Convercoes();
-			incubatorio.setInicio(convercoes.convertDateUStoDataBR(incubatorio.getInicio()));
+			incubatorio.setInicio2(convercoes.convertDateUStoDataBR(incubatorio.getInicio()));
+			incubatorio.setTipoave(ovr.findByCodigo(incubatorio.getOvos()).getTipoave());
+			incubatorio.setTempo(tr.findByNomeAve(incubatorio.getTipoave()).getTempoChocagem());
 			ir.save(incubatorio);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
 			return "redirect:/cadastrarIncubatorio";
@@ -108,4 +114,43 @@ public class IncubatorioController {
 
 		return new ModelAndView(new PdfIncubatorioReportView(), "incubatorioList", list);
 	}
+	
+	// pesquisar
+		@RequestMapping(value = "/cadastrarIncubatorio", method = RequestMethod.POST)
+		public String pesquisarIncubatorio(String data2, Model model, @Valid Incubatorio incubatorio, BindingResult result,
+				RedirectAttributes attributes) {
+			lista = retornaLista(incubatorio, data2);
+			model.addAttribute("listaIncubatorio", lista);
+			Iterable<TipoAve> listaTA = tr.findAll();
+			model.addAttribute("listaAves", listaTA);
+			return "incubatorio/cadastrarIncubatorio";
+		}
+
+		private List<Incubatorio> retornaLista(Incubatorio incubatorio, String data2) {
+			int key = 0;
+
+			if (incubatorio.getInicio().length() > 0 && data2.length() > 0) {
+				key += 1;
+			}
+			if (!incubatorio.getTipoave().equals("Todos")) {
+				key += 2;
+			}
+			System.out.println(key);
+			switch (key) {
+			case 0:
+				lista = ir.findAll();
+				break;
+			case 1:
+				lista = ir.findByInicioBetween(incubatorio.getInicio(), data2);
+				break;
+			case 2:
+				lista = ir.findByTipoave(incubatorio.getTipoave());
+				break;
+			case 3:
+				lista = ir.findByInicioBetweenAndTipoave(incubatorio.getInicio(), data2, incubatorio.getTipoave());
+				break;
+
+			}
+			return lista;
+		}
 }

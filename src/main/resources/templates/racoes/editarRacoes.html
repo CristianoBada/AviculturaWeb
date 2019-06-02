@@ -83,7 +83,7 @@ body {
 						th:field="*{postura}" required>
 						<option th:value=0></option>
 						<option th:each="item : ${listaPostura}" th:value="${item.codigo}"
-							th:text="${item.codigo}" />
+							th:text="${item.codigo} + ' ' + ${item.tipoave}" />
 					</select>
 				</div>
 				<div class="input-field col s2">
@@ -91,7 +91,7 @@ body {
 						th:field="*{corte}" required>
 						<option th:value=0></option>
 						<option th:each="item : ${listaCorte}" th:value="${item.codigo}"
-							th:text="${item.codigo}" />
+							th:text="${item.codigo} + ' ' + ${item.tipoave}" />
 					</select>
 				</div>
 			</div>

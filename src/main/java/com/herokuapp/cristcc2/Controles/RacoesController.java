@@ -36,12 +36,14 @@ public class RacoesController {
 	
 	@Autowired
 	private CorteRepository cr;
+	
+	private List<Racao> lista = new ArrayList<>();
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarRacoes", method = RequestMethod.GET)
 	public ModelAndView listaPostura() {
 		ModelAndView mv = new ModelAndView("racoes/cadastrarRacoes");
-		Iterable<Racao> lista = rr.findAll();
+		lista = rr.findAll();
 		mv.addObject("listaRacoes", lista);
 		return mv;
 	}
@@ -98,4 +100,39 @@ public class RacoesController {
 
 		return new ModelAndView(new PdfRacoesReportView(), "racoesList", list);
 	}
+	
+	// pesquisar
+		@RequestMapping(value = "/cadastrarRacoes", method = RequestMethod.POST)
+		public String pesquisarRacoes(String data2, Model model, @Valid Racao racao,
+				BindingResult result, RedirectAttributes attributes) {
+			lista = retornaLista(racao, data2);
+			model.addAttribute("listaRacoes", lista);
+			return "racoes/cadastrarRacoes";
+		}
+
+		private List<Racao> retornaLista(Racao racao, String data2) {
+			int key = 0;
+			if (racao.getData().length() > 0 && data2.length() > 0) {
+				key += 1;
+			}
+			if (racao.getTiporacao().length() > 0) {
+				key += 2;
+			}
+
+			switch (key) {
+			case 0:
+				lista = rr.findAll();
+				break;
+			case 1:
+				lista = rr.findByDataBetween(racao.getData(), data2);
+				break;
+			case 2:
+				lista = rr.findByTiporacao(racao.getTiporacao());
+				break;
+			case 3:
+				lista = rr.findByTiporacaoAndDataBetween(racao.getTiporacao(), racao.getData(), data2);
+				break;
+			}
+			return lista;
+		}
 }
