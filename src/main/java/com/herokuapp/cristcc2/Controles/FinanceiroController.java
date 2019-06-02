@@ -64,7 +64,7 @@ public class FinanceiroController {
 			return "redirect:/edicaoFinanceiro";
 		} else {
 			Convercoes convercoes = new Convercoes();
-			financeiro.setData(convercoes.convertDateUStoDataBR((financeiro.getData())));
+			financeiro.setData2(convercoes.convertDateUStoDataBR((financeiro.getData())));
 			fr.save(financeiro);
 			attributes.addFlashAttribute("mensagem", "Financeiro salvo com sucesso!");
 			return "redirect:/cadastrarFinanceiro";
@@ -115,7 +115,6 @@ public class FinanceiroController {
 	@RequestMapping(value = "/cadastrarFinanceiro", method = RequestMethod.POST)
 	public String pesquisarFinanceiro(String data2, Model model, @Valid Financeiro financeiro,
 			BindingResult result, RedirectAttributes attributes) {
-		System.out.println("Entrouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
 		lista = retornaLista(financeiro, data2);
 		model.addAttribute("listaFinanceiro", lista);
 		Iterable<Produtos> lista2 = pr.findAll();
