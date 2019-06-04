@@ -60,9 +60,10 @@ body {
 	<!-- Fim do menu -->
 
 	<br />
-	<th:block th:include="mensagemValidacao"></th:block>
+
 
 	<div class="container p-3 mb-2 bg-secondary">
+		<th:block th:include="mensagemValidacao"></th:block>
 		<form th:object="${postura}" th:action="@{/edicaoPostura/save}"
 			method="post">
 			<input type="hidden" th:field="*{codigo}" />
@@ -77,30 +78,33 @@ body {
 			</div>
 			<div class="row">
 				<div class="input-field col s1">
-					<label for="Quantidade" style="width: 116px;">Quantidade:</label> <input style="width: 130px;" type="number"
-						value="0" min="0" th:field="*{quantidade}" required />
+					<label for="Quantidade" style="width: 116px;">Quantidade:</label> <input
+						style="width: 130px;" type="number" value="0" min="0"
+						th:field="*{quantidade}" required />
 				</div>
 				<div class="input-field col s1">
-					<label for="max_aves" style="width: 120px;">Maximo de aves:</label> <input type="number"
-						value="0" min="0" th:field="*{maximo}" style="width: 130px;" required />
+					<label for="max_aves" style="width: 120px;">Maximo de aves:</label>
+					<input type="number" value="0" min="0" th:field="*{maximo}"
+						style="width: 130px;" required />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="data_entrada" >Data de Entrada:</label> <input
+					<label for="data_entrada">Data de Entrada:</label> <input
 						style="width: 130px;" type="date" value="" th:field="*{entrada}"
 						placeholder="" required />
 				</div>
 				<div class="input-field col s10">
-					<label for="data_saida" style="width: 120px;">Data de saida:</label> <input type="date"
-						value="" th:field="*{saida}" style="width: 130px;" placeholder="" />
+					<label for="data_saida" style="width: 120px;">Data de
+						saida:</label> <input type="date" value="" th:field="*{saida}"
+						style="width: 130px;" placeholder="" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s10">
 					<label for="comentario" style="width: 116px;">Observação:</label> <input
 						id="input_text" type="text" value="" th:field="*{observacao}"
-						maxlength="100" style="width: 704px;" />
+						maxlength="100" style="width: 704px; height: 40px" />
 				</div>
 			</div>
 

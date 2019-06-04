@@ -20,4 +20,6 @@ public interface VacinasRepository extends JpaRepository<Vacina, Long> {
 	List<Vacina> findByCodigoAndDataBetweenAndTipo(Long codigo, String data1, String data2, String tipo);
 
 	List<Vacina> findByDataBetweenAndTipo(String data1, String data2, String tipo);
+	
+	List<Vacina> findByPostura(long postura);
 }

@@ -14,4 +14,6 @@ public interface OvosRepository extends JpaRepository<Ovos, Long>{
 	List<Ovos> findByTipoave(String tipoave);
 	
 	List<Ovos> findByDataBetweenAndTipoave(String data1, String data2, String tipoave);
+	
+	List<Ovos> findByPostura(long postura);
 }

@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.herokuapp.cristcc2.Entidades.Ovos;
 import com.herokuapp.cristcc2.Entidades.Postura;
+import com.herokuapp.cristcc2.Entidades.Racao;
 import com.herokuapp.cristcc2.Entidades.TipoAve;
+import com.herokuapp.cristcc2.Entidades.Vacina;
 import com.herokuapp.cristcc2.Relatorios.PdfPosturaReportView;
+import com.herokuapp.cristcc2.Repository.OvosRepository;
 import com.herokuapp.cristcc2.Repository.PosturaRepository;
+import com.herokuapp.cristcc2.Repository.RacaoRepository;
 import com.herokuapp.cristcc2.Repository.TipoAveRepository;
+import com.herokuapp.cristcc2.Repository.VacinasRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
 
 @Controller
@@ -30,6 +36,15 @@ public class PosturaController {
 
 	@Autowired
 	private TipoAveRepository tr;
+	
+	@Autowired
+	private OvosRepository ovosRepository;
+	
+	@Autowired
+	private VacinasRepository vacinasRepository;
+	
+	@Autowired
+	private RacaoRepository racaoRepository;
 
 	private List<Postura> lista = new ArrayList<>();
 
@@ -57,13 +72,32 @@ public class PosturaController {
 	@RequestMapping(value = "/edicaoPostura/save", method = RequestMethod.POST)
 	public String salvarPostura(@Valid Postura postura, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-
-			return "redirect:/edicaoPostura";
+			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+			return "redirect:/edicaoPostura/novo";
 		} else {
+			if (postura.getQuantidade() > 0) {
+				if (postura.getMaximo() < postura.getQuantidade()) {
+					attributes.addFlashAttribute("mensagem",
+							"Numero maximo de aves não pode ser inferior a quantidade.");
+					return "redirect:/edicaoPostura/novo";
+				}
+			} else {
+				attributes.addFlashAttribute("mensagem",
+						"Quantidade não pode ser menor ou igual a zero.");
+				return "redirect:/edicaoPostura/novo";
+			}
+			if (postura.getSaida().length() > 0
+					&& new Convercoes().comparaDatas(postura.getEntrada(), postura.getSaida())) {
+				attributes.addFlashAttribute("mensagem", "Data saida tem que ser uma data superior a data de entrada.");
+				return "redirect:/edicaoPostura/novo";
+			}
+
 			Convercoes convercoes = new Convercoes();
 			postura.setEntrada2(convercoes.convertDateUStoDataBR((postura.getEntrada())));
 			postura.setSaida2(convercoes.convertDateUStoDataBR((postura.getSaida())));
 			pr.save(postura);
+			attributes.addFlashAttribute("mensagem2",
+					"Lote de postura salvo com sucesso!");
 
 			return "redirect:/cadastrarPostura";
 		}
@@ -73,7 +107,22 @@ public class PosturaController {
 	@RequestMapping("/cadastrarPostura/delete/{codigo}")
 	public String deletarPostura(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Postura postura = pr.findByCodigo(codigo);
-		pr.delete(postura);
+		List<Ovos> ovos = ovosRepository.findByPostura(postura.getCodigo());
+		if (ovos.size() > 0) {
+			redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado em um lote de Ovos.");
+		} else {
+			List<Vacina> vacinas = vacinasRepository.findByPostura(postura.getCodigo());
+			if (vacinas.size() > 0) {
+				redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado em um tratamento.");
+			} else {
+				List<Racao> racaos = racaoRepository.findByPostura(postura.getCodigo());
+				if (racaos.size() > 0) {
+					redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado em um lote de Ração.");
+				} else {
+					pr.delete(postura);
+				}
+			}
+		}
 		return "redirect:/cadastrarPostura";
 	}
 
