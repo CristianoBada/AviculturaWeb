@@ -13,10 +13,25 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<style>
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
 body {
 	background:
 		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
+
+.table td {
+   text-align: center;   
+}
+
+.table th {
+   text-align: center;   
 }
 </style>
 </head>
@@ -59,8 +74,8 @@ body {
 			<form method="post">
 				<div class="row">
 					<div class="input-field col s2">
-						<label for="data_tratamento">Código:</label> <input type="text"
-							value="" name="codigo" placeholder="" />
+						<label for="data_tratamento" style="width: 87px;">Código:</label> <input type="text"
+							value="" name="codigo" placeholder="" style="width: 210px;" />
 					</div>
 					<div class="input-field col s2">
 						<label for="entrada">Data de entrada:</label> <input type="date"
@@ -70,32 +85,38 @@ body {
 				</div>
 				<div class="row">
 					<div class="input-field col s2">
-						<label for="tipo_aves">Tipo de Ave:</label> <select
-							name="tipoave" >
-							<option th:value="Todos"
-								th:text="Todos"></option>
+						<label for="tipo_aves">Tipo de Ave:</label> <select name="tipoave" style="width: 210px;">
+							<option th:value="Todos" th:text="Todos"></option>
 							<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 								th:text="${item.nomeAve}" />
 						</select>
 					</div>
 					<div class="input-field col s2">
-						<label for="saida">Data de saída:</label> <input type="date"
+						<label for="saida" style="width: 117px;">Data de saída:</label> <input type="date"
 							value="" name="saida" /> <label for="data4"> a </label> <input
 							type="date" value="" name="data4" />
 					</div>
 				</div>
 				<hr size="30">
-				<a href="/edicaoPostura/novo" class="btn btn-dark">Novo</a>
+				<a href="/edicaoPostura/novo" class="btn btn-dark"
+					style="width: 130px;"><i class="material-icons">add</i><span>
+						Novo</span></a>
 				<button type="submit" class="btn btn-dark"
-					href="/cadastrarPostura?data2=${data2}&data4${data4}">Pesquisar</button>
-				<a class="btn btn-dark" href="/cadastrarPostura" role="button">Limpar</a>
-				<a class="btn btn-dark" href="/gerarPDFPostura">Gerar Relatório</a>
+					href="/cadastrarPostura?data2=${data2}&data4${data4}"
+					style="width: 130px;">
+					<i class="material-icons">search</i> Pesquisar
+				</button>
+				<a class="btn btn-dark" href="/cadastrarPostura" role="button"
+					style="width: 130px;"><i class="material-icons">clear</i>
+					Limpar</a> <a class="btn btn-dark" title="Gerar relatório"
+					href="/gerarPDFPostura" style="width: 130px;"><i
+					class="material-icons">cloud_download</i><span> Relatório</span></a>
 			</form>
 		</div>
 
 		<hr size="30">
 
-		<table class="container table table-bordered">
+		<table class="container table table-bordered ">
 			<thead>
 				<tr>
 					<th>Código</th>
@@ -105,6 +126,7 @@ body {
 					<th>Data de Saida</th>
 					<th>Tipo de Ave</th>
 					<th>Observação</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -116,23 +138,56 @@ body {
 					<td><span th:text="${p.saida2}"></span></td>
 					<td><span th:text="${p.tipoave}"></span></td>
 					<td><span th:text="${p.observacao}"></span></td>
-					<td><a class="btn btn-dark"
-						th:href="|/edicaoPostura/editar/${p.codigo}|">Editar </a> <a
-						class="btn btn-dark"
-						th:href="|/cadastrarPostura/delete/${p.codigo}|">Excluir</a></td>
+					<td><a title="editar"
+						th:href="|/edicaoPostura/editar/${p.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Editar">&#xE254;</i> </a> <a
+						th:href="|/cadastrarPostura/delete/${p.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Deletar">&#xE872;</i></a></td>
+					<!-- data-toggle="modal" data-target="#exampleModal" -->
 				</tr>
 			</tbody>
 		</table>
-	</div>
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Aviso!</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body p-3 mb-2 bg-secondary">Deseja mesmo
+						excluir esse item?</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark" data-dismiss="modal">Não</button>
+						<button type="submit" class="btn btn-dark">Sim</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+
+		<script>
+			$('#exampleModal').modal({hide})
+		</script>
 </body>
 </html>

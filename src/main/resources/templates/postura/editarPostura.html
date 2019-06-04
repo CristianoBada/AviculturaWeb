@@ -14,6 +14,11 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <style>
 body {
 	background:
@@ -63,43 +68,49 @@ body {
 			<input type="hidden" th:field="*{codigo}" />
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="tipo_aves">Tipo de Ave:</label> <select
-						th:field="*{tipoave}" required >
+					<label for="tipo_aves" style="width: 116px;">Tipo de Ave:</label> <select
+						style="width: 130px;" th:field="*{tipoave}" required>
 						<option th:each="item : ${listaAves}" th:value="${item.nomeAve}"
 							th:text="${item.nomeAve}" />
 					</select>
 				</div>
+			</div>
+			<div class="row">
 				<div class="input-field col s1">
-					<label for="Quantidade">Quantidade:</label> <input type="number"
+					<label for="Quantidade" style="width: 116px;">Quantidade:</label> <input style="width: 130px;" type="number"
 						value="0" min="0" th:field="*{quantidade}" required />
 				</div>
 				<div class="input-field col s1">
-					<label for="max_aves">Maximo de aves:</label> <input type="number"
-						value="0" min="0" th:field="*{maximo}" required />
+					<label for="max_aves" style="width: 120px;">Maximo de aves:</label> <input type="number"
+						value="0" min="0" th:field="*{maximo}" style="width: 130px;" required />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
-					<label for="data_entrada">Data de Entrada:</label> <input
-						type="date" value="" th:field="*{entrada}" placeholder="" required />
+					<label for="data_entrada" >Data de Entrada:</label> <input
+						style="width: 130px;" type="date" value="" th:field="*{entrada}"
+						placeholder="" required />
 				</div>
-				<div class="input-field col s2">
-					<label for="data_saida">Data de saida:</label> <input type="date"
-						value="" th:field="*{saida}" placeholder="" />
+				<div class="input-field col s10">
+					<label for="data_saida" style="width: 120px;">Data de saida:</label> <input type="date"
+						value="" th:field="*{saida}" style="width: 130px;" placeholder="" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s10">
-					<label for="comentario">Observação</label> <input id="input_text"
-						type="text" value="" th:field="*{observacao}" 
-						 maxlength="100" />
+					<label for="comentario" style="width: 116px;">Observação:</label> <input
+						id="input_text" type="text" value="" th:field="*{observacao}"
+						maxlength="100" style="width: 704px;" />
 				</div>
 			</div>
 
 			<hr size="30">
 
-			<button class="btn btn-dark" type="submit">Salvar</button>
-			<a href="/cadastrarPostura" class="btn btn-dark">Voltar</a>
+			<button class="btn btn-dark" type="submit">
+				<i class="material-icons">save</i> Salvar
+			</button>
+			<a href="/cadastrarPostura" class="btn btn-dark"><i
+				class="material-icons">undo</i> Voltar</a>
 		</form>
 	</div>
 
