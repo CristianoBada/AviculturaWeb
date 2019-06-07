@@ -17,10 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 import com.herokuapp.cristcc2.Entidades.Corte;
+import com.herokuapp.cristcc2.Entidades.Racao;
 import com.herokuapp.cristcc2.Entidades.TipoAve;
+import com.herokuapp.cristcc2.Entidades.Vacina;
 import com.herokuapp.cristcc2.Relatorios.PdfCorteReportView;
 import com.herokuapp.cristcc2.Repository.CorteRepository;
+import com.herokuapp.cristcc2.Repository.RacaoRepository;
 import com.herokuapp.cristcc2.Repository.TipoAveRepository;
+import com.herokuapp.cristcc2.Repository.VacinasRepository;
 import com.herokuapp.cristcc2.Uteis.Convercoes;
 
 @Controller
@@ -31,7 +35,13 @@ public class CorteController {
 
 	@Autowired
 	private TipoAveRepository tr;
-	
+
+	@Autowired
+	private VacinasRepository vacinasRepository;
+
+	@Autowired
+	private RacaoRepository racaoRepository;
+
 	private List<Corte> lista = new ArrayList<>();
 
 	// Busca lista
@@ -74,7 +84,19 @@ public class CorteController {
 	@RequestMapping("/cadastrarCorte/delete/{codigo}") // @PathVariable Long id, RedirectAttributes redirectAttrs
 	public String deletarCorte(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Corte corte = cr.findByCodigo(codigo);
-		cr.delete(corte);
+
+		List<Vacina> vacinas = vacinasRepository.findByCorte(corte.getCodigo());
+		if (vacinas.size() > 0) {
+			redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado em um tratamento.");
+		} else {
+			List<Racao> racaos = racaoRepository.findByCorte(corte.getCodigo());
+			if (racaos.size() > 0) {
+				redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado em um lote de Ração.");
+			} else {
+				cr.delete(corte);
+			}
+		}
+
 		return "redirect:/cadastrarCorte";
 	}
 
@@ -103,57 +125,57 @@ public class CorteController {
 
 		return new ModelAndView(new PdfCorteReportView(), "corteList", list);
 	}
-	
+
 	// pesquisar
-		@RequestMapping(value = "/cadastrarCorte", method = RequestMethod.POST)
-		public String pesquisarCorte(String data2, String data4, Model model, @Valid Corte corte,
-				BindingResult result, RedirectAttributes attributes) {
-			lista = retornaLista(corte, data2, data4);
-			model.addAttribute("listaCorte", lista);
-			Iterable<TipoAve> listaTA = tr.findAll();
-			model.addAttribute("listaAves", listaTA);
-			return "corte/cadastrarCorte";
+	@RequestMapping(value = "/cadastrarCorte", method = RequestMethod.POST)
+	public String pesquisarCorte(String data2, String data4, Model model, @Valid Corte corte, BindingResult result,
+			RedirectAttributes attributes) {
+		lista = retornaLista(corte, data2, data4);
+		model.addAttribute("listaCorte", lista);
+		Iterable<TipoAve> listaTA = tr.findAll();
+		model.addAttribute("listaAves", listaTA);
+		return "corte/cadastrarCorte";
+	}
+
+	private List<Corte> retornaLista(Corte corte, String data2, String data4) {
+		int key = 0;
+		if (corte.getEntrada().length() > 0 && data2.length() > 0) {
+			key += 1;
+		}
+		if (corte.getSaida().length() > 0 && data4.length() > 0) {
+			key += 2;
+		}
+		if (!corte.getTipoave().equals("Todos")) {
+			key += 4;
 		}
 
-		private List<Corte> retornaLista(Corte corte, String data2, String data4) {
-			int key = 0;
-			if (corte.getEntrada().length() > 0 && data2.length() > 0) {
-				key += 1;
-			}
-			if (corte.getSaida().length() > 0 && data4.length() > 0) {
-				key += 2;
-			}
-			if (!corte.getTipoave().equals("Todos")) {
-				key += 4;
-			}
-
-			switch (key) {
-			case 0:
-				lista = cr.findAll();
-				break;
-			case 1:
-				lista = cr.findByEntradaBetween(corte.getEntrada(), data2);
-				break;
-			case 2:
-				lista = cr.findBySaidaBetween(corte.getSaida(), data4);
-				break;
-			case 3:
-				lista = cr.findByEntradaBetweenAndSaidaBetween(corte.getEntrada(), data2, corte.getSaida(), data4);
-				break;
-			case 4:
-				lista = cr.findByTipoave(corte.getTipoave());
-				break;
-			case 5:
-				lista = cr.findByEntradaBetweenAndTipoave(corte.getEntrada(), data2, corte.getTipoave());
-				break;
-			case 6:
-				lista = cr.findBySaidaBetweenAndTipoave(corte.getSaida(), data4, corte.getTipoave());
-				break;
-			case 7:
-				lista = cr.findByEntradaBetweenAndSaidaBetweenAndTipoave(corte.getEntrada(), data2, corte.getSaida(),
-						data4, corte.getTipoave());
-				break;
-			}
-			return lista;
+		switch (key) {
+		case 0:
+			lista = cr.findAll();
+			break;
+		case 1:
+			lista = cr.findByEntradaBetween(corte.getEntrada(), data2);
+			break;
+		case 2:
+			lista = cr.findBySaidaBetween(corte.getSaida(), data4);
+			break;
+		case 3:
+			lista = cr.findByEntradaBetweenAndSaidaBetween(corte.getEntrada(), data2, corte.getSaida(), data4);
+			break;
+		case 4:
+			lista = cr.findByTipoave(corte.getTipoave());
+			break;
+		case 5:
+			lista = cr.findByEntradaBetweenAndTipoave(corte.getEntrada(), data2, corte.getTipoave());
+			break;
+		case 6:
+			lista = cr.findBySaidaBetweenAndTipoave(corte.getSaida(), data4, corte.getTipoave());
+			break;
+		case 7:
+			lista = cr.findByEntradaBetweenAndSaidaBetweenAndTipoave(corte.getEntrada(), data2, corte.getSaida(), data4,
+					corte.getTipoave());
+			break;
 		}
+		return lista;
+	}
 }

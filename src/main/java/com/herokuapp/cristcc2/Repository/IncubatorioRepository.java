@@ -15,4 +15,6 @@ public interface IncubatorioRepository extends JpaRepository<Incubatorio, String
 	List<Incubatorio> findByTipoave(String tipoave);
 	
 	List<Incubatorio> findByInicioBetweenAndTipoave(String data1, String data2, String tipoave);
+	
+	List<Incubatorio> findByOvos(long ovos);
 }

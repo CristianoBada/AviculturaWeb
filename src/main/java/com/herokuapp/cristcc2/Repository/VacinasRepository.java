@@ -22,4 +22,6 @@ public interface VacinasRepository extends JpaRepository<Vacina, Long> {
 	List<Vacina> findByDataBetweenAndTipo(String data1, String data2, String tipo);
 	
 	List<Vacina> findByPostura(long postura);
+	
+	List<Vacina> findByCorte(long corte);
 }

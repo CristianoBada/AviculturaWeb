@@ -16,4 +16,6 @@ public interface RacaoRepository extends JpaRepository<Racao, String>{
 	List<Racao> findByTiporacaoAndDataBetween(String tipo, String data, String data2);
 	
 	List<Racao> findByPostura(long postura);
+	
+	List<Racao> findByCorte(long corte);
 }

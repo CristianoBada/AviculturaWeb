@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.herokuapp.cristcc2.Entidades.Incubatorio;
 import com.herokuapp.cristcc2.Entidades.Ovos;
 import com.herokuapp.cristcc2.Entidades.Postura;
 import com.herokuapp.cristcc2.Entidades.TipoAve;
 import com.herokuapp.cristcc2.Relatorios.PdfOvosReportView;
+import com.herokuapp.cristcc2.Repository.IncubatorioRepository;
 import com.herokuapp.cristcc2.Repository.OvosRepository;
 import com.herokuapp.cristcc2.Repository.PosturaRepository;
 import com.herokuapp.cristcc2.Repository.TipoAveRepository;
@@ -35,6 +37,9 @@ public class OvosController {
 
 	@Autowired
 	private PosturaRepository pr;
+
+	@Autowired
+	private IncubatorioRepository incubatorioRepository;
 
 	private List<Ovos> lista = new ArrayList<>();
 
@@ -80,7 +85,12 @@ public class OvosController {
 	@RequestMapping("/cadastrarOvos/delete/{codigo}") // @PathVariable Long id, RedirectAttributes redirectAttrs
 	public String deletarOvos(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Ovos ovos = ovosr.findByCodigo(codigo);
-		ovosr.delete(ovos);
+		List<Incubatorio> incubatorios = incubatorioRepository.findByOvos(ovos.getCodigo());
+		if (incubatorios.size() > 0) {
+			redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado na incubação.");
+		} else {
+			ovosr.delete(ovos);
+		}
 		return "redirect:/cadastrarOvos";
 	}
 
