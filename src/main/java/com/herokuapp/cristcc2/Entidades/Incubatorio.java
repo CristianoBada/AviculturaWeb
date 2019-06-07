@@ -19,9 +19,9 @@ public class Incubatorio implements Serializable {
 	private long codigo;
 
 	@NotNull
-	private Integer temperatura;
+	private Double temperatura;
 
-	private Integer umidade;
+	private Integer umidade = 0;
 
 	private Integer tempo = 0;
 
@@ -63,11 +63,11 @@ public class Incubatorio implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public Integer getTemperatura() {
+	public Double getTemperatura() {
 		return temperatura;
 	}
 
-	public void setTemperatura(Integer temperatura) {
+	public void setTemperatura(Double temperatura) {
 		this.temperatura = temperatura;
 	}
 

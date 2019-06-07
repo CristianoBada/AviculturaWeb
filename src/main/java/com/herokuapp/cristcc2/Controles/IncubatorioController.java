@@ -67,8 +67,21 @@ public class IncubatorioController {
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-			return "redirect:/edicaoIncubatorio";
+			return "redirect:/edicaoIncubatorio/novo";
 		} else {
+			if (incubatorio.getTemperatura() > 38.0 || incubatorio.getTemperatura() < 36.8 ) {
+				attributes.addFlashAttribute("mensagem", "A temperatura tem que ser entre 36,8°C e 38°C. Recomenda-se entre 37,4°C e 37,8°C");
+				return "redirect:/edicaoIncubatorio/novo";
+			}
+			if (incubatorio.getMortalidade() != null && incubatorio.getMortalidade() < 0) {
+				attributes.addFlashAttribute("mensagem", "o numero mortalidade não pode ser negativo.");
+				return "redirect:/edicaoIncubatorio/novo";
+			}
+			
+			if (incubatorio.getUmidade() != null && (incubatorio.getUmidade() < 65 || incubatorio.getUmidade() > 75)) {
+				attributes.addFlashAttribute("mensagem", "A umidade relativa do ar deve se manter entre 65% e 75%.");
+				return "redirect:/edicaoIncubatorio/novo";
+			}
 			Convercoes convercoes = new Convercoes();
 			incubatorio.setInicio2(convercoes.convertDateUStoDataBR(incubatorio.getInicio()));
 			incubatorio.setTipoave(ovr.findByCodigo(incubatorio.getOvos()).getTipoave());

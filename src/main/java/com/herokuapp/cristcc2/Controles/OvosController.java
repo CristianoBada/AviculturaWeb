@@ -50,9 +50,12 @@ public class OvosController {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoOvos";
 		} else {
+			if (ovos.getQuantidade() < 1) {
+				attributes.addFlashAttribute("mensagem", "Quantidade não pode ser menor ou igual a zero.");
+				return "redirect:/edicaoOvos/novo";
+			}
+			
 			Convercoes convercoes = new Convercoes();
-			System.out.println("01");
-			System.out.println(pr.findByCodigo(ovos.getPostura()).getTipoave());
 			ovos.setTipoave(pr.findByCodigo(ovos.getPostura()).getTipoave());
 			ovos.setData2(convercoes.convertDateUStoDataBR(ovos.getData()));
 			ovosr.save(ovos);

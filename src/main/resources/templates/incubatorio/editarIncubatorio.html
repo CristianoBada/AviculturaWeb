@@ -63,9 +63,8 @@ body {
 	</header>
 	<br />
 
-	<th:block th:include="mensagemValidacao"></th:block>
-
 	<div class="container p-3 mb-2 bg-secondary">
+		<th:block th:include="mensagemValidacao"></th:block>
 		<form th:object="${incubatorio}"
 			th:action="@{/edicaoIncubatorio/save}" method="post">
 			<input type="hidden" th:field="*{codigo}" />
@@ -88,8 +87,8 @@ body {
 						value="" th:field="*{inicio}" placeholder="" required />
 				</div>
 				<div class="input-field col s1">
-					<label for="temperatura">Temperatura (°C):</label> <input
-						type="number" value="0" th:field="*{temperatura}" required />
+					<label for="temperatura">Temperatura (°C):</label> <input type="number"
+						step="any"  th:field="*{temperatura}" required />
 				</div>
 				<div class="input-field col s1">
 					<label for="umidade">Umidade:</label> <input type="number"

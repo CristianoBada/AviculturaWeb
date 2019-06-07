@@ -64,9 +64,10 @@ body {
 	</header>
 	<br />
 
-	<th:block th:include="mensagemValidacao"></th:block>
+
 
 	<div class="container p-3 mb-2 bg-secondary">
+		<th:block th:include="mensagemValidacao"></th:block>
 		<form th:object="${ovos}" th:action="@{/edicaoOvos/save}"
 			method="post">
 			<input type="hidden" th:field="*{codigo}" />
