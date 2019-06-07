@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
+<html lang="pt" xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>Cadastro Rações</title>
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -13,12 +14,28 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<style>
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
 body {
 	background:
 		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
 }
+
+.table td {
+	text-align: center;
+}
+
+.table th {
+	text-align: center;
+}
 </style>
+
+
 </head>
 <body>
 	<header>
@@ -73,11 +90,17 @@ body {
 
 				<hr size="30">
 				<a href="/edicaoRacoes/novo" class="btn btn-dark"
-					title="Criar novo lote de Ração">Novo</a>
+					title="Criar novo lote de Ração" style="width: 130px;"><i
+					class="material-icons">add</i> Novo</a>
 				<button type="submit" class="btn btn-dark"
-					href="/cadastrarRacoes?data2=${data2}">Pesquisar</button>
-				<a class="btn btn-dark" href="/cadastrarRacoes" role="button">Limpar</a>
-				<a class="btn btn-dark" href="/gerarPDFRacoes">Gerar Relatório</a>
+					href="/cadastrarRacoes?data2=${data2}" style="width: 130px;">
+					<i class="material-icons">search</i> Pesquisar
+				</button>
+				<a class="btn btn-dark" href="/cadastrarRacoes" role="button"
+					style="width: 130px;"><i class="material-icons">clear</i>
+					Limpar</a> <a class="btn btn-dark" href="/gerarPDFRacoes"
+					style="width: 130px;"><i class="material-icons">cloud_download</i><span>
+						Relatório</a>
 			</form>
 		</div>
 
@@ -92,6 +115,7 @@ body {
 					<th>Data</th>
 					<th>Cód. Postura</th>
 					<th>Cód. Corte</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -102,10 +126,12 @@ body {
 					<td><span th:text="${ra.data2}"></span></td>
 					<td><span th:text="${ra.postura}"></span></td>
 					<td><span th:text="${ra.corte}"></span></td>
-					<td><a class="btn btn-dark"
-						th:href="|/edicaoRacoes/editar/${ra.codigo}|">Editar </a> <a
-						class="btn btn-dark"
-						th:href="|/cadastrarRacoes/delete/${ra.codigo}|">Excluir</a></td>
+					<td><a th:href="|/edicaoRacoes/editar/${ra.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Editar">&#xE254;</i> </a> <a
+						th:href="|/cadastrarRacoes/delete/${ra.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Deletar">&#xE872;</i></a></td>
 				</tr>
 			</tbody>
 		</table>

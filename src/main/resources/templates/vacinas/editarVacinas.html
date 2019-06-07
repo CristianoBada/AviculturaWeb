@@ -13,10 +13,18 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <title>Edição Vacinas</title>
 
 <style>
-	body {background: url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)}
+body {
+	background:
+		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
 </style>
 
 </head>
@@ -67,7 +75,7 @@
 				</div>
 				<div class="input-field col s2">
 					<label for="data">Data: </label> <input type="date" value=""
-						th:field="*{data}" placeholder="" required/>
+						th:field="*{data}" placeholder="" required />
 				</div>
 			</div>
 			<div class="row">
@@ -95,12 +103,15 @@
 						data-length="100" />
 				</div>
 			</div>
-			
+
 			<hr size="30">
 
 			<!--button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">save</i>Salvar</button-->
-			<button type="submit" class="btn btn-dark">Salvar</button>
-			<a class="btn btn-dark" href="/cadastrarVacinas" role="button">Voltar</a>
+			<button type="submit" class="btn btn-dark">
+				<i class="material-icons">save</i> Salvar
+			</button>
+			<a class="btn btn-dark" href="/cadastrarVacinas" role="button"><i
+				class="material-icons">undo</i> Voltar</a>
 		</form>
 	</div>
 

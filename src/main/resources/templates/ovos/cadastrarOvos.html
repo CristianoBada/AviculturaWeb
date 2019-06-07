@@ -13,10 +13,24 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<style>
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
 body {
 	background:
 		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
+
+.table td {
+	text-align: center;
+}
+
+.table th {
+	text-align: center;
 }
 </style>
 </head>
@@ -76,11 +90,17 @@ body {
 					</div>
 				</div>
 				<hr size="30">
-				<a href="/edicaoOvos/novo" class="btn btn-dark">Novo</a>
+				<a href="/edicaoOvos/novo" class="btn btn-dark"
+					style="width: 130px;"><i class="material-icons">add</i> Novo</a>
 				<button type="submit" class="btn btn-dark"
-					href="/cadastrarOvos?data2=${data2}">Pesquisar</button>
-				<a class="btn btn-dark" href="/cadastrarOvos" role="button">Limpar</a>
-				<a class="btn btn-dark" href="/gerarPDFOvos">Gerar Relatório</a>
+					href="/cadastrarOvos?data2=${data2}" style="width: 130px;">
+					<i class="material-icons">search</i> Pesquisar
+				</button>
+				<a class="btn btn-dark" href="/cadastrarOvos" role="button"
+					style="width: 130px;"><i class="material-icons">clear</i>
+					Limpar</a> <a class="btn btn-dark" href="/gerarPDFOvos"
+					style="width: 130px;"><i class="material-icons">cloud_download</i>
+					Relatório</a>
 			</form>
 		</div>
 		<hr size="30">
@@ -93,6 +113,7 @@ body {
 					<th>Qualidade</th>
 					<th>Data de produção</th>
 					<th>Tipo de ave</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -103,10 +124,12 @@ body {
 					<td><span th:text="${ovos.qualidade}"></span></td>
 					<td><span th:text="${ovos.data2}"></span></td>
 					<td><span th:text="${ovos.tipoave}"></span></td>
-					<td><a class="btn btn-dark"
-						th:href="|/edicaoOvos/editar/${ovos.codigo}|">Editar</a> <a
-						class="btn btn-dark"
-						th:href="|/cadastrarOvos/delete/${ovos.codigo}|">Excluir</a></td>
+					<td><a th:href="|/edicaoOvos/editar/${ovos.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Editar">&#xE254;</i></a> <a
+						th:href="|/cadastrarOvos/delete/${ovos.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Deletar">&#xE872;</i></a></td>
 				</tr>
 			</tbody>
 		</table>

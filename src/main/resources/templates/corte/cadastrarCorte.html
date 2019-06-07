@@ -13,14 +13,27 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<style>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
 body {
 	background:
 		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
 }
+
+.table td {
+	text-align: center;
+}
+
+.table th {
+	text-align: center;
+}
 </style>
 </head>
-<body >
+<body>
 	<header>
 		<!-- Inicio do menu -->
 		<nav
@@ -81,10 +94,18 @@ body {
 					</div>
 				</div>
 				<hr size="30">
-				<a href="/edicaoCorte/novo" class="btn btn-dark">Novo</a> <button type="submit" class="btn btn-dark"
-					href="/cadastrarCorte?data2=${data2}&data4${data4}">Pesquisar</button>
-				<a class="btn btn-dark" href="/cadastrarCorte" role="button">Limpar</a> <a
-					class="btn btn-dark" href="/gerarPDFCorte">Gerar Relatório</a>
+				<a href="/edicaoCorte/novo" class="btn btn-dark"
+					style="width: 130px;"><i class="material-icons">add</i> Novo</a>
+				<button type="submit" class="btn btn-dark"
+					href="/cadastrarCorte?data2=${data2}&data4${data4}"
+					style="width: 130px;">
+					<i class="material-icons">search</i> Pesquisar
+				</button>
+				<a class="btn btn-dark" href="/cadastrarCorte" role="button"
+					style="width: 130px;"><i class="material-icons">clear</i>
+					Limpar</a> <a class="btn btn-dark" href="/gerarPDFCorte"
+					style="width: 130px;"><i class="material-icons">cloud_download</i><span>
+						Relatório</a>
 			</form>
 		</div>
 		<hr size="30">
@@ -99,6 +120,7 @@ body {
 					<th>Data Saida</th>
 					<th>Tipo de Ave</th>
 					<th>Observação</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -111,10 +133,12 @@ body {
 					<td><span th:text="${co.saida2}"></span></td>
 					<td><span th:text="${co.tipoave}"></span></td>
 					<td><span th:text="${co.observacao}"></span></td>
-					<td><a class="btn btn-dark"
-						th:href="|/edicaoCorte/editar/${co.codigo}|">Editar </a> <a
-						class="btn btn-dark"
-						th:href="|/cadastrarCorte/delete/${co.codigo}|">Excluir</a></td>
+					<td><a th:href="|/edicaoCorte/editar/${co.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Editar">&#xE254;</i> </a> <a
+						th:href="|/cadastrarCorte/delete/${co.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Deletar">&#xE872;</i></a></td>
 				</tr>
 			</tbody>
 		</table>

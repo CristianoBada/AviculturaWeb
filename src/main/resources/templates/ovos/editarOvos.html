@@ -14,6 +14,11 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <style>
 body {
 	background:
@@ -70,7 +75,7 @@ body {
 					<label for="postura">Código Postura:</label> <select
 						th:field="*{postura}" required>
 						<option th:each="item : ${listaPostura}" th:value="${item.codigo}"
-							th:text="${item.codigo} +' '+ ${item.tipoave}"/>
+							th:text="${item.codigo} +' '+ ${item.tipoave}" />
 					</select>
 				</div>
 				<div class="input-field col s1">
@@ -85,12 +90,16 @@ body {
 				</div>
 				<div class="input-field col s2">
 					<label for="qualidade">Qualidade:</label> <input id="input_text"
-						type="text" value="" th:field="*{qualidade}" data-length="15" maxlength="15"/>
+						type="text" value="" th:field="*{qualidade}" data-length="15"
+						maxlength="15" />
 				</div>
 			</div>
 
-			<button class="btn btn-dark" type="submit">Salvar</button>
-			<a href="/cadastrarOvos" class="btn btn-dark">Voltar</a>
+			<button class="btn btn-dark" type="submit">
+				<i class="material-icons">save</i> Salvar
+			</button>
+			<a href="/cadastrarOvos" class="btn btn-dark"><i
+				class="material-icons">undo</i> Voltar</a>
 		</form>
 	</div>
 

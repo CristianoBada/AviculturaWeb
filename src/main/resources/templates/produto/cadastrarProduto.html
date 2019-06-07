@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<title>Cadastro Produto</title>
-	<!-- Required meta tags -->
+<title>Cadastro Produto</title>
+<!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +13,13 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<style>
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
 body {
 	background:
 		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
@@ -23,53 +29,56 @@ body {
 <body>
 
 	<header>
-  		<!-- Inicio do menu -->
-	<nav
-		class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class=" navbar-brand" href="#">ASF - Avicultura</a>
+		<!-- Inicio do menu -->
+		<nav
+			class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class=" navbar-brand" href="#">ASF - Avicultura</a>
 
-		<div class="container collapse navbar-collapse"
-			id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarPostura">Postura</a></li>
-				<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarIncubatorio">Incubatório</a></li>
-				<li class="nav-item"><a class="nav-link" href="/cadastrarCorte">Corte</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarRacoes">Rações</a></li>
-				<li class="nav-item "><a class="nav-link"
-					href="/cadastrarVacinas">Vacinas</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/cadastrarFinanceiro">Financeiro</a></li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<div class="container collapse navbar-collapse"
+				id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarPostura">Postura</a></li>
+					<li class="nav-item"><a class="nav-link" href="/cadastrarOvos">Ovos</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarIncubatorio">Incubatório</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarCorte">Corte</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarRacoes">Rações</a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/cadastrarVacinas">Vacinas</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/cadastrarFinanceiro">Financeiro</a></li>
 				</ul>
-			</form>
-		</div>
-	</nav>
-	<!-- Fim do menu -->
+				<form class="form-inline my-2 my-lg-0">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+					</ul>
+				</form>
+			</div>
+		</nav>
+		<!-- Fim do menu -->
 	</header>
-	<br/>
-	
+	<br />
+
 	<div class="container p-3 mb-2 bg-secondary">
-	<th:block th:include="mensagemValidacao"></th:block>
-		<form  method="post">
+		<th:block th:include="mensagemValidacao"></th:block>
+		<form method="post">
 			<div class="row">
 				<div class="input-field col s3">
-					<label for="tipo_aves">Nome do produto</label>
-					<input id="input_text" type="text" value="" name="nomeProduto" data-length="20" required />
+					<label for="tipo_aves">Nome do produto</label> <input
+						id="input_text" type="text" value="" name="nomeProduto"
+						data-length="20" required />
 				</div>
 			</div>
-			
+
 			<hr size="30">
-			
-			<button class="btn btn-dark" type="submit">Salvar</button>
-			<a href="/" class="btn btn-dark">Voltar</a>
+
+			<button class="btn btn-dark" type="submit"><i class="material-icons">save</i> Salvar</button>
+			<a href="/" class="btn btn-dark"><i
+				class="material-icons">undo</i> Voltar</a>
 		</form>
 	</div>
 

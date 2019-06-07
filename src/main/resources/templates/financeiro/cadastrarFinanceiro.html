@@ -13,10 +13,23 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<style>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
 body {
 	background:
 		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
+
+.table td {
+	text-align: center;
+}
+
+.table th {
+	text-align: center;
 }
 </style>
 </head>
@@ -60,33 +73,40 @@ body {
 			<form method="post">
 				<div class="row">
 					<div class="input-field col s2">
-						<label for="data_tratamento">Tipo de Transisão:</label> <select name=entrasaida>
+						<label for="data_tratamento">Tipo de Transisão:</label> <select
+							name=entrasaida>
 							<option th:value="Todos" th:text="Todos"></option>
 							<option th:value="entrada" th:text="entrada"></option>
 							<option th:value="saida" th:text="saida"></option>
 						</select>
 					</div>
 					<div class="input-field col s2">
-						<label for="entrada">Data:</label> <input type="date"
-							value="" name="data" /> <label for="data2"> a </label> <input
-							type="date" value="" name="data2" />
+						<label for="entrada">Data:</label> <input type="date" value=""
+							name="data" /> <label for="data2"> a </label> <input type="date"
+							value="" name="data2" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s2">
 						<label for="nome">Produto:</label> <select name="nome">
 							<option th:value="Todos" th:text="Todos"></option>
-							<option th:each="item : ${listaProdutos}" th:value="${item.nomeProduto}"
-								th:text="${item.nomeProduto}" />
+							<option th:each="item : ${listaProdutos}"
+								th:value="${item.nomeProduto}" th:text="${item.nomeProduto}" />
 						</select>
 					</div>
 				</div>
 				<hr size="30">
-				<a href="/edicaoFinanceiro/novo" class="btn btn-dark">Novo</a>
+				<a href="/edicaoFinanceiro/novo" class="btn btn-dark"
+					style="width: 130px;"><i class="material-icons">add</i> Novo</a>
 				<button type="submit" class="btn btn-dark"
-					href="/cadastrarFinanceiro?data2=${data2}">Pesquisar</button>
-				<a class="btn btn-dark" href="/cadastrarFinanceiro" role="button">Limpar</a> <a
-					class="btn btn-dark" href="/gerarPDFFinanceiro">Gerar Relatório</a>
+					href="/cadastrarFinanceiro?data2=${data2}" style="width: 130px;">
+					<i class="material-icons">search</i> Pesquisar
+				</button>
+				<a class="btn btn-dark" href="/cadastrarFinanceiro" role="button"
+					style="width: 130px;"><i class="material-icons">clear</i>
+					Limpar</a> <a class="btn btn-dark" href="/gerarPDFFinanceiro"
+					style="width: 130px;"><i class="material-icons">cloud_download</i><span>
+						Relatório</a>
 			</form>
 		</div>
 
@@ -101,6 +121,7 @@ body {
 					<th>Data</th>
 					<th>Tipo de transicao</th>
 					<th>Observação</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -111,10 +132,12 @@ body {
 					<td><span th:text="${co.data2}"></span></td>
 					<td><span th:text="${co.entrasaida}"></span></td>
 					<td><span th:text="${co.observacao}"></span></td>
-					<td><a class="btn btn-dark"
-						th:href="|/edicaoFinanceiro/editar/${co.codigo}|">Editar </a> <a
-						class="btn btn-dark"
-						th:href="|/cadastrarFinanceiro/delete/${co.codigo}|">Excluir</a></td>
+					<td><a th:href="|/edicaoFinanceiro/editar/${co.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Editar">&#xE254;</i> </a> <a
+						th:href="|/cadastrarFinanceiro/delete/${co.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Deletar">&#xE872;</i></a></td>
 				</tr>
 			</tbody>
 		</table>

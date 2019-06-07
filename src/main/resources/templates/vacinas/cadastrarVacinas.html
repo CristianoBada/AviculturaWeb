@@ -15,10 +15,23 @@
 	crossorigin="anonymous">
 
 <title>Cadastro Vacinas</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <style>
 body {
 	background:
 		url(https://previews.123rf.com/images/intueri/intueri1610/intueri161000027/63789053-farm-birds-seamless-pattern-chickens-geese-ducks-turkey-packaging-farm-products-hand-drawn-vector.jpg)
+}
+
+.table td {
+	text-align: center;
+}
+
+.table th {
+	text-align: center;
 }
 </style>
 </head>
@@ -64,8 +77,8 @@ body {
 					</div>
 					<div class="input-field col s2">
 						<label for="data">Data:</label> <input type="date" value=""
-							name="data" /> <label for="data2"> a </label>  <input type="date" value=""
-							name="data2" />
+							name="data" /> <label for="data2"> a </label> <input type="date"
+							value="" name="data2" />
 					</div>
 					<div class="input-field col s2">
 						<label for="tipo_tratamento">Tipo:</label> <input type="text"
@@ -73,11 +86,17 @@ body {
 					</div>
 				</div>
 				<hr size="30">
-				<a class="btn btn-dark" href="/edicaoVacinas/novo" role="button">Novo</a>
+				<a class="btn btn-dark" href="/edicaoVacinas/novo" role="button"
+					style="width: 130px;"><i class="material-icons">add</i> Novo</a>
 				<button type="submit" class="btn btn-dark"
-					href="/cadastrarVacinas?data2=${data2}">Pesquisar</button>
-				<a class="btn btn-dark" href="/cadastrarVacinas" role="button">Limpar</a>
-				<a class="btn btn-dark" href="/gerarPDFVacinas">Gerar Relatório</a>
+					href="/cadastrarVacinas?data2=${data2}" style="width: 130px;">
+					<i class="material-icons">search</i> Pesquisar
+				</button>
+				<a class="btn btn-dark" href="/cadastrarVacinas" role="button"
+					style="width: 130px;"><i class="material-icons">clear</i>
+					Limpar</a> <a class="btn btn-dark" href="/gerarPDFVacinas"
+					style="width: 130px;"><i class="material-icons">cloud_download</i><span>
+						Relatório</a>
 			</form>
 		</div>
 		<hr size="30">
@@ -89,7 +108,8 @@ body {
 					<th>Data</th>
 					<th>Cód. Postura</th>
 					<th>Cód. Corte</th>
-					<th>Observação</th>					
+					<th>Observação</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -100,10 +120,12 @@ body {
 					<td><span th:text="${v.postura}"></span></td>
 					<td><span th:text="${v.corte}"></span></td>
 					<td><span th:text="${v.observacao}"></span></td>
-					<td><a class="btn btn-dark"
-						th:href="|/edicaoVacinas/editar/${v.codigo}|">Editar </a> <a
-						class="btn btn-dark"
-						th:href="|/cadastrarVacinas/delete/${v.codigo}|">Excluir</a></td>
+					<td><a th:href="|/edicaoVacinas/editar/${v.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Editar">&#xE254;</i> </a> <a
+						th:href="|/cadastrarVacinas/delete/${v.codigo}|"><i
+							class="material-icons" data-toggle="tooltip"
+							style="color: black;" title="Deletar">&#xE872;</i></a></td>
 				</tr>
 			</tbody>
 		</table>

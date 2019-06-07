@@ -13,6 +13,11 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <style>
 body {
@@ -66,7 +71,7 @@ body {
 			<div class="row">
 				<div class="input-field col s3">
 					<label for="nome">Nome do produto:</label> <select
-						th:field="*{nome}" required >
+						th:field="*{nome}" required>
 						<option th:each="item : ${listaProdutos}"
 							th:value="${item.nomeProduto}" th:text="${item.nomeProduto}" />
 					</select>
@@ -84,11 +89,11 @@ body {
 			<div class="row">
 				<div class="input-field col s2">
 					<label for="tipo_transicao">Tipo de trasição:</label> <select
-						th:field="*{entrasaida}" required >
-						<option th:each="item : ${itemSelecionado}"
-							th:value="${item}" th:text="${item}" />
-						<option th:each="item : ${item}"
-							th:value="${item}" th:text="${item}" />
+						th:field="*{entrasaida}" required>
+						<option th:each="item : ${itemSelecionado}" th:value="${item}"
+							th:text="${item}" />
+						<option th:each="item : ${item}" th:value="${item}"
+							th:text="${item}" />
 					</select>
 				</div>
 				<div class="input-field col s4">
@@ -99,8 +104,11 @@ body {
 
 			<hr size="30">
 
-			<button class="btn btn-dark" type="submit">Salvar</button>
-			<a href="/cadastrarFinanceiro" class="btn btn-dark">Voltar</a>
+			<button class="btn btn-dark" type="submit">
+				<i class="material-icons">save</i> Salvar
+			</button>
+			<a href="/cadastrarFinanceiro" class="btn btn-dark"><i
+				class="material-icons">undo</i> Voltar</a>
 		</form>
 	</div>
 
