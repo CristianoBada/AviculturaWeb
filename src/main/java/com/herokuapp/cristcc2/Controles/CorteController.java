@@ -69,8 +69,29 @@ public class CorteController {
 	public String salvarOvos(@Valid Corte corte, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-			return "redirect:/edicaoCorte";
+			return "redirect:/edicaoCorte/novo";
 		} else {
+			if (corte.getQuantidade() > 0) {
+				if (corte.getMaximo() < corte.getQuantidade()) {
+					attributes.addFlashAttribute("mensagem",
+							"Numero maximo de aves não pode ser inferior a quantidade.");
+					return "redirect:/edicaoCorte/novo";
+				}
+			} else {
+				attributes.addFlashAttribute("mensagem",
+						"Quantidade não pode ser menor ou igual a zero.");
+				return "redirect:/edicaoCorte/novo";
+			}
+			if (corte.getSaida().length() > 0
+					&& new Convercoes().comparaDatas(corte.getEntrada(), corte.getSaida())) {
+				attributes.addFlashAttribute("mensagem", "Data saida tem que ser uma data superior a data de entrada.");
+				return "redirect:/edicaoCorte/novo";
+			}
+			if (corte.getMortalidade() != null && corte.getMortalidade() < 0) {
+				attributes.addFlashAttribute("mensagem", "o numero mortalidade não pode ser negativo.");
+				return "redirect:/edicaoCorte/novo";
+			}
+			
 			Convercoes convercoes = new Convercoes();
 			corte.setEntrada2(convercoes.convertDateUStoDataBR((corte.getEntrada())));
 			corte.setSaida2(convercoes.convertDateUStoDataBR((corte.getSaida())));
