@@ -89,6 +89,7 @@ public class RacoesController {
 	public String deletarRacoes(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Racao racao = rr.findByCodigo(codigo);
 		rr.delete(racao);
+		redirectAttrs.addFlashAttribute("mensagem", "Lote deletado com sucesso.");
 		return "redirect:/cadastrarRacoes";
 	}
 

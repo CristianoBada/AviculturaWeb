@@ -135,7 +135,7 @@ public class VacinasController {
 			}
 			vacina.setData2(new Convercoes().convertDateUStoDataBR(vacina.getData().toString()));
 			vr.save(vacina);
-			attributes.addFlashAttribute("mensagem", "Lote de Racao salvo com sucesso!");
+			attributes.addFlashAttribute("mensagem", "Tratamento salvo com sucesso!");
 			return "redirect:/cadastrarVacinas";
 		}
 
@@ -146,6 +146,7 @@ public class VacinasController {
 	public String deletarVacina(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Vacina vacina = vr.findByCodigo(codigo).get(0);
 		vr.delete(vacina);
+		redirectAttrs.addFlashAttribute("mensagem", "Tratamento deletado com sucesso.");
 		return "redirect:/cadastrarVacinas";
 	}
 

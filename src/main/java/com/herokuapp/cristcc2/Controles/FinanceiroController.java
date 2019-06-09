@@ -76,6 +76,7 @@ public class FinanceiroController {
 	public String deletarPostura(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Financeiro fin = fr.findByCodigo(codigo);
 		fr.delete(fin);
+		redirectAttrs.addFlashAttribute("mensagem", "Financeiro deletado com sucesso.");
 		return "redirect:/cadastrarFinanceiro";
 	}
 

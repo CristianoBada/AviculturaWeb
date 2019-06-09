@@ -114,6 +114,7 @@ public class CorteController {
 			if (racaos.size() > 0) {
 				redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado em um lote de Ração.");
 			} else {
+				redirectAttrs.addFlashAttribute("mensagem", "Lote deletado com sucesso.");
 				cr.delete(corte);
 			}
 		}
