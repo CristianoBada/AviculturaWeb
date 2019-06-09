@@ -47,6 +47,8 @@ public class PosturaController {
 	private RacaoRepository racaoRepository;
 
 	private List<Postura> lista = new ArrayList<>();
+	
+	private Postura posturaMen;
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarPostura", method = RequestMethod.GET)
@@ -56,13 +58,16 @@ public class PosturaController {
 		mv.addObject("listaPostura", lista);
 		Iterable<TipoAve> listaTA = tr.findAll();
 		mv.addObject("listaAves", listaTA);
+		posturaMen = null;
 		return mv;
 	}
 
 	// Novo
 	@RequestMapping("/edicaoPostura/novo")
 	public String novoPostura(Model model) {
-		model.addAttribute("postura", new Postura());
+		if (posturaMen == null)
+			posturaMen = new Postura();
+		model.addAttribute("postura", posturaMen);
 		Iterable<TipoAve> listaTA = tr.findAll();
 		model.addAttribute("listaAves", listaTA);
 		return "postura/editarPostura";
@@ -71,6 +76,7 @@ public class PosturaController {
 	// Salvar
 	@RequestMapping(value = "/edicaoPostura/save", method = RequestMethod.POST)
 	public String salvarPostura(@Valid Postura postura, BindingResult result, RedirectAttributes attributes) {
+		posturaMen = postura;
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoPostura/novo";
@@ -98,6 +104,7 @@ public class PosturaController {
 			pr.save(postura);
 			attributes.addFlashAttribute("mensagem",
 					"Lote de postura salvo com sucesso!");
+			posturaMen = null;
 
 			return "redirect:/cadastrarPostura";
 		}
@@ -130,10 +137,10 @@ public class PosturaController {
 	// Editar
 	@RequestMapping("/edicaoPostura/editar/{codigo}")
 	public String editarPostura(@PathVariable Long codigo, Model model) {
-		Postura postura = pr.findByCodigo(codigo);
+		posturaMen = pr.findByCodigo(codigo);
 		Iterable<TipoAve> listaTA = tr.findAll();
 		model.addAttribute("listaAves", listaTA);
-		model.addAttribute("postura", postura);
+		model.addAttribute("postura", posturaMen);
 		return "postura/editarPostura";
 	}
 

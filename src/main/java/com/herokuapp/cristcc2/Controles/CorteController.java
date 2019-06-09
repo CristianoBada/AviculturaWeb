@@ -43,6 +43,8 @@ public class CorteController {
 	private RacaoRepository racaoRepository;
 
 	private List<Corte> lista = new ArrayList<>();
+	
+	private Corte corteMen;
 
 	// Busca lista
 	@RequestMapping(value = "/cadastrarCorte", method = RequestMethod.GET)
@@ -52,13 +54,16 @@ public class CorteController {
 		mv.addObject("listaCorte", lista);
 		Iterable<TipoAve> listaTA = tr.findAll();
 		mv.addObject("listaAves", listaTA);
+		corteMen = null;
 		return mv;
 	}
 
 	// Novo
 	@RequestMapping("/edicaoCorte/novo")
 	public String novoCorte(Model model) {
-		model.addAttribute("corte", new Corte());
+		if (corteMen == null)
+			corteMen = new Corte();
+		model.addAttribute("corte", corteMen);
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
 		return "corte/editarCorte";
@@ -67,6 +72,7 @@ public class CorteController {
 	// Salvar
 	@RequestMapping(value = "/edicaoCorte/save", method = RequestMethod.POST)
 	public String salvarOvos(@Valid Corte corte, BindingResult result, RedirectAttributes attributes) {
+		corteMen = corte;
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoCorte/novo";
@@ -97,6 +103,7 @@ public class CorteController {
 			corte.setSaida2(convercoes.convertDateUStoDataBR((corte.getSaida())));
 			cr.save(corte);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
+			corteMen = null;
 			return "redirect:/cadastrarCorte";
 		}
 	}
@@ -125,16 +132,12 @@ public class CorteController {
 	// Editar
 	@RequestMapping("/edicaoCorte/editar/{codigo}")
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
-		Corte corte = cr.findByCodigo(codigo);
-
-		Convercoes convercoes = new Convercoes();
-		corte.setEntrada(convercoes.convertDateBRtoDataUS(corte.getEntrada()));
-		corte.setSaida(convercoes.convertDateBRtoDataUS(corte.getSaida()));
+		corteMen = cr.findByCodigo(codigo);
 
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
 
-		model.addAttribute("corte", corte);
+		model.addAttribute("corte", corteMen);
 
 		return "corte/editarCorte";
 	}

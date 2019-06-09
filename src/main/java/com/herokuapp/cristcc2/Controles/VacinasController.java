@@ -38,12 +38,15 @@ public class VacinasController {
 	private CorteRepository cr;
 
 	private List<Vacina> lista = new ArrayList<>();
+	
+	private Vacina vacinaMen;
 
 	// Iniciar
 	@RequestMapping(value = "/cadastrarVacinas", method = RequestMethod.GET)
 	public String cadastrarVacinas(Model model) {
 		lista = vr.findAll();
 		model.addAttribute("listaVacinas", lista);
+		vacinaMen = null;
 		return "vacinas/cadastrarVacinas";
 	}
 
@@ -102,7 +105,9 @@ public class VacinasController {
 	// Novo
 	@RequestMapping("/edicaoVacinas/novo")
 	public String edicaoVacina(Model model) {
-		model.addAttribute("vacina", new Vacina());
+		if (vacinaMen == null)
+			vacinaMen = new Vacina();
+		model.addAttribute("vacina", vacinaMen);
 		Iterable<Postura> lista = pr.findAll();
 		model.addAttribute("listaPostura", lista);
 		Iterable<Corte> lista2 = cr.findAll();
@@ -113,8 +118,8 @@ public class VacinasController {
 	// Editar
 	@RequestMapping("/edicaoVacinas/editar/{codigo}")
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
-		Vacina vacina = vr.findByCodigo(codigo).get(0);
-		model.addAttribute("vacina", vacina);
+		vacinaMen = vr.findByCodigo(codigo).get(0);
+		model.addAttribute("vacina", vacinaMen);
 		Iterable<Postura> lista = pr.findAll();
 		model.addAttribute("listaPostura", lista);
 		Iterable<Corte> lista2 = cr.findAll();
@@ -125,7 +130,7 @@ public class VacinasController {
 	// Salvar
 	@RequestMapping(value = "/edicaoVacinas/save", method = RequestMethod.POST)
 	public String salvarVacina(@Valid Vacina vacina, BindingResult bindingResult, RedirectAttributes attributes) throws ParseException {
-
+		vacinaMen = vacina;
 		if (bindingResult.hasErrors()) {
 			return "vacinas/editarVacinas";
 		} else {
@@ -136,6 +141,7 @@ public class VacinasController {
 			vacina.setData2(new Convercoes().convertDateUStoDataBR(vacina.getData().toString()));
 			vr.save(vacina);
 			attributes.addFlashAttribute("mensagem", "Tratamento salvo com sucesso!");
+			vacinaMen = null;
 			return "redirect:/cadastrarVacinas";
 		}
 

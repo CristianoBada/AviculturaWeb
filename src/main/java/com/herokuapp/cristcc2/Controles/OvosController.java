@@ -42,10 +42,13 @@ public class OvosController {
 	private IncubatorioRepository incubatorioRepository;
 
 	private List<Ovos> lista = new ArrayList<>();
+	
+	private Ovos ovosMen;
 
 	// Salvar
 	@RequestMapping(value = "/edicaoOvos/save", method = RequestMethod.POST)
 	public String salvarOvos(@Valid Ovos ovos, BindingResult result, RedirectAttributes attributes) {
+		ovosMen = ovos;
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoOvos";
@@ -60,6 +63,7 @@ public class OvosController {
 			ovos.setData2(convercoes.convertDateUStoDataBR(ovos.getData()));
 			ovosr.save(ovos);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
+			ovosMen = null;
 			return "redirect:/cadastrarOvos";
 		}
 	}
@@ -72,12 +76,15 @@ public class OvosController {
 		mv.addObject("listaOvos", lista);
 		Iterable<TipoAve> listaTA = tr.findAll();
 		mv.addObject("listaAves", listaTA);
+		ovosMen = null;
 		return mv;
 	}
 
 	@RequestMapping("/edicaoOvos/novo")
 	public String novoOvos(Model model) {
-		model.addAttribute("ovos", new Ovos());
+		if (ovosMen == null)
+			ovosMen = new Ovos();
+		model.addAttribute("ovos", ovosMen);
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
 		Iterable<Postura> lista2 = pr.findAll();
@@ -100,15 +107,12 @@ public class OvosController {
 
 	@RequestMapping("/edicaoOvos/editar/{codigo}")
 	public String editarOvos(@PathVariable Long codigo, Model model) {
-		Ovos ovos = ovosr.findByCodigo(codigo);
-
-		Convercoes convercoes = new Convercoes();
-		ovos.setData(convercoes.convertDateBRtoDataUS(ovos.getData()));
+		ovosMen = ovosr.findByCodigo(codigo);
 
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
 
-		model.addAttribute("ovos", ovos);
+		model.addAttribute("ovos", ovosMen);
 
 		Iterable<Postura> lista2 = pr.findAll();
 		model.addAttribute("listaPostura", lista2);

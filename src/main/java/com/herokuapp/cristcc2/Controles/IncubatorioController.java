@@ -38,6 +38,8 @@ public class IncubatorioController {
 	private OvosRepository ovr;
 	
 	private List<Incubatorio> lista = new ArrayList<>();
+	
+	private Incubatorio incubatorioMen;
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarIncubatorio", method = RequestMethod.GET)
@@ -47,13 +49,16 @@ public class IncubatorioController {
 		mv.addObject("listaIncubatorio", lista);
 		Iterable<TipoAve> lista2 = tr.findAll();
 		mv.addObject("listaAves", lista2);
+		incubatorioMen = null;
 		return mv;
 	}
 
 	// Novo
 	@RequestMapping("/edicaoIncubatorio/novo")
 	public String novoPostura(Model model) {
-		model.addAttribute("incubatorio", new Incubatorio());
+		if (incubatorioMen == null)
+			incubatorioMen = new Incubatorio();
+		model.addAttribute("incubatorio", incubatorioMen);
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
 		Iterable<Ovos> lista2 = ovr.findAll();
@@ -65,6 +70,7 @@ public class IncubatorioController {
 	@RequestMapping(value = "/edicaoIncubatorio/save", method = RequestMethod.POST)
 	public String salvarIncubatorio(@Valid Incubatorio incubatorio, BindingResult result,
 			RedirectAttributes attributes) {
+		incubatorioMen = incubatorio;
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoIncubatorio/novo";
@@ -88,6 +94,7 @@ public class IncubatorioController {
 			incubatorio.setTempo(tr.findByNomeAve(incubatorio.getTipoave()).getTempoChocagem());
 			ir.save(incubatorio);
 			attributes.addFlashAttribute("mensagem", "Lote de ovos salvo com sucesso!");
+			incubatorioMen = null;
 			return "redirect:/cadastrarIncubatorio";
 		}
 	}
@@ -104,10 +111,7 @@ public class IncubatorioController {
 	// Editar
 	@RequestMapping("/edicaoIncubatorio/editar/{codigo}")
 	public String editarIncubatorio(@PathVariable Long codigo, Model model) {
-		Incubatorio incubatorio = ir.findByCodigo(codigo);
-
-		Convercoes convercoes = new Convercoes();
-		incubatorio.setInicio(convercoes.convertDateBRtoDataUS(incubatorio.getInicio()));
+		incubatorioMen = ir.findByCodigo(codigo);
 
 		Iterable<TipoAve> lista = tr.findAll();
 		model.addAttribute("listaAves", lista);
@@ -115,7 +119,7 @@ public class IncubatorioController {
 		Iterable<Ovos> lista2 = ovr.findAll();
 		model.addAttribute("listaOvos", lista2);
 
-		model.addAttribute("incubatorio", incubatorio);
+		model.addAttribute("incubatorio", incubatorioMen);
 
 		return "incubatorio/editarIncubatorio";
 	}

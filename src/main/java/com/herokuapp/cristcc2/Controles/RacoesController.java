@@ -38,6 +38,8 @@ public class RacoesController {
 	private CorteRepository cr;
 	
 	private List<Racao> lista = new ArrayList<>();
+	
+	private Racao racaoMen;
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarRacoes", method = RequestMethod.GET)
@@ -45,13 +47,16 @@ public class RacoesController {
 		ModelAndView mv = new ModelAndView("racoes/cadastrarRacoes");
 		lista = rr.findAll();
 		mv.addObject("listaRacoes", lista);
+		racaoMen = null;
 		return mv;
 	}
 
 	// Novo
 	@RequestMapping("/edicaoRacoes/novo")
 	public String novaRavoes(Model model) {
-		model.addAttribute("racoes", new Racao());
+		if (racaoMen == null)
+			racaoMen = new Racao();
+		model.addAttribute("racoes", racaoMen);
 		Iterable<Postura> lista = pr.findAll();
 		model.addAttribute("listaPostura", lista);
 		Iterable<Corte> lista2 = cr.findAll();
@@ -62,8 +67,8 @@ public class RacoesController {
 	// Editar
 	@RequestMapping("/edicaoRacoes/editar/{codigo}")
 	public String editarVacinas(@PathVariable Long codigo, Model model) {
-		Racao racao = rr.findByCodigo(codigo);
-		model.addAttribute("racoes", racao);
+		racaoMen = rr.findByCodigo(codigo);
+		model.addAttribute("racoes", racaoMen);
 		Iterable<Postura> lista = pr.findAll();
 		model.addAttribute("listaPostura", lista);
 		Iterable<Corte> lista2 = cr.findAll();
@@ -73,6 +78,7 @@ public class RacoesController {
 
 	@RequestMapping(value = "/edicaoRacoes/save", method = RequestMethod.POST)
 	public String salvarvacinas(@Valid Racao racao, BindingResult result, RedirectAttributes attributes) {
+		racaoMen = racao;
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoRacoes/novo";
@@ -80,6 +86,7 @@ public class RacoesController {
 			racao.setData2(new Convercoes().convertDateUStoDataBR(racao.getData().toString()));
 			rr.save(racao);
 			attributes.addFlashAttribute("mensagem", "Lote de Racao salvo com sucesso!");
+			racaoMen = null;
 			return "redirect:/cadastrarRacoes";
 		}
 	}

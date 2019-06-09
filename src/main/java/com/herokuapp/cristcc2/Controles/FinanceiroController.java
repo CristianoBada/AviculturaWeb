@@ -33,22 +33,27 @@ public class FinanceiroController {
 	private ProdutoRepository pr;
 	
 	private List<Financeiro> lista = new ArrayList<>();
+	
+	private Financeiro financeiroMen;
 
 	// Inicio
 	@RequestMapping(value = "/cadastrarFinanceiro", method = RequestMethod.GET)
-	public ModelAndView listaPostura() {
+	public ModelAndView listaFinanceiro() {
 		ModelAndView mv = new ModelAndView("financeiro/cadastrarFinanceiro");
 		Iterable<Financeiro> lista = fr.findAll();
 		mv.addObject("listaFinanceiro", lista);
 		Iterable<Produtos> lista2 = pr.findAll();
 		mv.addObject("listaProdutos", lista2);
+		financeiroMen = null;
 		return mv;
 	}
 
 	// Novo
 	@RequestMapping("/edicaoFinanceiro/novo")
 	public String edicaoFinanceiro(Model model) {
-		model.addAttribute("financeiro", new Financeiro());
+		if (financeiroMen == null)
+			financeiroMen = new Financeiro();
+		model.addAttribute("financeiro", financeiroMen);
 		Iterable<Produtos> lista = pr.findAll();
 		model.addAttribute("listaProdutos", lista);
 		model.addAttribute("itemSelecionado", "entrada");
@@ -59,6 +64,7 @@ public class FinanceiroController {
 	// Salvar
 	@RequestMapping(value = "/edicaoFinanceiro/save", method = RequestMethod.POST)
 	public String salvarvacinas(@Valid Financeiro financeiro, BindingResult result, RedirectAttributes attributes) {
+		financeiroMen = financeiro;
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/edicaoFinanceiro";
@@ -67,6 +73,7 @@ public class FinanceiroController {
 			financeiro.setData2(convercoes.convertDateUStoDataBR((financeiro.getData())));
 			fr.save(financeiro);
 			attributes.addFlashAttribute("mensagem", "Financeiro salvo com sucesso!");
+			financeiroMen = null;
 			return "redirect:/cadastrarFinanceiro";
 		}
 	}
@@ -83,16 +90,13 @@ public class FinanceiroController {
 	// Editar
 	@RequestMapping("/edicaoFinanceiro/editar/{codigo}")
 	public String editarFinanceiro(@PathVariable Long codigo, Model model) {
-		Financeiro fin = fr.findByCodigo(codigo);
+		financeiroMen = fr.findByCodigo(codigo);
 
-		Convercoes convercoes = new Convercoes();
-		fin.setData(convercoes.convertDateBRtoDataUS(fin.getData()));
-
-		model.addAttribute("financeiro", fin);
+		model.addAttribute("financeiro", financeiroMen);
 		Iterable<Produtos> lista = pr.findAll();
 		model.addAttribute("listaProdutos", lista);
 
-		if (fin.getEntrasaida().equals("entrada")) {
+		if (financeiroMen.getEntrasaida().equals("entrada")) {
 			model.addAttribute("itemSelecionado", "entrada");
 			model.addAttribute("item", "saida");
 		} else {
