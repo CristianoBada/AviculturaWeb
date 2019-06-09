@@ -96,7 +96,7 @@ public class PosturaController {
 			postura.setEntrada2(convercoes.convertDateUStoDataBR((postura.getEntrada())));
 			postura.setSaida2(convercoes.convertDateUStoDataBR((postura.getSaida())));
 			pr.save(postura);
-			attributes.addFlashAttribute("mensagem2",
+			attributes.addFlashAttribute("mensagem",
 					"Lote de postura salvo com sucesso!");
 
 			return "redirect:/cadastrarPostura";
@@ -119,6 +119,7 @@ public class PosturaController {
 				if (racaos.size() > 0) {
 					redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado em um lote de Ração.");
 				} else {
+					redirectAttrs.addFlashAttribute("mensagem", "Lote deletado com sucesso.");
 					pr.delete(postura);
 				}
 			}

@@ -124,13 +124,18 @@ public class VacinasController {
 
 	// Salvar
 	@RequestMapping(value = "/edicaoVacinas/save", method = RequestMethod.POST)
-	public String salvarVacina(@Valid Vacina vacina, BindingResult bindingResult, Model model) throws ParseException {
+	public String salvarVacina(@Valid Vacina vacina, BindingResult bindingResult, RedirectAttributes attributes) throws ParseException {
 
 		if (bindingResult.hasErrors()) {
 			return "vacinas/editarVacinas";
 		} else {
+			if (vacina.getCorte() == 0 && vacina.getPostura() == 0) {
+				attributes.addFlashAttribute("mensagem", "Um tratamento deve ser atribuido para um Lote de Postura ou Corte.");
+				return "redirect:/edicaoVacinas/novo";
+			}
 			vacina.setData2(new Convercoes().convertDateUStoDataBR(vacina.getData().toString()));
 			vr.save(vacina);
+			attributes.addFlashAttribute("mensagem", "Lote de Racao salvo com sucesso!");
 			return "redirect:/cadastrarVacinas";
 		}
 

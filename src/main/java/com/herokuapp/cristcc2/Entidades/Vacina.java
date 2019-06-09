@@ -36,6 +36,12 @@ public class Vacina implements Serializable {
 	
 	private long postura;
 	
+	public  Vacina() {
+		super();
+		postura = -1;
+		corte = -1;
+	}
+	
 	public long getPostura() {
 		return postura;
 	}

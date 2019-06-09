@@ -93,6 +93,7 @@ public class OvosController {
 			redirectAttrs.addFlashAttribute("mensagem", "Esse lote esta sendo usado na incubação.");
 		} else {
 			ovosr.delete(ovos);
+			redirectAttrs.addFlashAttribute("mensagem", "Lote deletado com sucesso.");
 		}
 		return "redirect:/cadastrarOvos";
 	}

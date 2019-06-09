@@ -78,7 +78,7 @@ public class IncubatorioController {
 				return "redirect:/edicaoIncubatorio/novo";
 			}
 			
-			if (incubatorio.getUmidade() != null && (incubatorio.getUmidade() < 65 || incubatorio.getUmidade() > 75)) {
+			if (incubatorio.getUmidade() != null && incubatorio.getUmidade() != 0 && (incubatorio.getUmidade() < 65 || incubatorio.getUmidade() > 75)) {
 				attributes.addFlashAttribute("mensagem", "A umidade relativa do ar deve se manter entre 65% e 75%.");
 				return "redirect:/edicaoIncubatorio/novo";
 			}
@@ -93,10 +93,11 @@ public class IncubatorioController {
 	}
 
 	// Deletar
-	@RequestMapping("/cadastrarIncubatorio/delete/{codigo}") // @PathVariable Long id, RedirectAttributes redirectAttrs
+	@RequestMapping("/cadastrarIncubatorio/delete/{codigo}") 
 	public String deletarIncubatorio(@PathVariable("codigo") Long codigo, RedirectAttributes redirectAttrs) {
 		Incubatorio incubatorio = ir.findByCodigo(codigo);
 		ir.delete(incubatorio);
+		redirectAttrs.addFlashAttribute("mensagem", "Lote deletado com sucesso.");
 		return "redirect:/cadastrarIncubatorio";
 	}
 
