@@ -72,13 +72,26 @@ body {
 						id="input_text" type="text" value="" name="nomeProduto"
 						data-length="20" required />
 				</div>
+				<div class="input-field col s2">
+					<label for="tipo_transicao">Unidade de medida:</label> 
+					<select name=tipounidade>
+						<option th:value="Kg" th:text="Kg"></option>
+						<option th:value="Un." th:text="Un."></option>
+						<option th:value="L" th:text="L"></option>
+						<option th:value="m" th:text="m"></option>
+						<option th:value="m2" th:text="m2"></option>
+						<option th:value="m3" th:text="m3"></option>
+					</select>
+				</div>
 			</div>
 
 			<hr size="30">
 
-			<button class="btn btn-dark" type="submit"><i class="material-icons">save</i> Salvar</button>
-			<a href="/" class="btn btn-dark"><i
-				class="material-icons">undo</i> Voltar</a>
+			<button class="btn btn-dark" type="submit">
+				<i class="material-icons">save</i> Salvar
+			</button>
+			<a href="/" class="btn btn-dark"><i class="material-icons">undo</i>
+				Voltar</a>
 		</form>
 	</div>
 

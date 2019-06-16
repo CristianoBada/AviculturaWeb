@@ -39,6 +39,26 @@ public class Financeiro implements Serializable{
     
     @Size(min=10, max=10)
     private String data2;
+    
+    private Double quantidade;
+    
+    private String tipo;
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public Double getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Double quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	public String getData2() {
 		return data2;

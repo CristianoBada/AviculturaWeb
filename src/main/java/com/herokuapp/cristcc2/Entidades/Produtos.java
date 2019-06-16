@@ -16,6 +16,16 @@ public class Produtos implements Serializable{
 	@NotEmpty
 	@Size(min=1, max=20)
 	private String nomeProduto;
+	
+	private String tipounidade;
+
+	public String getTipounidade() {
+		return tipounidade;
+	}
+
+	public void setTipounidade(String tipounidade) {
+		this.tipounidade = tipounidade;
+	}
 
 	public String getNomeProduto() {
 		return nomeProduto;

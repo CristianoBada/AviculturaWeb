@@ -119,6 +119,7 @@ body {
 					<th>Código</th>
 					<th>Nome do produto</th>
 					<th>Valor</th>
+					<th>Quantidade</th>
 					<th>Data</th>
 					<th>Tipo de transicao</th>
 					<th>Observação</th>
@@ -130,6 +131,7 @@ body {
 					<td><span th:text="${co.codigo}"></span></td>
 					<td><span th:text="${co.nome}"></span></td>
 					<td>R$ <span th:text="${co.valor}"></span></td>
+					<td><span th:text="${co.quantidade} + ${co.tipo}"></span></td>
 					<td><span th:text="${co.data2}"></span></td>
 					<td><span th:text="${co.entrasaida}"></span></td>
 					<td><span th:text="${co.observacao}"></span></td>

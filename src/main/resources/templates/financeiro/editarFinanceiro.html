@@ -84,6 +84,8 @@ body {
 					<label for="data_u">Data:</label> <input type="date" value=""
 						th:field="*{data}" placeholder="" required />
 				</div>
+				
+				
 			</div>
 			<div class="row">
 				<div class="input-field col s2">
@@ -94,6 +96,10 @@ body {
 						<option th:each="item : ${item}" th:value="${item}"
 							th:text="${item}" />
 					</select>
+				</div>
+				<div class="input-field col s1">
+					<label for="valor">Quantidade:</label> <input type="number"
+						step="any" th:field="*{quantidade}" required />
 				</div>
 				<div class="input-field col s4">
 					<label for="detalhe">Observação:</label> <input id="input_text"

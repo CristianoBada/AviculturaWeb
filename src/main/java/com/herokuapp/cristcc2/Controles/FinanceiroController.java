@@ -71,6 +71,8 @@ public class FinanceiroController {
 		} else {
 			Convercoes convercoes = new Convercoes();
 			financeiro.setData2(convercoes.convertDateUStoDataBR((financeiro.getData())));
+			Produtos produtos = pr.findByNomeProduto(financeiro.getNome());
+			financeiro.setTipo(produtos.getTipounidade());
 			fr.save(financeiro);
 			attributes.addFlashAttribute("mensagem", "Financeiro salvo com sucesso!");
 			financeiroMen = null;
