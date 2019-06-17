@@ -29,13 +29,14 @@ public class PdfFinanceiroReportView extends AbstractPdfView {
 		
 		AjustesTable ajustesTable = new AjustesTable();
 
-		PdfPTable table = ajustesTable.criaTabela(6);
-		float[] widths = new float[] { 32f, 60f, 30f, 40f, 55f, 80f};
+		PdfPTable table = ajustesTable.criaTabela(7);
+		float[] widths = new float[] { 32f, 60f,30f, 30f, 40f, 35f, 80f};
 		table.setWidths(widths);
 		
 		ajustesTable.addCell(table, "Código");
 		ajustesTable.addCell(table, "Nome");
 		ajustesTable.addCell(table, "Valor");
+		ajustesTable.addCell(table, "Quant.");
 		ajustesTable.addCell(table, "Data");
 		ajustesTable.addCell(table, "Tipo de transição");
 		ajustesTable.addCell(table, "Observação");
@@ -47,6 +48,7 @@ public class PdfFinanceiroReportView extends AbstractPdfView {
 			ajustesTable.addCell(table, financeiro.getCodigo() + "");
 			ajustesTable.addCell(table, financeiro.getNome());
 			ajustesTable.addCell(table, "R$ " + financeiro.getValor());
+			ajustesTable.addCell(table, financeiro.getQuantidade() + financeiro.getTipo());
 			ajustesTable.addCell(table, financeiro.getData());
 			ajustesTable.addCell(table, financeiro.getEntrasaida());
 			ajustesTable.addCell(table, financeiro.getObservacao());	
